@@ -22,6 +22,7 @@
     --hand: 'Indie Flower', 'Comic Sans MS', cursive;
     --hindi: 'Tiro Devanagari Hindi', serif;
     --header-h: 119px;
+    --pad: 66px;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -37,7 +38,7 @@
   /* ---------- Header ---------- */
   .site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 9999; width: 100%; color: var(--cream); background: rgba(163, 34, 115, 0); transition: all .2s ease; }
   .site-header.is-scrolled, body.mega-menu-open .site-header { position: fixed; background: var(--magenta); }
-  .header-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 0 66px; }
+  .header-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 0 var(--pad); }
 
   .header-nav { flex: 0 0 460px; }
   .header-nav__list { list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
@@ -92,7 +93,7 @@
   /* Full-screen phone menu */
   .mobile-menu { position: fixed; inset: 0; z-index: 9998; background: var(--cream); visibility: hidden; opacity: 0; transition: all .2s ease; }
   body.mobile-menu-active .mobile-menu { visibility: visible; opacity: 1; }
-  .mobile-menu-content { padding: 136px 14px 32px; height: 100%; overflow-y: auto; }
+  .mobile-menu-content { padding: calc(var(--header-h) + 32px) var(--pad) 32px; height: 100%; overflow-y: auto; }
   .mobile-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 24px; }
   .mobile-menu a { color: var(--plum); font-size: 18px; font-weight: 700; line-height: 1.4; text-decoration: none; }
   .mobile-menu a:hover, .mobile-menu a:focus-visible { color: var(--lime); }
@@ -114,7 +115,7 @@
     :root { --header-h: 96px; }
     .header-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
     .header-nav { display: none; }
-    .header-logo { order: 2; margin: 0 auto; width: 150px; }
+    .header-logo { order: 2; margin: 0 auto; width: 150px; height: var(--header-h); }
     .header-logo svg { width: 38px; height: 38px; }
     .header-logo b { font-size: 21px; }
     .header-locale { flex: 0 0 auto; order: 1; justify-content: flex-start; }
@@ -122,48 +123,81 @@
     body.header-hidden .site-header { transform: translateY(-100%); opacity: 0; visibility: hidden; pointer-events: none; }
   }
   @media (min-width: 1280px) { .mobile-menu { display: none; } }
-  @media (min-width: 768px) and (max-width: 1279px) { .header-inner { padding: 0 32px; } .container { width: calc(100% - 64px); } }
-  @media (max-width: 767px) { .header-inner { padding: 0 14px; gap: 22px; } .container { width: calc(100% - 32px); } }
+  @media (min-width: 768px) and (max-width: 1279px) { :root { --pad: 32px; } }
+  @media (max-width: 767px) { :root { --pad: 16px; } .header-inner { gap: 16px; } }
 
-  /* ---------- Hero ---------- */
-  .hero-block { position: relative; width: 100%; aspect-ratio: 1600 / 860; max-height: 100vh; min-height: 620px; overflow: hidden; color: var(--cream); background: var(--plum); }
-  .hero-background { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+  /* ---------- Hero ----------
+     Wide screens and landscape tablets: copy bottom-left, art bottom-right, side by side.
+     Portrait tablets and phones: copy on top, art in the middle, button at the bottom.
+     Short landscape phones: compact side-by-side. */
+  .hero-block { position: relative; width: 100%; height: 100svh; min-height: 560px; overflow: hidden; color: var(--cream); background: var(--plum); }
+  @supports not (height: 100svh) { .hero-block { height: 100vh; } }
+  .hero-background { position: absolute; inset: 0; z-index: 1; }
   .hero-background svg { width: 100%; height: 100%; display: block; }
-  .hero-background .-mobile { display: none; }
   .hero-overlay { position: absolute; inset: 0; z-index: 2; background: #000; opacity: .2; pointer-events: none; }
   .hero-block::before, .hero-block::after { content: ""; position: absolute; left: 0; right: 0; z-index: 2; pointer-events: none; }
   .hero-block::before { top: 0; height: 28%; background: linear-gradient(to bottom, rgba(0, 0, 0, .4), transparent 70%); }
   .hero-block::after { bottom: 0; height: 44%; background: linear-gradient(to top, rgba(0, 0, 0, .4), transparent 70%); }
-  .hero-block > .container { position: absolute; inset: 0; z-index: 3; display: flex; align-items: flex-end; padding-bottom: 51px; }
-  .hero-block header { max-width: 567px; }
-  .hero-block h1 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(44px, 5.15vw, 74px); line-height: 1.1; letter-spacing: 0; text-transform: uppercase; color: inherit; text-wrap: balance; }
-  .hero-block header p { max-width: 502px; margin: 24px 0 0; font-weight: 500; }
-  .hero-block header .button { margin-top: 20px; min-width: 356px; }
-  .hero-decoration { position: absolute; right: 14%; bottom: 2%; z-index: 4; max-width: 16vw; min-width: 180px; text-align: center; transform: rotate(-8.62deg); transform-origin: center bottom; pointer-events: none; }
+
+  .hero-inner { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; justify-content: flex-end; padding: calc(var(--header-h) + 24px) var(--pad) 51px; }
+  .hero-copy, .hero-cta { position: relative; z-index: 2; max-width: min(567px, 40vw); }
+  .hero-block h1 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(40px, 5.15vw, 74px); line-height: 1.1; letter-spacing: 0; text-transform: uppercase; color: inherit; text-wrap: balance; }
+  .hero-copy p { max-width: 502px; margin: 24px 0 0; font-weight: 500; }
+  .hero-cta .button { margin-top: 20px; min-width: min(356px, 100%); }
+
+  .hero-art { position: absolute; right: 0; bottom: 0; z-index: 1; width: min(54vw, 1040px); }
+  .hero-art svg { display: block; width: 100%; height: auto; }
+  .hero-decoration { position: absolute; left: 30%; bottom: 3%; max-width: 15vw; min-width: 170px; text-align: center; transform: rotate(-8.62deg); transform-origin: center bottom; pointer-events: none; }
   .hero-decoration svg { display: block; width: 33%; margin: 0 auto 4px 18px; color: var(--cream); animation: hero-cue-pulse 1.6s ease-in-out infinite; }
-  .hero-decoration__label { display: block; font-family: var(--hand); font-size: clamp(18px, 1.7vw, 24px); line-height: 1.1; color: inherit; }
+  .hero-decoration__label { display: block; font-family: var(--hand); font-size: clamp(17px, 1.6vw, 24px); line-height: 1.1; color: var(--cream); }
   @keyframes hero-cue-pulse { 0%, 100% { transform: translateY(0); opacity: .7; } 50% { transform: translateY(8px); opacity: 1; } }
 
-  @media (min-width: 768px) and (max-width: 1279px) { .hero-block > .container { padding-bottom: 60px; } }
-  @media (max-width: 767px) {
-    .hero-block { aspect-ratio: auto; min-height: 80vh; }
-    .hero-background .-desktop { display: none; }
-    .hero-background .-mobile { display: block; }
-    .hero-block > .container { position: relative; inset: auto; flex-direction: column; align-items: stretch; padding: 150px 0 18px; min-height: 80vh; }
-    .hero-block header { flex: 1; display: flex; flex-direction: column; max-width: 100%; text-align: center; }
-    .hero-block header p { font-size: 14px; margin: 10px auto 0; max-width: 100%; }
-    .hero-block header .button { margin-top: auto; min-width: 0; width: 100%; padding: 10px 16px; border-radius: 10px; font-size: 12px; font-weight: 700; }
+  @media (min-width: 768px) and (max-width: 1279px) { .hero-inner { padding-bottom: 60px; } }
+
+  /* Portrait tablets and all phones in portrait: stacked */
+  @media (orientation: portrait) and (max-width: 1279px), (max-width: 599px) {
+    .hero-block { height: auto; min-height: 100svh; }
+    @supports not (height: 100svh) { .hero-block { min-height: 100vh; } }
+    .hero-inner { position: relative; inset: auto; min-height: inherit; justify-content: flex-start; align-items: center; text-align: center; padding: calc(var(--header-h) + 36px) var(--pad) 24px; }
+    .hero-copy, .hero-cta { max-width: 640px; width: 100%; }
+    .hero-copy p { margin: 14px auto 0; }
+    .hero-art { position: relative; right: auto; bottom: auto; width: 100%; max-width: 720px; margin: 18px auto 0; flex: 1 0 auto; display: flex; align-items: center; }
+    .hero-decoration { display: none; }
+    .hero-cta { margin-top: auto; padding-top: 12px; }
+    .hero-cta .button { width: 100%; max-width: 420px; }
+  }
+  @media (max-width: 599px) {
+    .hero-copy p { font-size: 14px; }
+    .hero-cta .button { max-width: none; padding: 12px 16px; border-radius: 10px; font-size: 14px; font-weight: 700; }
+  }
+
+  /* Short landscape phones */
+  @media (orientation: landscape) and (max-height: 520px) {
+    :root { --header-h: 64px; }
+    .header-logo { width: 112px; gap: 0; }
+    .header-logo svg { width: 26px; height: 26px; }
+    .header-logo b { font-size: 16px; }
+    .header-logo small { display: none; }
+    .hero-block { height: 100svh; min-height: 320px; }
+    .hero-inner { padding: calc(var(--header-h) + 12px) var(--pad) 16px; }
+    .hero-copy, .hero-cta { max-width: 45vw; }
+    .hero-block h1 { font-size: clamp(24px, 4.4vw, 38px); }
+    .hero-copy p { font-size: 13px; margin-top: 8px; }
+    .hero-copy p br { display: none; }
+    .hero-cta .button { margin-top: 12px; min-width: 0; padding: 9px 22px; font-size: 14px; }
+    .hero-art { width: 48vw; }
     .hero-decoration { display: none; }
   }
 
   /* ---------- Fade-up on scroll (1s, plays again when scrolling back) ---------- */
-  [data-fade-up] { transition: opacity 1s ease, transform 1s ease; }
-  .js [data-fade-up]:not(.is-in) { opacity: 0; transform: translate3d(0, 100px, 0); }
+  /* The wrapper is watched; its children move, so the wrapper itself never leaves the screen */
+  [data-fade-up] > * { transition: opacity 1s ease, transform 1s ease; }
+  .js [data-fade-up]:not(.is-in) > * { opacity: 0; transform: translate3d(0, 100px, 0); }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .hero-decoration svg { animation: none; }
-    .js [data-fade-up]:not(.is-in) { opacity: 1; transform: none; }
+    .js [data-fade-up]:not(.is-in) > * { opacity: 1; transform: none; }
     .site-header, .mega, .mobile-menu { transition-duration: .01ms; }
   }
 </style>
@@ -302,35 +336,35 @@
 <main>
   <section class="hero-block">
     <div class="hero-background" aria-hidden="true">
-      <svg class="-desktop" viewBox="0 0 1600 860" preserveAspectRatio="xMidYMid slice">
+      <svg viewBox="0 0 1600 860" preserveAspectRatio="xMidYMid slice">
         <rect width="1600" height="860" fill="url(#bg)"/>
         <rect width="1600" height="860" fill="url(#matka)"/>
-        <use href="#leaf" transform="translate(1530 200) rotate(130) scale(4)"/>
-        <use href="#leaf" transform="translate(760 700) rotate(-40) scale(3.4)"/>
-        <use href="#leaf" transform="translate(1420 840) rotate(30) scale(3.2)"/>
-        <use href="#leaf" transform="translate(900 210) rotate(-70) scale(2.4)" opacity=".8"/>
-        <use href="#stilllife" transform="translate(1110 700)"/>
-      </svg>
-      <svg class="-mobile" viewBox="0 0 400 860" preserveAspectRatio="xMidYMax slice">
-        <rect width="400" height="860" fill="url(#bg)"/>
-        <rect width="400" height="860" fill="url(#matka)"/>
-        <use href="#leaf" transform="translate(30 520) rotate(-40) scale(2.4)"/>
-        <use href="#leaf" transform="translate(385 470) rotate(120) scale(2.6)"/>
-        <use href="#stilllife" transform="translate(200 720) scale(.5)"/>
+        <use href="#leaf" transform="translate(1540 190) rotate(130) scale(3.6)"/>
+        <use href="#leaf" transform="translate(70 120) rotate(-150) scale(2.6)" opacity=".7"/>
+        <use href="#leaf" transform="translate(900 200) rotate(-70) scale(2.2)" opacity=".45"/>
       </svg>
     </div>
     <div class="hero-overlay" aria-hidden="true"></div>
-    <div class="container">
-      <header data-fade-up>
+    <div class="hero-inner">
+      <div class="hero-copy" data-fade-up>
         <h1>From Maa's Kitchen to Your Table</h1>
-        <p>Homemade winter laddoos, panjiri and achaar, made with desi ghee and gur.<br>Made in small batches, the way mothers have always made them.</p>
+        <p>Homemade winter laddoos, panjiri and achaar, made with desi ghee and gur. <br>Made in small batches, the way mothers have always made them.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="-470 -300 920 460">
+          <use href="#leaf" transform="translate(-420 120) rotate(-40) scale(3)"/>
+          <use href="#leaf" transform="translate(420 150) rotate(30) scale(2.8)"/>
+          <use href="#stilllife"/>
+        </svg>
+        <div class="hero-decoration">
+          <svg viewBox="0 0 65 58"><use href="#cue"/></svg>
+          <span class="hero-decoration__label">Made with desi ghee, gur and zero preservatives</span>
+        </div>
+      </div>
+      <div class="hero-cta" data-fade-up>
         <a href="#products" class="button">Explore our products</a>
-      </header>
+      </div>
     </div>
-    <aside class="hero-decoration" aria-hidden="true">
-      <svg viewBox="0 0 65 58"><use href="#cue"/></svg>
-      <span class="hero-decoration__label">Made with desi ghee, gur and zero preservatives</span>
-    </aside>
   </section>
 </main>
 

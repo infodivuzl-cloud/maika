@@ -44,7 +44,7 @@
   .site-header > * { pointer-events: auto; }
 
   .nav-band { position: absolute; top: var(--band-top); left: var(--band-gap); right: var(--band-gap); height: var(--band-h);
-    display: grid; grid-template-columns: minmax(0, 1fr) var(--badge-w) minmax(0, 1fr); align-items: center; padding: 0 3%;
+    display: grid; grid-template-columns: minmax(0, 1fr) calc(var(--band-h) * 1.6) minmax(0, 1fr); align-items: center; padding: 0 3%;
     background-color: var(--band);
     background-image:
       repeating-linear-gradient(0deg, rgba(255, 255, 255, .09) 0 1px, transparent 1px 3px),
@@ -82,9 +82,9 @@
   .mega__img svg { width: 80%; height: auto; }
 
   /* The plaque badge (logo) */
-  .nav-badge { position: absolute; top: 0; left: 50%; width: var(--badge-w); height: var(--badge-h); transform: translateX(-50%); display: block; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .35)); transition: transform .2s ease; }
+  .nav-badge { position: absolute; top: calc(var(--band-top) + 4px); left: 50%; width: calc((var(--band-h) - 8px) * 1.12); height: calc(var(--band-h) - 8px); transform: translateX(-50%); display: block; color: var(--band-ink); transition: transform .2s ease; }
   .nav-badge:hover { transform: translateX(-50%) translateY(-2px); }
-  .nav-badge:focus-visible { outline: 2px dashed var(--badge-ink); outline-offset: 4px; border-radius: 20px; }
+  .nav-badge:focus-visible { outline: 2px dashed var(--band-ink); outline-offset: 4px; border-radius: 6px; }
   .nav-badge svg { display: block; width: 100%; height: 100%; overflow: visible; }
 
   /* Small link shown in the band on tablets and phones */
@@ -118,7 +118,7 @@
   .sub-menu-toggle::before { content: ""; width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
   .has-sub.sub-menu-open .sub-menu-toggle::before { transform: rotate(-135deg) translateY(-2px); }
 
-  :root { --header-h: calc(var(--badge-h) + 4px); }
+  :root { --header-h: calc(var(--band-top) + var(--band-h) + 10px); }
   @media (max-width: 1279px) {
     :root { --band-top: 22px; --band-h: 50px; --badge-w: 160px; --badge-h: 98px; --band-gap: 12px; }
     .header-nav { display: none; }
@@ -316,26 +316,16 @@
   </div>
 
   <a class="nav-badge" href="#" aria-label="Maika, back to the home page">
-    <svg viewBox="0 0 214 130" aria-hidden="true">
-      <defs>
-        <linearGradient id="badgeFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--badge-top, #363D4E)"/><stop offset="1" stop-color="var(--badge-bottom, #2A2F3C)"/></linearGradient>
-      </defs>
-      <path d="M16 30 C16 18 25 12 39 10 Q107 -3 175 10 C189 12 198 18 198 30 L200 96 C200 108 191 114 177 116 Q107 131 37 116 C23 114 14 108 14 96 Z" fill="url(#badgeFill)" stroke="rgba(0,0,0,.35)" stroke-width="2"/>
-      <path d="M23 32 C23 22 30 18 42 16 Q107 4 172 16 C184 18 191 22 191 32 L193 94 C193 103 186 108 175 110 Q107 123 39 110 C28 108 21 103 21 94 Z" fill="none" stroke="#FFF6C3" stroke-opacity=".14" stroke-width="1.5"/>
-      <!-- Maika logo: hand-drawn house with bunting and a matka -->
-      <g transform="translate(76 9) scale(.62)" fill="none" stroke="#F6E6C0" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 41 L50.5 4 L96 41.5"/>
-        <circle cx="50.5" cy="23" r="5"/>
-        <path d="M15 40.5 L13.5 84"/><path d="M86.5 40.5 L88 84"/>
-        <path d="M8 85.5 Q50 84 94 85.8"/>
-        <path d="M15.5 45 Q50.5 49 86 45"/>
-        <g stroke-width="2.4"><path d="M20 45.6 l3.2 6.2 l3.2 -5.7"/><path d="M29.5 46.6 l3.2 6.2 l3.2 -5.9"/><path d="M39 47.3 l3.2 6.2 l3.2 -6"/><path d="M48.5 47.6 l3.2 6.2 l3.2 -6.1"/><path d="M58 47.5 l3.2 6.2 l3.2 -6"/><path d="M67.5 47 l3.2 6.2 l3.2 -5.9"/><path d="M77 46 l3.2 6.2 l3.2 -5.7"/></g>
-        <path d="M43 56 h15 v4.6 h-15 z" fill="#F6E6C0"/>
-        <path d="M41.5 61 C31 63.5 28.5 70.5 29.5 76.5 C31 83.5 40 85.5 50.5 85.5 C61 85.5 70 83.5 71.5 76.5 C72.5 70.5 70 63.5 59.5 61 Z" fill="#F6E6C0"/>
-        <path d="M38 71 h7 M53 78.5 h8.5" stroke="var(--badge-bottom, #2A2F3C)" stroke-width="2"/>
-      </g>
-      <text x="107" y="88" text-anchor="middle" font-family="'Mali', 'Quicksand', sans-serif" font-weight="300" font-size="22" letter-spacing="5" fill="#F6E6C0" dx="2.5">MAIKA</text>
-      <text x="107" y="104" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', cursive" font-size="12" fill="#F6E6C0">homemade &amp; pure</text>
+    <svg viewBox="2 0 98 90" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 41 L50.5 4 L96 41.5"/>
+      <circle cx="50.5" cy="23" r="5"/>
+      <path d="M15 40.5 L13.5 84"/><path d="M86.5 40.5 L88 84"/>
+      <path d="M8 85.5 Q50 84 94 85.8"/>
+      <path d="M15.5 45 Q50.5 49 86 45"/>
+      <g stroke-width="2.6"><path d="M20 45.6 l3.2 6.2 l3.2 -5.7"/><path d="M29.5 46.6 l3.2 6.2 l3.2 -5.9"/><path d="M39 47.3 l3.2 6.2 l3.2 -6"/><path d="M48.5 47.6 l3.2 6.2 l3.2 -6.1"/><path d="M58 47.5 l3.2 6.2 l3.2 -6"/><path d="M67.5 47 l3.2 6.2 l3.2 -5.9"/><path d="M77 46 l3.2 6.2 l3.2 -5.7"/></g>
+      <path d="M43 56 h15 v4.6 h-15 z" fill="currentColor"/>
+      <path d="M41.5 61 C31 63.5 28.5 70.5 29.5 76.5 C31 83.5 40 85.5 50.5 85.5 C61 85.5 70 83.5 71.5 76.5 C72.5 70.5 70 63.5 59.5 61 Z" fill="currentColor"/>
+      <path d="M38 71 h7 M53 78.5 h8.5" stroke="var(--band)" stroke-width="2.4"/>
     </svg>
   </a>
 </header>

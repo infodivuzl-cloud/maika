@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#A32273">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Indie+Flower&family=Nothing+You+Could+Do&family=Gentium+Book+Plus:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Indie+Flower&family=Nothing+You+Could+Do&family=Mali:wght@300;400&family=Patrick+Hand&family=Gentium+Book+Plus:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=excon@400,500,700,900&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23A32273' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 27 32 6l27 21'/%3E%3Cpath d='M12 22v36h40V22'/%3E%3Cellipse cx='32' cy='50' rx='10' ry='7.5' fill='%23A32273' stroke='none'/%3E%3C/svg%3E">
@@ -36,7 +36,7 @@
   .button:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
 
   /* ---------- Header: mustard ribbon with a navy plaque badge in the middle ---------- */
-  :root { --band: #CDBD6E; --band-ink: #2B2A26; --badge: #2F3543; --badge-ink: #FFF6C3; --lace: #3A3934;
+  :root { --band: #EDD03A; --band-ink: #2B2A26; --badge: #2F3543; --badge-ink: #FFF6C3; --lace: #3A3934;
           --script: 'Nothing You Could Do', 'Indie Flower', cursive; --serif: 'Gentium Book Plus', Georgia, serif;
           --band-top: 28px; --band-h: 58px; --badge-w: 214px; --badge-h: 130px; --band-gap: 2.5vw; }
   .site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 9999; height: var(--header-h); pointer-events: none; transition: transform .25s ease, opacity .25s ease; }
@@ -147,7 +147,7 @@
 
   .hero-inner { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; justify-content: flex-end; padding: calc(var(--header-h) + 24px) var(--pad) 51px; }
   .hero-copy, .hero-cta { position: relative; max-width: min(567px, 40vw); }
-  .hero-block h1 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(40px, 5.15vw, 74px); line-height: 1.1; letter-spacing: 0; text-transform: uppercase; color: inherit; text-wrap: balance; text-shadow: 0 2px 18px rgba(50, 15, 8, .35); }
+  .hero-block h1 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(32px, 4.12vw, 59px); line-height: 1.1; letter-spacing: 0; text-transform: none; color: inherit; text-wrap: balance; text-shadow: 0 2px 18px rgba(50, 15, 8, .35); }
   .hero-copy p { max-width: 502px; margin: 24px 0 0; font-weight: 500; text-shadow: 0 1px 3px rgba(50, 15, 8, .5); }
   .hero-cta .button { margin-top: 20px; min-width: min(356px, 100%); }
 
@@ -193,7 +193,7 @@
     .hero-block { min-height: 320px; }
     .hero-inner { padding: calc(var(--header-h) + 12px) var(--pad) 16px; }
     .hero-copy, .hero-cta { max-width: 40vw; }
-    .hero-block h1 { font-size: clamp(24px, 4.4vw, 38px); }
+    .hero-block h1 { font-size: clamp(19px, 3.52vw, 30px); }
     .hero-copy p { font-size: 13px; margin-top: 8px; }
     .hero-copy p br { display: none; }
     .hero-cta .button { margin-top: 12px; min-width: 0; padding: 9px 22px; font-size: 14px; }
@@ -318,23 +318,24 @@
   <a class="nav-badge" href="#" aria-label="Maika, back to the home page">
     <svg viewBox="0 0 214 130" aria-hidden="true">
       <defs>
-        <linearGradient id="badgeFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#363D4E"/><stop offset="1" stop-color="#2A2F3C"/></linearGradient>
-        <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9EBEF"/><stop offset=".55" stop-color="#9DA3AF"/><stop offset="1" stop-color="#5D6370"/></linearGradient>
-        <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFF6C3" stop-opacity=".22"/><stop offset="1" stop-color="#FFF6C3" stop-opacity="0"/></radialGradient>
-        <path id="badgeArc" d="M38 52 Q107 22 176 52"/>
+        <linearGradient id="badgeFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--badge-top, #363D4E)"/><stop offset="1" stop-color="var(--badge-bottom, #2A2F3C)"/></linearGradient>
       </defs>
-      <path d="M16 30 C16 18 25 12 39 10 Q107 -3 175 10 C189 12 198 18 198 30 L200 96 C200 108 191 114 177 116 Q107 131 37 116 C23 114 14 108 14 96 Z" fill="url(#badgeFill)" stroke="#232733" stroke-width="2"/>
+      <path d="M16 30 C16 18 25 12 39 10 Q107 -3 175 10 C189 12 198 18 198 30 L200 96 C200 108 191 114 177 116 Q107 131 37 116 C23 114 14 108 14 96 Z" fill="url(#badgeFill)" stroke="rgba(0,0,0,.35)" stroke-width="2"/>
       <path d="M23 32 C23 22 30 18 42 16 Q107 4 172 16 C184 18 191 22 191 32 L193 94 C193 103 186 108 175 110 Q107 123 39 110 C28 108 21 103 21 94 Z" fill="none" stroke="#FFF6C3" stroke-opacity=".14" stroke-width="1.5"/>
-      <text font-family="'Gentium Book Plus', Georgia, serif" font-weight="700" font-size="31" letter-spacing="2" fill="#FFF6C3" text-anchor="middle"><textPath href="#badgeArc" startOffset="50%">MAIKA</textPath></text>
-      <ellipse cx="107" cy="74" rx="34" ry="14" fill="url(#glow)"/>
-      <g transform="translate(93 58) scale(.44)" fill="none" stroke="url(#metal)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" color="#B9BEC8">
-        <path d="M5 27 32 6l27 21"/><path d="M12 22v36h40V22"/><path d="M12 29c7 3 33 3 40 0"/>
-        <rect x="28.2" y="41" width="7.6" height="4" rx="1.2" fill="url(#metal)" stroke="none"/><ellipse cx="32" cy="51" rx="9.5" ry="7" fill="url(#metal)" stroke="none"/>
+      <!-- Maika logo: hand-drawn house with bunting and a matka -->
+      <g transform="translate(76 9) scale(.62)" fill="none" stroke="#F6E6C0" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 41 L50.5 4 L96 41.5"/>
+        <circle cx="50.5" cy="23" r="5"/>
+        <path d="M15 40.5 L13.5 84"/><path d="M86.5 40.5 L88 84"/>
+        <path d="M8 85.5 Q50 84 94 85.8"/>
+        <path d="M15.5 45 Q50.5 49 86 45"/>
+        <g stroke-width="2.4"><path d="M20 45.6 l3.2 6.2 l3.2 -5.7"/><path d="M29.5 46.6 l3.2 6.2 l3.2 -5.9"/><path d="M39 47.3 l3.2 6.2 l3.2 -6"/><path d="M48.5 47.6 l3.2 6.2 l3.2 -6.1"/><path d="M58 47.5 l3.2 6.2 l3.2 -6"/><path d="M67.5 47 l3.2 6.2 l3.2 -5.9"/><path d="M77 46 l3.2 6.2 l3.2 -5.7"/></g>
+        <path d="M43 56 h15 v4.6 h-15 z" fill="#F6E6C0"/>
+        <path d="M41.5 61 C31 63.5 28.5 70.5 29.5 76.5 C31 83.5 40 85.5 50.5 85.5 C61 85.5 70 83.5 71.5 76.5 C72.5 70.5 70 63.5 59.5 61 Z" fill="#F6E6C0"/>
+        <path d="M38 71 h7 M53 78.5 h8.5" stroke="var(--badge-bottom, #2A2F3C)" stroke-width="2"/>
       </g>
-      <path d="M58 70 Q80 62 96 70" stroke="url(#metal)" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".85"/>
-      <path d="M118 70 Q134 62 156 70" stroke="url(#metal)" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".85"/>
-      <text x="44" y="102" font-family="'Gentium Book Plus', Georgia, serif" font-size="17" fill="#FFF6C3">EST.</text>
-      <text x="170" y="102" font-family="'Gentium Book Plus', Georgia, serif" font-size="17" fill="#FFF6C3" text-anchor="end">2026</text>
+      <text x="107" y="88" text-anchor="middle" font-family="'Mali', 'Quicksand', sans-serif" font-weight="300" font-size="22" letter-spacing="5" fill="#F6E6C0" dx="2.5">MAIKA</text>
+      <text x="107" y="104" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', cursive" font-size="12" fill="#F6E6C0">homemade &amp; pure</text>
     </svg>
   </a>
 </header>

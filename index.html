@@ -8,14 +8,16 @@
 <meta name="theme-color" content="#606212">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&family=Kalam:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Indie+Flower&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=excon@400,500,700,900&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23606212' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 27 32 6l27 21'/%3E%3Cpath d='M12 22v36h40V22'/%3E%3Cellipse cx='32' cy='50' rx='10' ry='7.5' fill='%23CB2602' stroke='none'/%3E%3C/svg%3E">
 <style>
   :root {
     --latte: #FFF8E7; --peach: #F8D78F; --gold: #EDD03A; --avocado: #72891B;
     --olive: #606212; --chili: #CB2602; --sangria: #930500; --ink: #2B1D14;
-    --display: 'Fraunces', Georgia, serif; --body: 'DM Sans', system-ui, sans-serif;
-    --hand: 'Kalam', 'Comic Sans MS', cursive; --hindi: 'Tiro Devanagari Hindi', serif;
+    --display: 'Excon', 'Inter Tight', system-ui, sans-serif; --body: 'Inter Tight', system-ui, sans-serif;
+    --hand: 'Indie Flower', 'Comic Sans MS', cursive; --hindi: 'Tiro Devanagari Hindi', serif;
     --gutter: max(20px, 4vw);
   }
   * { box-sizing: border-box; }
@@ -24,7 +26,7 @@
   img, svg { max-width: 100%; }
   a { color: inherit; }
   .wrap { max-width: 1240px; margin: 0 auto; padding-inline: var(--gutter); }
-  h1, h2, h3 { font-family: var(--display); line-height: 1.05; margin: 0; text-wrap: balance; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.1; letter-spacing: 0; margin: 0; text-wrap: balance; }
   .btn { display: inline-flex; align-items: center; gap: .5em; padding: .9em 1.6em; border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid transparent; transition: transform .15s ease, background .15s ease; }
   .btn:hover { transform: translateY(-2px); }
   .btn:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
@@ -40,7 +42,7 @@
   header .right { justify-content: flex-end; align-items: center; }
   .badge { background: var(--chili); color: var(--latte); padding: 1rem 1.8rem 1.1rem; display: flex; flex-direction: column; align-items: center; gap: .2rem; text-decoration: none; border-radius: 0 0 18px 18px; }
   .badge svg { width: 54px; height: 54px; }
-  .badge b { font-family: var(--display); font-weight: 800; letter-spacing: .2em; font-size: 1.35rem; padding-left: .2em; }
+  .badge b { font-family: var(--display); font-weight: 700; letter-spacing: .2em; font-size: 1.35rem; padding-left: .2em; }
   .badge small { font-family: var(--hindi); font-size: .95rem; line-height: 1; }
   .lang { font-size: .85rem; padding: .3rem .6rem; border-radius: 6px; background: var(--gold); color: var(--ink); font-weight: 700; text-decoration: none; }
 
@@ -52,7 +54,7 @@
   .hero .grid { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 2rem; align-items: end; }
   .hero .copy { padding-bottom: 4.5rem; }
   .eyebrow { font-weight: 700; letter-spacing: .16em; text-transform: uppercase; font-size: .8rem; color: var(--gold); }
-  .hero h1 { font-size: clamp(2.6rem, 6.4vw, 5.4rem); font-weight: 800; margin: .8rem 0 1.2rem; }
+  .hero h1 { font-size: clamp(2.6rem, 6.4vw, 5.4rem); font-weight: 700; margin: .8rem 0 1.2rem; }
   .hero h1 em { font-style: normal; color: var(--peach); }
   .hero p { max-width: 34rem; font-size: 1.12rem; opacity: .92; margin: 0 0 2rem; }
   .hero .ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -62,14 +64,14 @@
   /* Values marquee */
   .marquee { background: var(--gold); color: var(--ink); overflow: hidden; border-block: 3px solid var(--ink); }
   .marquee .track { display: flex; width: max-content; animation: slide 32s linear infinite; }
-  .marquee span { font-family: var(--display); font-weight: 800; font-size: 1.35rem; padding: .85rem 1.4rem; white-space: nowrap; display: flex; align-items: center; gap: 1.4rem; }
+  .marquee span { font-family: var(--display); font-weight: 700; font-size: 1.35rem; padding: .85rem 1.4rem; white-space: nowrap; display: flex; align-items: center; gap: 1.4rem; }
   .marquee span::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--chili); }
   @keyframes slide { to { transform: translateX(-50%); } }
 
   /* About */
   .about { background: var(--peach); position: relative; }
   .about .grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem; padding-block: 6rem; align-items: center; }
-  .about h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); color: var(--sangria); font-weight: 800; margin-bottom: 1.4rem; }
+  .about h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); color: var(--sangria); font-weight: 700; margin-bottom: 1.4rem; }
   .about p { max-width: 36rem; margin: 0 0 1rem; }
   .about .sign { font-family: var(--hand); font-size: 1.6rem; color: var(--chili); margin-top: 1.4rem; }
   .callout { position: relative; }
@@ -83,7 +85,7 @@
   /* Categories */
   .cats { padding-block: 6rem 5rem; }
   .cats .head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-  .cats h2 { font-size: clamp(2.4rem, 6vw, 4.6rem); font-weight: 800; color: var(--sangria); text-transform: uppercase; letter-spacing: -.01em; }
+  .cats h2 { font-size: clamp(2.4rem, 6vw, 4.6rem); font-weight: 700; color: var(--sangria); text-transform: uppercase; letter-spacing: -.01em; }
   .cats .head p { max-width: 26rem; margin: 0; }
   .scroller { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(290px, 1fr); gap: 1.4rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; }
   .card { scroll-snap-align: start; border-radius: 22px; overflow: hidden; background: #fff; display: flex; flex-direction: column; border: 1px solid #efe2c2; }
@@ -92,7 +94,7 @@
   .card .num { position: absolute; top: 1rem; left: 1.1rem; font-weight: 700; font-size: .9rem; letter-spacing: .08em; }
   .card .tag { position: absolute; top: .9rem; right: 1rem; background: var(--latte); color: var(--sangria); font-weight: 700; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .7rem; border-radius: 999px; }
   .card .txt { padding: 1.4rem 1.5rem 1.7rem; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
-  .card h3 { font-size: 1.55rem; color: var(--sangria); font-weight: 800; }
+  .card h3 { font-size: 1.55rem; color: var(--sangria); font-weight: 700; }
   .card .hi { font-family: var(--hindi); color: var(--olive); font-size: 1.05rem; }
   .card p { margin: 0; font-size: .97rem; }
   .card .meta { margin-top: auto; padding-top: .6rem; font-size: .85rem; font-weight: 700; color: var(--olive); letter-spacing: .04em; }
@@ -101,7 +103,7 @@
   /* Ways to eat the spread */
   .ways { background: var(--latte); padding-bottom: 6rem; }
   .ways .box { background: var(--chili); color: var(--latte); border-radius: 28px; padding: clamp(2rem, 5vw, 3.5rem); display: grid; grid-template-columns: 1fr 1.4fr; gap: 2.5rem; align-items: center; }
-  .ways h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; }
+  .ways h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; }
   .ways h2 small { display: block; font-family: var(--hand); font-weight: 400; font-size: 1.4rem; color: var(--peach); margin-top: .6rem; }
   .ways ol { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
   .ways li { background: rgba(255, 248, 231, .12); border: 1px solid rgba(255, 248, 231, .3); border-radius: 18px; padding: 1.2rem; }
@@ -111,14 +113,14 @@
   /* Big band */
   .band { background: var(--sangria); color: var(--latte); position: relative; overflow: hidden; }
   .band .grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2rem; align-items: center; padding-block: 5.5rem; }
-  .band h2 { font-size: clamp(2.6rem, 6.5vw, 5.2rem); font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; }
+  .band h2 { font-size: clamp(2.6rem, 6.5vw, 5.2rem); font-weight: 700; text-transform: uppercase; letter-spacing: -.01em; }
   .band p { max-width: 34rem; font-size: 1.1rem; margin: 1.4rem 0 2rem; opacity: .92; }
   .band .art svg { width: 100%; height: auto; }
 
   /* Order */
   .order { padding-block: 5rem; }
   .order .box { border: 3px dashed var(--olive); border-radius: 28px; padding: clamp(1.8rem, 5vw, 3rem); display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; }
-  .order h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); color: var(--olive); font-weight: 800; }
+  .order h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); color: var(--olive); font-weight: 700; }
   .order p { margin: .8rem 0 0; max-width: 34rem; }
   .order ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .7rem; }
   .order li { background: var(--peach); border-radius: 14px; padding: .9rem 1.1rem; font-weight: 500; }
@@ -127,12 +129,12 @@
   /* Footer */
   footer { background: var(--peach); color: var(--ink); overflow: hidden; }
   footer .top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; padding-block: 4rem 2rem; }
-  footer h2 { font-size: clamp(2rem, 4.4vw, 3.3rem); color: var(--sangria); font-weight: 800; text-transform: uppercase; }
+  footer h2 { font-size: clamp(2rem, 4.4vw, 3.3rem); color: var(--sangria); font-weight: 700; text-transform: uppercase; }
   footer h4 { margin: 0 0 .8rem; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; color: var(--olive); }
   footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
   footer a { text-decoration: none; }
   footer a:hover { text-decoration: underline; }
-  .giant { font-family: var(--display); font-weight: 800; font-size: clamp(5rem, 24vw, 22rem); line-height: .78; color: rgba(147, 5, 0, .12); letter-spacing: .04em; text-align: center; margin-top: 1rem; user-select: none; }
+  .giant { font-family: var(--display); font-weight: 700; font-size: clamp(5rem, 24vw, 22rem); line-height: .78; color: rgba(147, 5, 0, .12); letter-spacing: .04em; text-align: center; margin-top: 1rem; user-select: none; }
   .legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: .85rem; padding-block: 1.2rem 1.6rem; border-top: 1px solid rgba(43, 29, 20, .15); }
 
   @media (max-width: 900px) {
@@ -177,8 +179,8 @@
       <g fill="#EDD03A"><circle cx="-18" cy="-8" r="4"/><circle cx="12" cy="0" r="3.5"/><circle cx="-6" cy="22" r="4"/><circle cx="18" cy="26" r="3"/></g>
       <g fill="#72891B"><ellipse cx="0" cy="-12" rx="5" ry="2.5"/><ellipse cx="-20" cy="16" rx="4" ry="2"/><ellipse cx="20" cy="12" rx="4.5" ry="2"/></g>
       <rect x="-30" y="-2" width="60" height="30" rx="5" fill="#F8D78F" stroke="#2B1D14" stroke-width="1.5"/>
-      <text x="0" y="12" text-anchor="middle" font-family="Fraunces, serif" font-weight="800" font-size="11" fill="#930500" letter-spacing="1">MAIKA</text>
-      <text x="0" y="23" text-anchor="middle" font-family="Kalam, cursive" font-size="8" fill="#2B1D14">achaar spread</text>
+      <text x="0" y="12" text-anchor="middle" font-family="Excon, sans-serif" font-weight="800" font-size="11" fill="#930500" letter-spacing="1">MAIKA</text>
+      <text x="0" y="23" text-anchor="middle" font-family="Indie Flower, cursive" font-size="8" fill="#2B1D14">achaar spread</text>
     </g>
     <g id="giftbox">
       <rect x="-60" y="-26" width="120" height="76" rx="6" fill="#FFF8E7" stroke="#2B1D14" stroke-width="2"/>
@@ -192,8 +194,8 @@
       <rect x="-42" y="-58" width="84" height="12" fill="#606212"/>
       <rect x="-26" y="-34" width="52" height="40" rx="20" fill="#FFF8E7" stroke="#2B1D14" stroke-width="1.5"/>
       <g transform="translate(-12 -26)"><use href="#pinniBall" transform="translate(12 14) scale(.5)"/></g>
-      <text x="0" y="26" text-anchor="middle" font-family="Fraunces, serif" font-weight="800" font-size="12" fill="#606212" letter-spacing="1">MAIKA</text>
-      <text x="0" y="40" text-anchor="middle" font-family="Kalam, cursive" font-size="10" fill="#2B1D14">alsi pinni</text>
+      <text x="0" y="26" text-anchor="middle" font-family="Excon, sans-serif" font-weight="800" font-size="12" fill="#606212" letter-spacing="1">MAIKA</text>
+      <text x="0" y="40" text-anchor="middle" font-family="Indie Flower, cursive" font-size="10" fill="#2B1D14">alsi pinni</text>
     </g>
   </defs>
 </svg>
@@ -247,7 +249,7 @@
           <g transform="translate(372 292)"><use href="#jar" transform="scale(1.35)"/></g>
           <!-- pouch -->
           <g transform="translate(468 248) rotate(8)"><use href="#pouch" transform="scale(1.05)"/></g>
-          <text x="40" y="200" font-family="Kalam, cursive" font-size="26" fill="#F8D78F" transform="rotate(-8 40 200)">made by Maa</text>
+          <text x="40" y="200" font-family="Indie Flower, cursive" font-size="26" fill="#F8D78F" transform="rotate(-8 40 200)">made by Maa</text>
           <path d="M150 210c20 18 30 40 30 62" stroke="#F8D78F" stroke-width="3" fill="none" stroke-linecap="round"/>
           <path d="M170 262l10 12 6-14" stroke="#F8D78F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -346,7 +348,7 @@
         <a class="btn btn-chili" href="#order" style="background:var(--gold);color:var(--ink)">Pre-order for Lohri</a>
       </div>
       <div class="art" aria-hidden="true">
-        <svg viewBox="0 0 320 260"><circle cx="160" cy="130" r="118" fill="none" stroke="#F8D78F" stroke-width="2" stroke-dasharray="4 8"/><g transform="translate(160 140) scale(1.25)"><use href="#giftbox"/></g><g transform="translate(250 60) rotate(14)"><circle r="34" fill="none" stroke="#F8D78F" stroke-width="2.5"/><text text-anchor="middle" y="-4" font-family="DM Sans" font-weight="700" font-size="10" fill="#F8D78F" letter-spacing="2">BATCH</text><text text-anchor="middle" y="16" font-family="Kalam" font-weight="700" font-size="20" fill="#F8D78F">#01</text></g></svg>
+        <svg viewBox="0 0 320 260"><circle cx="160" cy="130" r="118" fill="none" stroke="#F8D78F" stroke-width="2" stroke-dasharray="4 8"/><g transform="translate(160 140) scale(1.25)"><use href="#giftbox"/></g><g transform="translate(250 60) rotate(14)"><circle r="34" fill="none" stroke="#F8D78F" stroke-width="2.5"/><text text-anchor="middle" y="-4" font-family="Inter Tight" font-weight="700" font-size="10" fill="#F8D78F" letter-spacing="2">BATCH</text><text text-anchor="middle" y="16" font-family="Indie Flower" font-weight="700" font-size="20" fill="#F8D78F">#01</text></g></svg>
       </div>
     </div>
   </section>

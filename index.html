@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maika · Maike ka swaad</title>
 <meta name="description" content="Homemade winter laddoos, panjiri and achaar, made by Maa in small batches with desi ghee and gur.">
-<meta name="theme-color" content="#A32273">
+<meta name="theme-color" content="#930500">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Indie+Flower&family=Nothing+You+Could+Do&family=Mali:wght@300;400&family=Patrick+Hand&family=Gentium+Book+Plus:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
@@ -31,12 +31,12 @@
   .container { max-width: 1300px; margin: 0 auto; width: calc(100% - 128px); }
 
   /* ---------- Button ---------- */
-  .button { display: inline-flex; align-items: center; justify-content: center; padding: 14px 46px; border: 2px solid #2B2A26; border-radius: 9px; background: #FFF8E7; color: #2B2A26; box-shadow: 0 3px 10px rgba(50, 15, 8, .25); font-size: 16px; font-weight: 500; line-height: 1.4; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background .2s ease, color .2s ease; }
-  .button:hover { background: #EDD03A; }
-  .button:focus-visible { outline: 2px solid #FFF8E7; outline-offset: 2px; }
+  .button { display: inline-flex; align-items: center; justify-content: center; padding: 14px 46px; border: 2px solid #930500; border-radius: 9px; background: #930500; color: #FFF8E7; box-shadow: 0 4px 12px rgba(147, 5, 0, .22); font-size: 16px; font-weight: 500; line-height: 1.4; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .button:hover { background: #6E0400; border-color: #6E0400; }
+  .button:focus-visible { outline: 2px solid #930500; outline-offset: 2px; }
 
   /* ---------- Header: mustard ribbon with a navy plaque badge in the middle ---------- */
-  :root { --band: #FFF8E7; --band-ink: #2B2A26; --badge: #2F3543; --badge-ink: #FFF6C3; --lace: #3A3934;
+  :root { --band: #930500; --band-ink: #FFF8E7; --badge: #FFF8E7; --badge-ink: #930500; --lace: #5A0300;
           --script: 'Nothing You Could Do', 'Indie Flower', cursive; --serif: 'Gentium Book Plus', Georgia, serif;
           --band-top: 28px; --band-h: 58px; --badge-w: 214px; --badge-h: 130px; --band-gap: 2.5vw; }
   .site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 9999; height: var(--header-h); pointer-events: none; transition: transform .25s ease, opacity .25s ease; }
@@ -58,10 +58,10 @@
 
   .header-nav__list { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; justify-content: space-around; gap: 12px; }
   .header-nav__list > li > a { position: relative; display: inline-block; padding: 6px 4px; color: var(--band-ink); font-family: var(--script); font-size: 22px; line-height: 1; text-decoration: none; white-space: nowrap; transition: color .2s ease, transform .2s ease; }
-  .header-nav__list > li > a:hover, .header-nav__list > li > a:focus-visible { color: #000; transform: translateY(-1px); }
-  .header-nav__list > li > a::before { content: ""; position: absolute; left: 4px; right: 4px; bottom: 0; height: 2px; border-radius: 2px; background: var(--badge); opacity: 0; transform: scaleX(.4); transition: all .2s ease; }
+  .header-nav__list > li > a:hover, .header-nav__list > li > a:focus-visible { color: #FFFFFF; transform: translateY(-1px); }
+  .header-nav__list > li > a::before { content: ""; position: absolute; left: 4px; right: 4px; bottom: 0; height: 2px; border-radius: 2px; background: var(--band-ink); opacity: 0; transform: scaleX(.4); transition: all .2s ease; }
   .header-nav__list > li > a:hover::before, .header-nav__list > li > a:focus-visible::before { opacity: .8; transform: scaleX(1); }
-  .header-nav__list > li > a:focus-visible { outline: 2px dashed var(--badge); outline-offset: 2px; }
+  .header-nav__list > li > a:focus-visible { outline: 2px dashed var(--band-ink); outline-offset: 2px; }
 
   /* Mega menu under "Products" */
   .header-nav__list > li.has-mega { position: relative; }
@@ -69,12 +69,12 @@
   .header-nav__list > li.has-mega > a::after { content: ""; position: absolute; top: 100%; left: -20px; right: -20px; height: 34px; }
   .header-nav__list > li.has-mega.is-open::before { opacity: 1; visibility: visible; transform: translateY(0); }
   .header-nav__list > li.has-mega.is-open > a::before { opacity: .8; transform: scaleX(1); }
-  .mega { position: fixed; top: calc(var(--band-top) + var(--band-h) + 30px); left: min(9%, 132px); right: 9%; max-width: 1300px; z-index: 2; display: flex; align-items: flex-start; gap: 32px; padding: 32px; background: var(--cream); border-radius: 30px; box-shadow: 0 24px 60px rgba(71, 25, 57, .28); overflow: hidden; opacity: 0; visibility: hidden; transform: translateY(-8px); pointer-events: none; transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
+  .mega { position: fixed; top: calc(var(--band-top) + var(--band-h) + 30px); left: min(9%, 132px); right: 9%; max-width: 1300px; z-index: 2; display: flex; align-items: flex-start; gap: 32px; padding: 32px; background: var(--cream); border-radius: 30px; box-shadow: 0 24px 60px rgba(147, 5, 0, .22); overflow: hidden; opacity: 0; visibility: hidden; transform: translateY(-8px); pointer-events: none; transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
   .has-mega.is-open .mega { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
   .mega__list { list-style: none; margin: 20px 0 0 32px; padding: 0; flex: 1; min-width: 0; columns: 2; column-gap: 64px; }
   .mega__list li { break-inside: avoid; margin-bottom: 16px; }
-  .mega__list a { color: var(--plum); text-decoration: none; font-family: var(--display); font-size: 24px; font-weight: 700; line-height: 1.4; transition: all .2s ease; }
-  .mega__list a:hover, .mega__list a:focus-visible { color: var(--plum-hover); }
+  .mega__list a { color: #930500; text-decoration: none; font-family: var(--display); font-size: 24px; font-weight: 700; line-height: 1.4; transition: all .2s ease; }
+  .mega__list a:hover, .mega__list a:focus-visible { color: #6E0400; }
   .mega__list small { display: block; font-family: var(--hindi); font-size: 15px; font-weight: 400; color: rgba(71, 25, 57, .6); line-height: 1.2; }
   .mega__media { position: relative; flex: 0 0 400px; align-self: center; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 20px; }
   .mega__img { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; transition: opacity .2s ease; }
@@ -100,7 +100,7 @@
   body.mobile-menu-active .mobile-menu-toggle__icon::before { top: 5px; transform: rotate(45deg); }
   body.mobile-menu-active .mobile-menu-toggle__icon span { opacity: 0; }
   body.mobile-menu-active .mobile-menu-toggle__icon::after { top: 5px; transform: rotate(-45deg); }
-  .mobile-menu-toggle:focus-visible { outline: 2px dashed var(--badge); outline-offset: 3px; }
+  .mobile-menu-toggle:focus-visible { outline: 2px dashed var(--band-ink); outline-offset: 3px; }
 
   /* Full-screen phone menu */
   .mobile-menu { position: fixed; inset: 0; z-index: 9998; background: var(--band); visibility: hidden; opacity: 0; transition: all .2s ease; }
@@ -108,7 +108,7 @@
   .mobile-menu-content { padding: calc(var(--header-h) + 28px) var(--pad) 32px; height: 100%; overflow-y: auto; }
   .mobile-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px; }
   .mobile-menu a { color: var(--band-ink); font-family: var(--script); font-size: 26px; line-height: 1.3; text-decoration: none; }
-  .mobile-menu a:hover, .mobile-menu a:focus-visible { color: #000; }
+  .mobile-menu a:hover, .mobile-menu a:focus-visible { color: #FFFFFF; }
   .mobile-menu .has-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
   .mobile-menu .has-sub > a { flex: 1 1 auto; }
   .mobile-menu .sub-menu { display: none; flex-basis: 100%; padding: 8px 0 0 16px; gap: 10px; }
@@ -132,53 +132,41 @@
   @media (max-width: 767px) { :root { --pad: 16px; --band-gap: 8px; } }
 
   /* ---------- Hero ----------
-     One full-bleed photo behind everything (a wide version for landscape screens,
-     a tall version for portrait). Text sits on top, helped by soft dark shading. */
-  .hero-block { position: relative; width: 100%; height: 100svh; min-height: 560px; overflow: hidden; color: var(--cream); background: #A74930; }
+     Cream background with the product photo (cut out, soft shadows kept).
+     Wide and landscape screens: text left, products right.
+     Portrait tablets and phones: text on top, products in the middle, button at the bottom. */
+  .hero-block { position: relative; width: 100%; height: 100svh; min-height: 560px; overflow: hidden; color: #2B2A26; background: #FFF8E7; }
   @supports not (height: 100svh) { .hero-block { height: 100vh; } }
-  .hero-background { position: absolute; inset: 0; z-index: 1; }
-  .hero-background img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 85% 60%; }
-  /* Shading so cream text stays readable: darker on the left and at the top/bottom edges */
-  .hero-shade { position: absolute; inset: 0; z-index: 2; pointer-events: none;
-    background:
-      linear-gradient(to right, rgba(70, 22, 10, .62) 0%, rgba(70, 22, 10, .42) 30%, rgba(70, 22, 10, .12) 50%, transparent 62%),
-      linear-gradient(to bottom, rgba(50, 15, 8, .45) 0%, transparent 22%),
-      linear-gradient(to top, rgba(50, 15, 8, .35) 0%, transparent 30%); }
+  .hero-background { position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse 60% 70% at 72% 62%, #FFFDF6 0%, #FFF8E7 60%, #FBF0D9 100%); }
 
-  .hero-inner { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; justify-content: flex-end; padding: calc(var(--header-h) + 24px) var(--pad) 51px; }
-  .hero-copy, .hero-cta { position: relative; max-width: min(567px, 40vw); }
-  .hero-block h1 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(32px, 4.12vw, 59px); line-height: 1.1; letter-spacing: 0; text-transform: none; color: inherit; text-wrap: balance; text-shadow: 0 2px 18px rgba(50, 15, 8, .35); }
-  .hero-copy p { max-width: 502px; margin: 24px 0 0; font-weight: 500; text-shadow: 0 1px 3px rgba(50, 15, 8, .5); }
-  .hero-cta .button { margin-top: 20px; min-width: min(356px, 100%); }
+  .hero-inner { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; justify-content: center; padding: calc(var(--header-h) + 24px) var(--pad) 51px; }
+  .hero-copy, .hero-cta { position: relative; z-index: 3; max-width: min(540px, 38vw); }
+  .hero-block h1 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(32px, 4.12vw, 59px); line-height: 1.1; letter-spacing: 0; text-transform: none; color: #930500; text-wrap: balance; }
+  .hero-copy p { max-width: 480px; margin: 22px 0 0; font-weight: 500; color: #3B3631; }
+  .hero-cta .button { margin-top: 26px; min-width: min(320px, 100%); }
 
-  .hero-decoration { position: absolute; right: 25%; top: 15%; z-index: 3; max-width: 15vw; min-width: 170px; text-align: center; transform: rotate(-8.62deg); transform-origin: center bottom; pointer-events: none; display: flex; flex-direction: column-reverse; }
-  .hero-decoration svg { display: block; width: 26%; margin: 4px auto 0; color: var(--cream); animation: hero-cue-pulse 1.6s ease-in-out infinite; }
+  .hero-art { --copy-w: min(540px, 38vw); position: absolute; right: 0; bottom: 4%; z-index: 2; width: min(60vw, calc((100svh - var(--header-h)) * 1.55), calc(100vw - var(--pad) - var(--copy-w) - 28px)); }
+  .hero-art picture, .hero-art img { display: block; width: 100%; height: auto; }
+  .hero-decoration { position: absolute; left: 38%; top: -24%; max-width: 15vw; min-width: 170px; text-align: center; transform: rotate(-8.62deg); transform-origin: center bottom; pointer-events: none; display: flex; flex-direction: column-reverse; }
+  .hero-decoration svg { display: block; width: 26%; margin: 4px auto 0; color: #930500; animation: hero-cue-pulse 1.6s ease-in-out infinite; }
   .hero-decoration svg use { transform: rotate(200deg); transform-origin: 32px 29px; }
-  .hero-decoration__label { display: block; font-family: var(--hand); font-size: clamp(17px, 1.6vw, 24px); line-height: 1.1; color: var(--cream); text-shadow: 0 1px 3px rgba(50, 15, 8, .5); }
+  .hero-decoration__label { display: block; font-family: var(--hand); font-size: clamp(17px, 1.6vw, 24px); line-height: 1.1; color: #930500; }
   @keyframes hero-cue-pulse { 0%, 100% { transform: translateY(0); opacity: .7; } 50% { transform: translateY(8px); opacity: 1; } }
 
-  @media (min-width: 768px) and (max-width: 1279px) { .hero-inner { padding-bottom: 60px; } .hero-copy, .hero-cta { max-width: min(480px, 41vw); } }
+  @media (min-width: 768px) and (max-width: 1279px) { .hero-copy, .hero-cta { max-width: min(460px, 38vw); } .hero-art { --copy-w: min(460px, 38vw); } }
 
-  /* Squarer landscape screens (4:3 to 16:10): show the full photo width so the jars sit clear
-     of the text; the wall colour continues above the photo */
-  @media (orientation: landscape) and (max-aspect-ratio: 16/10) and (min-height: 521px) {
-    .hero-background { background: linear-gradient(to bottom, #8F3D27, #A74930 60%); }
-    .hero-background img { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; object-fit: contain;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10%); mask-image: linear-gradient(to bottom, transparent 0, #000 10%); }
-    .hero-decoration { top: auto; bottom: 39vw; }
-  }
-
-  /* Portrait tablets and phones: tall photo, headline at the top, button at the bottom */
+  /* Portrait tablets and phones: stacked */
   @media (orientation: portrait) and (max-width: 1279px), (max-width: 599px) {
-    .hero-background img { object-position: 50% 55%; }
-    .hero-shade { background:
-      linear-gradient(to bottom, rgba(60, 18, 8, .55) 0%, rgba(60, 18, 8, .25) 30%, transparent 42%),
-      linear-gradient(to top, rgba(50, 15, 8, .3) 0%, transparent 18%); }
-    .hero-inner { justify-content: space-between; align-items: center; text-align: center; padding: calc(var(--header-h) + 36px) var(--pad) 24px; }
+    .hero-block { height: auto; min-height: 100svh; }
+    @supports not (height: 100svh) { .hero-block { min-height: 100vh; } }
+    .hero-inner { position: relative; inset: auto; min-height: inherit; justify-content: flex-start; align-items: center; text-align: center; padding: calc(var(--header-h) + 32px) var(--pad) 24px; }
     .hero-copy, .hero-cta { max-width: 640px; width: 100%; }
     .hero-copy p { margin: 14px auto 0; }
+    .hero-art { position: relative; right: auto; bottom: auto; width: min(calc(100% + 2 * var(--pad)), 760px); margin: 20px 0 0; flex: 1 0 auto; display: flex; align-items: center; }
+    .hero-art picture { width: 100%; }
     .hero-decoration { display: none; }
-    .hero-cta .button { width: 100%; max-width: 420px; }
+    .hero-cta { margin-top: auto; padding-top: 16px; }
+    .hero-cta .button { width: 100%; max-width: 420px; margin-top: 0; }
   }
   @media (max-width: 599px) {
     .hero-copy p { font-size: 14px; }
@@ -191,12 +179,13 @@
     .nav-shop { font-size: 17px; }
     .mobile-menu-toggle { width: 34px; height: 28px; }
     .hero-block { min-height: 320px; }
-    .hero-inner { padding: calc(var(--header-h) + 12px) var(--pad) 16px; }
-    .hero-copy, .hero-cta { max-width: 40vw; }
+    .hero-inner { padding: calc(var(--header-h) + 10px) var(--pad) 16px; }
+    .hero-copy, .hero-cta { max-width: 42vw; }
     .hero-block h1 { font-size: clamp(19px, 3.52vw, 30px); }
     .hero-copy p { font-size: 13px; margin-top: 8px; }
     .hero-copy p br { display: none; }
     .hero-cta .button { margin-top: 12px; min-width: 0; padding: 9px 22px; font-size: 14px; }
+    .hero-art { --copy-w: 42vw; width: calc(100vw - var(--pad) - 42vw - 16px); bottom: 2%; }
     .hero-decoration { display: none; }
   }
 
@@ -356,23 +345,21 @@
 
 <main>
   <section class="hero-block">
-    <div class="hero-background">
-      <picture>
-        <source media="(orientation: portrait) and (max-width: 1279px), (max-width: 599px)" type="image/webp" srcset="images/maika-hero-phone-750.webp 750w, images/maika-hero-phone-1080.webp 1080w" sizes="100vw">
-        <source media="(orientation: portrait) and (max-width: 1279px), (max-width: 599px)" srcset="images/maika-hero-phone-750.jpg 750w" sizes="100vw">
-        <source type="image/webp" srcset="images/maika-hero-desktop-1600.webp 1600w, images/maika-hero-desktop-2229.webp 2229w" sizes="100vw">
-        <img src="images/maika-hero-desktop-1600.jpg" width="1600" height="900" fetchpriority="high" decoding="async" alt="Maika jars of Pistachio Spread, Haldi Laddoo, Til Laddoo and Goond Laddoo, with laddoos, pistachios, turmeric, sesame, gond and almonds">
-      </picture>
-    </div>
-    <div class="hero-shade" aria-hidden="true"></div>
-    <div class="hero-decoration" aria-hidden="true">
-      <svg viewBox="0 0 65 58"><use href="#cue"/></svg>
-      <span class="hero-decoration__label">Made with desi ghee, gur and zero preservatives</span>
-    </div>
+    <div class="hero-background" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-copy" data-fade-up>
         <h1>From Maa's Kitchen to Your Table</h1>
         <p>Homemade laddoos and spreads, made with desi ghee, gur and real ingredients. <br>Made in small batches, the way mothers have always made them.</p>
+      </div>
+      <div class="hero-art">
+        <picture>
+          <source type="image/webp" srcset="images/maika-hero-products-800.webp 800w, images/maika-hero-products-1254.webp 1254w" sizes="(orientation: portrait) and (max-width: 1279px) 100vw, 60vw">
+          <img src="images/maika-hero-products-800.jpg" width="1254" height="705" fetchpriority="high" decoding="async" alt="Maika jars of Pistachio Spread, Haldi Laddoo, Til Laddoo and Goond Laddoo, with laddoos, pistachios, turmeric, sesame, gond and almonds">
+        </picture>
+        <div class="hero-decoration" aria-hidden="true">
+          <svg viewBox="0 0 65 58"><use href="#cue"/></svg>
+          <span class="hero-decoration__label">Made with desi ghee, gur and zero preservatives</span>
+        </div>
       </div>
       <div class="hero-cta" data-fade-up>
         <a href="#products" class="button">Explore our products</a>

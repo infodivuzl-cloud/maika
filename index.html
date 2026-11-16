@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#A32273">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Indie+Flower&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Indie+Flower&family=Nothing+You+Could+Do&family=Gentium+Book+Plus:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=excon@400,500,700,900&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23A32273' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 27 32 6l27 21'/%3E%3Cpath d='M12 22v36h40V22'/%3E%3Cellipse cx='32' cy='50' rx='10' ry='7.5' fill='%23A32273' stroke='none'/%3E%3C/svg%3E">
@@ -35,25 +35,41 @@
   .button:hover { background: var(--lime-hover); }
   .button:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
 
-  /* ---------- Header ---------- */
-  .site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 9999; width: 100%; color: var(--cream); background: rgba(163, 34, 115, 0); transition: all .2s ease; }
-  .site-header.is-scrolled, body.mega-menu-open .site-header { position: fixed; background: var(--magenta); }
-  .header-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 0 var(--pad); }
+  /* ---------- Header: mustard ribbon with a navy plaque badge in the middle ---------- */
+  :root { --band: #CDBD6E; --band-ink: #2B2A26; --badge: #2F3543; --badge-ink: #FFF6C3; --lace: #3A3934;
+          --script: 'Nothing You Could Do', 'Indie Flower', cursive; --serif: 'Gentium Book Plus', Georgia, serif;
+          --band-top: 28px; --band-h: 58px; --badge-w: 214px; --badge-h: 130px; --band-gap: 2.5vw; }
+  .site-header { position: absolute; top: 0; left: 0; right: 0; z-index: 9999; height: var(--header-h); pointer-events: none; transition: transform .25s ease, opacity .25s ease; }
+  .site-header.is-scrolled, body.mega-menu-open .site-header, body.mobile-menu-active .site-header { position: fixed; }
+  .site-header > * { pointer-events: auto; }
 
-  .header-nav { flex: 0 0 460px; }
-  .header-nav__list { list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
-  .header-nav__list > li > a { position: relative; color: var(--cream); font-size: 16px; font-weight: 500; line-height: 1; text-decoration: none; white-space: nowrap; transition: all .2s ease; }
-  .header-nav__list > li > a:hover, .header-nav__list > li > a:focus-visible { color: var(--lime); }
-  .header-nav__list > li > a::before { content: ""; position: absolute; left: -24px; right: -24px; top: calc(100% + 33.5px); height: 3px; background: var(--lime); opacity: 0; transition: all .2s ease; }
+  .nav-band { position: absolute; top: var(--band-top); left: var(--band-gap); right: var(--band-gap); height: var(--band-h);
+    display: grid; grid-template-columns: minmax(0, 1fr) var(--badge-w) minmax(0, 1fr); align-items: center; padding: 0 3%;
+    background-color: var(--band);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, .09) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(0, 0, 0, .05) 0 1px, transparent 1px 3px),
+      linear-gradient(to bottom, rgba(255, 255, 255, .12), rgba(0, 0, 0, .06));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), 0 3px 8px rgba(0, 0, 0, .18); }
+  /* scalloped lace along the bottom edge */
+  .nav-band::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 6px;
+    background: radial-gradient(circle at 5px 0, var(--lace) 4.2px, transparent 4.8px) 0 0 / 10px 6px repeat-x; }
+  .site-header.is-scrolled .nav-band { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), 0 6px 16px rgba(0, 0, 0, .28); }
+
+  .header-nav__list { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; justify-content: space-around; gap: 12px; }
+  .header-nav__list > li > a { position: relative; display: inline-block; padding: 6px 4px; color: var(--band-ink); font-family: var(--script); font-size: 22px; line-height: 1; text-decoration: none; white-space: nowrap; transition: color .2s ease, transform .2s ease; }
+  .header-nav__list > li > a:hover, .header-nav__list > li > a:focus-visible { color: #000; transform: translateY(-1px); }
+  .header-nav__list > li > a::before { content: ""; position: absolute; left: 4px; right: 4px; bottom: 0; height: 2px; border-radius: 2px; background: var(--badge); opacity: 0; transform: scaleX(.4); transition: all .2s ease; }
+  .header-nav__list > li > a:hover::before, .header-nav__list > li > a:focus-visible::before { opacity: .8; transform: scaleX(1); }
+  .header-nav__list > li > a:focus-visible { outline: 2px dashed var(--badge); outline-offset: 2px; }
 
   /* Mega menu under "Products" */
   .header-nav__list > li.has-mega { position: relative; }
-  .header-nav__list > li.has-mega::before { content: ""; position: absolute; top: 50%; left: 50%; z-index: 3; width: 32px; height: 16px; margin-top: 43.5px; margin-left: -16px; background: var(--cream); clip-path: polygon(50% 0, 100% 100%, 0 100%); pointer-events: none; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
-  .header-nav__list > li.has-mega > a::after { content: ""; position: absolute; top: 100%; left: 0; right: 0; height: 64px; }
+  .header-nav__list > li.has-mega::before { content: ""; position: absolute; top: 100%; left: 50%; z-index: 3; width: 28px; height: 14px; margin-top: 16px; margin-left: -14px; background: var(--cream); clip-path: polygon(50% 0, 100% 100%, 0 100%); pointer-events: none; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
+  .header-nav__list > li.has-mega > a::after { content: ""; position: absolute; top: 100%; left: -20px; right: -20px; height: 34px; }
   .header-nav__list > li.has-mega.is-open::before { opacity: 1; visibility: visible; transform: translateY(0); }
-  .header-nav__list > li.has-mega.is-open > a { color: inherit; }
-  .header-nav__list > li.has-mega.is-open > a::before { opacity: 1; }
-  .mega { position: fixed; top: var(--header-h); left: min(9%, 132px); right: 9%; max-width: 1300px; z-index: 2; display: flex; align-items: flex-start; gap: 32px; padding: 32px; background: var(--cream); border-radius: 30px; box-shadow: 0 24px 60px rgba(71, 25, 57, .28); overflow: hidden; opacity: 0; visibility: hidden; transform: translateY(-8px); pointer-events: none; transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
+  .header-nav__list > li.has-mega.is-open > a::before { opacity: .8; transform: scaleX(1); }
+  .mega { position: fixed; top: calc(var(--band-top) + var(--band-h) + 30px); left: min(9%, 132px); right: 9%; max-width: 1300px; z-index: 2; display: flex; align-items: flex-start; gap: 32px; padding: 32px; background: var(--cream); border-radius: 30px; box-shadow: 0 24px 60px rgba(71, 25, 57, .28); overflow: hidden; opacity: 0; visibility: hidden; transform: translateY(-8px); pointer-events: none; transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
   .has-mega.is-open .mega { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
   .mega__list { list-style: none; margin: 20px 0 0 32px; padding: 0; flex: 1; min-width: 0; columns: 2; column-gap: 64px; }
   .mega__list li { break-inside: avoid; margin-bottom: 16px; }
@@ -65,66 +81,55 @@
   .mega__img.is-active { opacity: 1; }
   .mega__img svg { width: 80%; height: auto; }
 
-  /* Logo block */
-  .header-logo { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; width: 207px; height: var(--header-h); background: var(--magenta); color: var(--cream); text-decoration: none; }
-  .header-logo svg { width: 48px; height: 48px; }
-  .header-logo b { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: .14em; line-height: 1; padding-left: .14em; }
-  .header-logo small { font-family: var(--hindi); font-size: 14px; line-height: 1.1; }
+  /* The plaque badge (logo) */
+  .nav-badge { position: absolute; top: 0; left: 50%; width: var(--badge-w); height: var(--badge-h); transform: translateX(-50%); display: block; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .35)); transition: transform .2s ease; }
+  .nav-badge:hover { transform: translateX(-50%) translateY(-2px); }
+  .nav-badge:focus-visible { outline: 2px dashed var(--badge-ink); outline-offset: 4px; border-radius: 20px; }
+  .nav-badge svg { display: block; width: 100%; height: 100%; overflow: visible; }
 
-  /* Language switch */
-  .header-locale { flex: 0 0 460px; display: flex; align-items: center; justify-content: flex-end; gap: 18px; }
-  .header-locale__link { padding: 0; background: none; border: 0; font: inherit; color: var(--cream); font-size: 16px; font-weight: 500; line-height: 1; text-decoration: none; cursor: pointer; transition: all .2s ease; }
-  .header-locale__link:hover, .header-locale__link:focus-visible { color: var(--lime); }
-  .header-locale__link.-active { padding: 4px 8px; background: var(--lime); border: 1px solid var(--cream); border-radius: 4px; color: var(--plum); }
-  .header-locale__link.-soon { font-family: var(--hindi); opacity: .85; cursor: default; }
+  /* Small link shown in the band on tablets and phones */
+  .nav-shop { display: none; justify-self: start; color: var(--band-ink); font-family: var(--script); font-size: 20px; text-decoration: none; padding: 6px 2px; }
 
   /* Burger (tablet and phone) */
-  .mobile-menu-toggle { display: none; align-items: center; justify-content: center; gap: 6px; padding: 7px 8px; background: var(--lime); border: 1px solid var(--cream); border-radius: 4px; color: var(--plum); cursor: pointer; }
-  .mobile-menu-toggle__icon { position: relative; display: inline-block; width: 16px; height: 10px; }
+  .mobile-menu-toggle { display: none; justify-self: end; align-items: center; justify-content: center; width: 40px; height: 34px; padding: 0; background: var(--badge); border: 0; border-radius: 6px; color: var(--badge-ink); cursor: pointer; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15); }
+  .mobile-menu-toggle__icon { position: relative; display: inline-block; width: 18px; height: 12px; }
   .mobile-menu-toggle__icon::before, .mobile-menu-toggle__icon::after, .mobile-menu-toggle__icon span { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: currentColor; border-radius: 2px; transition: transform .2s ease, opacity .2s ease, top .2s ease; }
   .mobile-menu-toggle__icon::before { top: 0; }
-  .mobile-menu-toggle__icon span { top: 4px; }
-  .mobile-menu-toggle__icon::after { top: 8px; }
-  body.mobile-menu-active .mobile-menu-toggle__icon::before { top: 4px; transform: rotate(45deg); }
+  .mobile-menu-toggle__icon span { top: 5px; }
+  .mobile-menu-toggle__icon::after { top: 10px; }
+  body.mobile-menu-active .mobile-menu-toggle__icon::before { top: 5px; transform: rotate(45deg); }
   body.mobile-menu-active .mobile-menu-toggle__icon span { opacity: 0; }
-  body.mobile-menu-active .mobile-menu-toggle__icon::after { top: 4px; transform: rotate(-45deg); }
-  .mobile-menu-toggle:focus-visible { outline: 2px solid var(--cream); outline-offset: 4px; }
+  body.mobile-menu-active .mobile-menu-toggle__icon::after { top: 5px; transform: rotate(-45deg); }
+  .mobile-menu-toggle:focus-visible { outline: 2px dashed var(--badge); outline-offset: 3px; }
 
   /* Full-screen phone menu */
-  .mobile-menu { position: fixed; inset: 0; z-index: 9998; background: var(--cream); visibility: hidden; opacity: 0; transition: all .2s ease; }
+  .mobile-menu { position: fixed; inset: 0; z-index: 9998; background: var(--band); visibility: hidden; opacity: 0; transition: all .2s ease; }
   body.mobile-menu-active .mobile-menu { visibility: visible; opacity: 1; }
-  .mobile-menu-content { padding: calc(var(--header-h) + 32px) var(--pad) 32px; height: 100%; overflow-y: auto; }
-  .mobile-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 24px; }
-  .mobile-menu a { color: var(--plum); font-size: 18px; font-weight: 700; line-height: 1.4; text-decoration: none; }
-  .mobile-menu a:hover, .mobile-menu a:focus-visible { color: var(--lime); }
-  .mobile-menu .sub-menu a:hover, .mobile-menu .sub-menu a:focus-visible { color: var(--plum-hover); }
+  .mobile-menu-content { padding: calc(var(--header-h) + 28px) var(--pad) 32px; height: 100%; overflow-y: auto; }
+  .mobile-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px; }
+  .mobile-menu a { color: var(--band-ink); font-family: var(--script); font-size: 26px; line-height: 1.3; text-decoration: none; }
+  .mobile-menu a:hover, .mobile-menu a:focus-visible { color: #000; }
   .mobile-menu .has-sub { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
   .mobile-menu .has-sub > a { flex: 1 1 auto; }
-  .mobile-menu .sub-menu { display: none; flex-basis: 100%; padding-top: 12px; gap: 16px; }
+  .mobile-menu .sub-menu { display: none; flex-basis: 100%; padding: 8px 0 0 16px; gap: 10px; }
   .mobile-menu .has-sub.sub-menu-open .sub-menu { display: flex; }
-  .mobile-menu .sub-menu a { font-size: 14px; font-weight: 500; }
-  .sub-menu-toggle { width: 24px; height: 24px; padding: 0; background: none; border: 0; color: var(--plum); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+  .mobile-menu .sub-menu a { font-family: var(--body); font-size: 15px; font-weight: 500; }
+  .sub-menu-toggle { width: 28px; height: 28px; padding: 0; background: none; border: 0; color: var(--band-ink); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
   .sub-menu-toggle::before { content: ""; width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
   .has-sub.sub-menu-open .sub-menu-toggle::before { transform: rotate(-135deg) translateY(-2px); }
-  body.mobile-menu-active .site-header { position: fixed; background: var(--cream); color: var(--plum); }
-  body.mobile-menu-active .header-locale__link:not(.-active) { color: var(--plum); }
-  body.mobile-menu-active .mobile-menu-toggle:focus-visible { outline-color: var(--plum); }
 
-  @media (max-width: 1322px) { .header-nav, .header-locale { flex-basis: 360px; } }
+  :root { --header-h: calc(var(--badge-h) + 4px); }
   @media (max-width: 1279px) {
-    :root { --header-h: 96px; }
-    .header-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+    :root { --band-top: 22px; --band-h: 50px; --badge-w: 160px; --badge-h: 98px; --band-gap: 12px; }
     .header-nav { display: none; }
-    .header-logo { order: 2; margin: 0 auto; width: 150px; height: var(--header-h); }
-    .header-logo svg { width: 38px; height: 38px; }
-    .header-logo b { font-size: 21px; }
-    .header-locale { flex: 0 0 auto; order: 1; justify-content: flex-start; }
-    .mobile-menu-toggle { display: inline-flex; order: 3; justify-self: end; }
-    body.header-hidden .site-header { transform: translateY(-100%); opacity: 0; visibility: hidden; pointer-events: none; }
+    .nav-band { padding: 0 12px; }
+    .nav-shop { display: inline-block; }
+    .mobile-menu-toggle { display: inline-flex; }
+    body.header-hidden .site-header { transform: translateY(-110%); opacity: 0; visibility: hidden; pointer-events: none; }
   }
   @media (min-width: 1280px) { .mobile-menu { display: none; } }
   @media (min-width: 768px) and (max-width: 1279px) { :root { --pad: 32px; } }
-  @media (max-width: 767px) { :root { --pad: 16px; } .header-inner { gap: 16px; } }
+  @media (max-width: 767px) { :root { --pad: 16px; --band-gap: 8px; } }
 
   /* ---------- Hero ----------
      One full-bleed photo behind everything (a wide version for landscape screens,
@@ -182,11 +187,9 @@
 
   /* Short landscape phones */
   @media (orientation: landscape) and (max-height: 520px) {
-    :root { --header-h: 64px; }
-    .header-logo { width: 112px; gap: 0; }
-    .header-logo svg { width: 26px; height: 26px; }
-    .header-logo b { font-size: 16px; }
-    .header-logo small { display: none; }
+    :root { --band-top: 14px; --band-h: 40px; --badge-w: 124px; --badge-h: 76px; }
+    .nav-shop { font-size: 17px; }
+    .mobile-menu-toggle { width: 34px; height: 28px; }
     .hero-block { min-height: 320px; }
     .hero-inner { padding: calc(var(--header-h) + 12px) var(--pad) 16px; }
     .hero-copy, .hero-cta { max-width: 40vw; }
@@ -271,8 +274,8 @@
 </svg>
 
 <header id="main-header" class="site-header">
-  <div class="header-inner">
-    <nav class="header-nav" aria-label="Main navigation">
+  <div class="nav-band">
+    <nav class="header-nav" aria-label="Main navigation, left">
       <ul class="header-nav__list">
         <li><a href="#about">About us</a></li>
         <li class="has-mega"><a href="#products" aria-haspopup="true" aria-expanded="false">Products</a>
@@ -296,26 +299,44 @@
           </div>
         </li>
         <li><a href="#blog">Blog</a></li>
-        <li><a href="#recipes">Recipes</a></li>
-        <li><a href="#contacts">Contacts</a></li>
       </ul>
     </nav>
-
-    <a class="header-logo" href="#" aria-label="Maika, back to the home page">
-      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#hut"/></svg>
-      <b>MAIKA</b>
-      <small>मायका</small>
-    </a>
-
-    <nav class="header-locale" aria-label="Language">
-      <a class="header-locale__link -active" href="#" aria-current="page">ENG</a>
-      <span class="header-locale__link -soon" title="Hindi version coming soon" aria-disabled="true">हिं</span>
+    <a class="nav-shop" href="#products">Shop</a>
+    <span aria-hidden="true"></span>
+    <nav class="header-nav" aria-label="Main navigation, right">
+      <ul class="header-nav__list">
+        <li><a href="#recipes">Recipes</a></li>
+        <li><a href="#gifting">Gifting</a></li>
+        <li><a href="#contacts">Contact</a></li>
+      </ul>
     </nav>
-
     <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
       <span class="mobile-menu-toggle__icon" aria-hidden="true"><span></span></span>
     </button>
   </div>
+
+  <a class="nav-badge" href="#" aria-label="Maika, back to the home page">
+    <svg viewBox="0 0 214 130" aria-hidden="true">
+      <defs>
+        <linearGradient id="badgeFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#363D4E"/><stop offset="1" stop-color="#2A2F3C"/></linearGradient>
+        <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9EBEF"/><stop offset=".55" stop-color="#9DA3AF"/><stop offset="1" stop-color="#5D6370"/></linearGradient>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFF6C3" stop-opacity=".22"/><stop offset="1" stop-color="#FFF6C3" stop-opacity="0"/></radialGradient>
+        <path id="badgeArc" d="M38 52 Q107 22 176 52"/>
+      </defs>
+      <path d="M16 30 C16 18 25 12 39 10 Q107 -3 175 10 C189 12 198 18 198 30 L200 96 C200 108 191 114 177 116 Q107 131 37 116 C23 114 14 108 14 96 Z" fill="url(#badgeFill)" stroke="#232733" stroke-width="2"/>
+      <path d="M23 32 C23 22 30 18 42 16 Q107 4 172 16 C184 18 191 22 191 32 L193 94 C193 103 186 108 175 110 Q107 123 39 110 C28 108 21 103 21 94 Z" fill="none" stroke="#FFF6C3" stroke-opacity=".14" stroke-width="1.5"/>
+      <text font-family="'Gentium Book Plus', Georgia, serif" font-weight="700" font-size="31" letter-spacing="2" fill="#FFF6C3" text-anchor="middle"><textPath href="#badgeArc" startOffset="50%">MAIKA</textPath></text>
+      <ellipse cx="107" cy="74" rx="34" ry="14" fill="url(#glow)"/>
+      <g transform="translate(93 58) scale(.44)" fill="none" stroke="url(#metal)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" color="#B9BEC8">
+        <path d="M5 27 32 6l27 21"/><path d="M12 22v36h40V22"/><path d="M12 29c7 3 33 3 40 0"/>
+        <rect x="28.2" y="41" width="7.6" height="4" rx="1.2" fill="url(#metal)" stroke="none"/><ellipse cx="32" cy="51" rx="9.5" ry="7" fill="url(#metal)" stroke="none"/>
+      </g>
+      <path d="M58 70 Q80 62 96 70" stroke="url(#metal)" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".85"/>
+      <path d="M118 70 Q134 62 156 70" stroke="url(#metal)" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".85"/>
+      <text x="44" y="102" font-family="'Gentium Book Plus', Georgia, serif" font-size="17" fill="#FFF6C3">EST.</text>
+      <text x="170" y="102" font-family="'Gentium Book Plus', Georgia, serif" font-size="17" fill="#FFF6C3" text-anchor="end">2026</text>
+    </svg>
+  </a>
 </header>
 
 <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
@@ -335,7 +356,8 @@
         </li>
         <li><a href="#blog">Blog</a></li>
         <li><a href="#recipes">Recipes</a></li>
-        <li><a href="#contacts">Contacts</a></li>
+        <li><a href="#gifting">Gifting</a></li>
+        <li><a href="#contacts">Contact</a></li>
       </ul>
     </nav>
   </div>

@@ -374,6 +374,42 @@
   }
   @media (prefers-reduced-motion: reduce) { .mk-deco { animation: none !important; } }
 
+  /* Add to cart (product cards) */
+  .mk-pcard__add { margin-top: 12px; width: 100%; min-height: 44px; padding: 0 10px; border: 2px solid var(--mk-ink); border-radius: 9px; background: var(--mk-ink); color: var(--mk-paper); font-family: inherit; font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .mk-pcard__add:hover, .mk-pcard__add.is-added { background: var(--mk-paper); color: var(--mk-ink); }
+  .mk-pcard__add:focus-visible { outline: 2px dashed var(--mk-ink); outline-offset: 3px; }
+  @media (max-width: 767px) { .mk-pcard__add { margin-top: 8px; min-height: 40px; font-size: 11px; letter-spacing: .04em; } }
+
+  /* Cart drawer */
+  .cart-count.bump { animation: cart-bump .45s ease; }
+  @keyframes cart-bump { 0% { transform: scale(1); } 40% { transform: scale(1.45); } 100% { transform: scale(1); } }
+  .cart-overlay { position: fixed; inset: 0; z-index: 10000; background: rgba(30, 31, 4, .5); opacity: 0; transition: opacity .25s ease; }
+  body.cart-open .cart-overlay { opacity: 1; }
+  .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 10001; width: min(420px, 100%); display: flex; flex-direction: column; background: #FBF7EE; color: #606212; font-family: 'Figtree', system-ui, sans-serif; box-shadow: -12px 0 40px rgba(30, 31, 4, .25); transform: translateX(100%); visibility: hidden; transition: transform .3s ease, visibility .3s ease; }
+  body.cart-open .cart-drawer { transform: none; visibility: visible; }
+  body.cart-open { overflow: hidden; }
+  .cart-drawer__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 24px; border-bottom: 2px solid #606212; }
+  .cart-drawer__head h2 { margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.1; }
+  .cart-close { flex: none; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 2px solid #606212; border-radius: 50%; background: transparent; color: inherit; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .cart-close:hover { background: #606212; color: #FBF7EE; }
+  .cart-close:focus-visible, .cart-qty button:focus-visible, .cart-item__remove:focus-visible, .cart-checkout:focus-visible { outline: 2px dashed #606212; outline-offset: 2px; }
+  .cart-empty { margin: 0; padding: 40px 24px; text-align: center; font-size: 16px; }
+  .cart-empty[hidden], .cart-items[hidden], .cart-overlay[hidden] { display: none; }
+  .cart-items { flex: 1; list-style: none; margin: 0; padding: 4px 24px; overflow-y: auto; }
+  .cart-item { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(96, 98, 18, .2); }
+  .cart-item img { width: 64px; height: 64px; padding: 6px; border-radius: 10px; background: #EDD03A; object-fit: contain; }
+  .cart-item__name { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.3; }
+  .cart-item__remove { margin-top: 4px; padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
+  .cart-qty { display: inline-flex; align-items: center; border: 2px solid #606212; border-radius: 8px; }
+  .cart-qty button { width: 36px; height: 36px; padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: 18px; font-weight: 700; cursor: pointer; }
+  .cart-qty output { min-width: 24px; text-align: center; font-weight: 700; }
+  .cart-drawer__foot { margin-top: auto; display: flex; flex-direction: column; gap: 12px; padding: 18px 24px 24px; border-top: 2px solid #606212; }
+  .cart-drawer__note { margin: 0; font-size: 14px; line-height: 1.4; }
+  .cart-checkout { display: flex; align-items: center; justify-content: center; min-height: 52px; border: 2px solid #606212; border-radius: 9px; background: #606212; color: #FBF7EE; font-size: 15px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: background .2s ease, color .2s ease; }
+  .cart-checkout:hover { background: #EDD03A; color: #606212; }
+  .cart-checkout[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+  @media (prefers-reduced-motion: reduce) { .cart-drawer, .cart-overlay { transition: none; } .cart-count.bump { animation: none; } }
+
   /* ---------- Footer: scalloped top, four columns, giant wordmark ---------- */
   /* Maika Serif = Jeju Myeongjo (SIL OFL), Latin-only subset, self-hosted */
   @font-face { font-family: 'Maika Serif'; src: url(fonts/maika-serif-latin.woff2) format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
@@ -607,40 +643,44 @@
       </div>
       <ul class="mk-products">
           <li id="pistachio-spread" data-cat="spread" data-fade-up>
-            <a class="mk-pcard" href="https://wa.me/919220660377?text=Hi%20Maika%2C%20I%27d%20like%20to%20order%20Pistachio%20Spread" target="_blank" rel="noopener" aria-label="Pistachio Spread: order on WhatsApp">
+            <article class="mk-pcard" data-id="pistachio-spread" data-name="Pistachio Spread" data-img="images/jar-pistachio-spread.webp">
               <figure class="mk-pcard__media"><img src="images/jar-pistachio-spread.webp" width="411" height="546" loading="lazy" decoding="async" alt="Maika Pistachio Spread jar"></figure>
               <div class="mk-pcard__body">
                 <h3 class="mk-pcard__title">Pistachio Spread</h3>
                 <p class="mk-pcard__weight" lang="hi">पिस्ता स्प्रेड</p>
+                <button type="button" class="mk-pcard__add" aria-label="Add Pistachio Spread to cart">Add to cart</button>
               </div>
-            </a>
+            </article>
           </li>
           <li id="haldi-laddoo" data-cat="laddoo" data-fade-up>
-            <a class="mk-pcard" href="https://wa.me/919220660377?text=Hi%20Maika%2C%20I%27d%20like%20to%20order%20Haldi%20Laddoo" target="_blank" rel="noopener" aria-label="Haldi Laddoo: order on WhatsApp">
+            <article class="mk-pcard" data-id="haldi-laddoo" data-name="Haldi Laddoo" data-img="images/jar-haldi-laddoo.webp">
               <figure class="mk-pcard__media"><img src="images/jar-haldi-laddoo.webp" width="385" height="537" loading="lazy" decoding="async" alt="Maika Haldi Laddoo jar"></figure>
               <div class="mk-pcard__body">
                 <h3 class="mk-pcard__title">Haldi Laddoo</h3>
                 <p class="mk-pcard__weight" lang="hi">हल्दी लड्डू</p>
+                <button type="button" class="mk-pcard__add" aria-label="Add Haldi Laddoo to cart">Add to cart</button>
               </div>
-            </a>
+            </article>
           </li>
           <li id="til-laddoo" data-cat="laddoo" data-fade-up>
-            <a class="mk-pcard" href="https://wa.me/919220660377?text=Hi%20Maika%2C%20I%27d%20like%20to%20order%20Til%20Laddoo" target="_blank" rel="noopener" aria-label="Til Laddoo: order on WhatsApp">
+            <article class="mk-pcard" data-id="til-laddoo" data-name="Til Laddoo" data-img="images/jar-til-laddoo.webp">
               <figure class="mk-pcard__media"><img src="images/jar-til-laddoo.webp" width="388" height="541" loading="lazy" decoding="async" alt="Maika Til Laddoo jar"></figure>
               <div class="mk-pcard__body">
                 <h3 class="mk-pcard__title">Til Laddoo</h3>
                 <p class="mk-pcard__weight" lang="hi">तिल लड्डू</p>
+                <button type="button" class="mk-pcard__add" aria-label="Add Til Laddoo to cart">Add to cart</button>
               </div>
-            </a>
+            </article>
           </li>
           <li id="goond-laddoo" data-cat="laddoo" data-fade-up>
-            <a class="mk-pcard" href="https://wa.me/919220660377?text=Hi%20Maika%2C%20I%27d%20like%20to%20order%20Goond%20Laddoo" target="_blank" rel="noopener" aria-label="Goond Laddoo: order on WhatsApp">
+            <article class="mk-pcard" data-id="goond-laddoo" data-name="Goond Laddoo" data-img="images/jar-goond-laddoo.webp">
               <figure class="mk-pcard__media"><img src="images/jar-goond-laddoo.webp" width="404" height="537" loading="lazy" decoding="async" alt="Maika Goond Laddoo jar"></figure>
               <div class="mk-pcard__body">
                 <h3 class="mk-pcard__title">Goond Laddoo</h3>
                 <p class="mk-pcard__weight" lang="hi">गोंद लड्डू</p>
+                <button type="button" class="mk-pcard__add" aria-label="Add Goond Laddoo to cart">Add to cart</button>
               </div>
-            </a>
+            </article>
           </li>
       </ul>
     </section>
@@ -779,6 +819,20 @@
   <svg class="footer-word" viewBox="8 23 986 230" aria-hidden="true" data-word><text x="0" y="250" font-size="320" textLength="1000" lengthAdjust="spacingAndGlyphs">maika</text></svg>
 </footer>
 
+<div class="cart-overlay" id="cart-overlay" hidden></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
+  <div class="cart-drawer__head">
+    <h2 id="cart-title">Your cart</h2>
+    <button type="button" class="cart-close" aria-label="Close cart"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <p class="cart-empty">Your cart is empty. Add something homemade!</p>
+  <ul class="cart-items" hidden></ul>
+  <div class="cart-drawer__foot">
+    <p class="cart-drawer__note">Orders open Jan&nbsp;1. Send your order on WhatsApp and we&rsquo;ll confirm the price and delivery.</p>
+    <a class="cart-checkout" href="#" target="_blank" rel="noopener" aria-disabled="true">Order on WhatsApp</a>
+  </div>
+</aside>
+
 <script>
 (function () {
   var body = document.body;
@@ -900,6 +954,89 @@
       card.style.setProperty('--card-mouse-y', (e.clientY - r.top) + 'px');
     });
   });
+
+
+  /* Cart: kept on this device; checkout sends the order on WhatsApp */
+  var CART_KEY = 'maika-cart', cart = [];
+  try { cart = JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch (e) { cart = []; }
+  if (!Array.isArray(cart)) cart = [];
+  cart = cart.filter(function (i) { return i && typeof i.id === 'string' && typeof i.name === 'string' && i.qty > 0; });
+  function saveCart() { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {} }
+  var cartCount = document.querySelector('.cart-count'), cartLink = document.querySelector('.nav-pill a[href="#cart"]');
+  var cartDrawer = document.getElementById('cart-drawer'), cartOverlay = document.getElementById('cart-overlay');
+  var cartList = cartDrawer.querySelector('.cart-items'), cartEmpty = cartDrawer.querySelector('.cart-empty');
+  var cartCheckout = cartDrawer.querySelector('.cart-checkout'), cartClose = cartDrawer.querySelector('.cart-close'), cartReturn = null;
+  function findItem(id) { for (var i = 0; i < cart.length; i++) if (cart[i].id === id) return cart[i]; return null; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function renderCart() {
+    var n = cart.reduce(function (t, i) { return t + i.qty; }, 0);
+    cartCount.textContent = n;
+    cartLink.setAttribute('aria-label', 'Cart, ' + n + (n === 1 ? ' item' : ' items'));
+    cartList.textContent = '';
+    cart.forEach(function (it) {
+      var li = el('li', 'cart-item'), img = el('img');
+      img.src = 'images/jar-' + it.id + '.webp'; img.alt = ''; img.width = 64; img.height = 64;
+      var info = el('div'), name = el('p', 'cart-item__name', it.name), rm = el('button', 'cart-item__remove', 'Remove');
+      rm.type = 'button'; rm.dataset.act = 'remove'; rm.dataset.id = it.id; rm.setAttribute('aria-label', 'Remove ' + it.name);
+      info.appendChild(name); info.appendChild(rm);
+      var qty = el('div', 'cart-qty'), dec = el('button', null, '−'), out = el('output', null, it.qty), inc = el('button', null, '+');
+      dec.type = inc.type = 'button'; dec.dataset.act = 'dec'; inc.dataset.act = 'inc'; dec.dataset.id = inc.dataset.id = it.id;
+      dec.setAttribute('aria-label', 'One less ' + it.name); inc.setAttribute('aria-label', 'One more ' + it.name);
+      out.setAttribute('aria-label', it.qty + ' ' + it.name);
+      qty.appendChild(dec); qty.appendChild(out); qty.appendChild(inc);
+      li.appendChild(img); li.appendChild(info); li.appendChild(qty); cartList.appendChild(li);
+    });
+    cartEmpty.hidden = cart.length > 0; cartList.hidden = cart.length === 0;
+    var msg = "Hi Maika, I'd like to order:\n" + cart.map(function (i) { return '• ' + i.qty + ' × ' + i.name; }).join('\n') + '\n\nPlease confirm the price and delivery.';
+    cartCheckout.href = cart.length ? 'https://wa.me/919220660377?text=' + encodeURIComponent(msg) : '#';
+    cartCheckout.setAttribute('aria-disabled', cart.length ? 'false' : 'true');
+    if (cart.length) cartCheckout.removeAttribute('tabindex'); else cartCheckout.setAttribute('tabindex', '-1');
+  }
+  function openCart() {
+    cartReturn = document.activeElement; cartOverlay.hidden = false;
+    requestAnimationFrame(function () { body.classList.add('cart-open'); });
+    cartDrawer.setAttribute('aria-hidden', 'false'); setTimeout(function () { cartClose.focus(); }, 60);
+  }
+  function closeCart() {
+    body.classList.remove('cart-open'); cartDrawer.setAttribute('aria-hidden', 'true');
+    setTimeout(function () { if (!body.classList.contains('cart-open')) cartOverlay.hidden = true; }, 300);
+    if (cartReturn && cartReturn.focus) cartReturn.focus();
+  }
+  cartLink.addEventListener('click', function (e) { e.preventDefault(); openCart(); });
+  cartClose.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+  document.addEventListener('keydown', function (e) {
+    if (!body.classList.contains('cart-open')) return;
+    if (e.key === 'Escape') { closeCart(); return; }
+    if (e.key === 'Tab') {   /* keep keyboard focus inside the open cart */
+      var f = [].filter.call(cartDrawer.querySelectorAll('button, a[href]:not([tabindex="-1"])'), function (x) { return x.offsetParent !== null; });
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  cartList.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-act]'); if (!b) return;
+    var it = findItem(b.dataset.id); if (!it) return;
+    if (b.dataset.act === 'inc') it.qty++;
+    else if (b.dataset.act === 'dec') it.qty--;
+    if (b.dataset.act === 'remove' || it.qty < 1) cart = cart.filter(function (x) { return x !== it; });
+    saveCart(); renderCart();
+    var again = cartList.querySelector('button[data-act="' + b.dataset.act + '"][data-id="' + b.dataset.id + '"]');
+    (again || cartClose).focus();
+  });
+  document.querySelectorAll('.mk-pcard__add').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.mk-pcard'), it = findItem(card.dataset.id);
+      if (it) it.qty++; else cart.push({ id: card.dataset.id, name: card.dataset.name, qty: 1 });
+      saveCart(); renderCart();
+      setHidden(false);   /* bring the header back so the count is visible */
+      cartCount.classList.remove('bump'); void cartCount.offsetWidth; cartCount.classList.add('bump');
+      btn.classList.add('is-added'); btn.textContent = 'Added ✓';
+      clearTimeout(btn._t); btn._t = setTimeout(function () { btn.classList.remove('is-added'); btn.textContent = 'Add to cart'; }, 1600);
+    });
+  });
+  renderCart();
 
   /* Fade-up: plays when the block comes into view, and again when you scroll back to it */
   var items = document.querySelectorAll('[data-fade-up]');

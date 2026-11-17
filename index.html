@@ -828,8 +828,8 @@
   <p class="cart-empty">Your cart is empty. Add something homemade!</p>
   <ul class="cart-items" hidden></ul>
   <div class="cart-drawer__foot">
-    <p class="cart-drawer__note">Orders open Jan&nbsp;1. Send your order on WhatsApp and we&rsquo;ll confirm the price and delivery.</p>
-    <a class="cart-checkout" href="#" target="_blank" rel="noopener" aria-disabled="true">Order on WhatsApp</a>
+    <p class="cart-drawer__note">Orders open Jan&nbsp;1. Add your details on the next page and send the order to us on WhatsApp.</p>
+    <a class="cart-checkout" href="cart.html" aria-disabled="true">Go to checkout</a>
   </div>
 </aside>
 
@@ -987,8 +987,6 @@
       li.appendChild(img); li.appendChild(info); li.appendChild(qty); cartList.appendChild(li);
     });
     cartEmpty.hidden = cart.length > 0; cartList.hidden = cart.length === 0;
-    var msg = "Hi Maika, I'd like to order:\n" + cart.map(function (i) { return '• ' + i.qty + ' × ' + i.name; }).join('\n') + '\n\nPlease confirm the price and delivery.';
-    cartCheckout.href = cart.length ? 'https://wa.me/919220660377?text=' + encodeURIComponent(msg) : '#';
     cartCheckout.setAttribute('aria-disabled', cart.length ? 'false' : 'true');
     if (cart.length) cartCheckout.removeAttribute('tabindex'); else cartCheckout.setAttribute('tabindex', '-1');
   }

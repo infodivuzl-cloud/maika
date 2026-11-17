@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your cart · Maika</title>
+<meta name="description" content="Check your Maika order and send it to us on WhatsApp.">
+<meta name="theme-color" content="#606212">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Lilita+One&family=Mali:wght@400&family=Patrick+Hand&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23606212' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 27 32 6l27 21'/%3E%3Cpath d='M12 22v36h40V22'/%3E%3Cellipse cx='32' cy='50' rx='10' ry='7.5' fill='%23606212' stroke='none'/%3E%3C/svg%3E">
+<style>
+  /* Checkout laid out like the reference: boxed form on the left, order summary box on the right */
+  :root {
+    --ink: #606212; --ink-dark: #4A4B0E; --gold: #EDD03A; --gold-soft: #F6E7A6; --paper: #FFFBEA; --field: #FFFDF5;
+    --line: #606212; --muted: rgba(96, 98, 18, .65);
+    --body: 'Figtree', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.4; }
+  a { color: inherit; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Top bar */
+  .co-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 1180px; margin: 0 auto; padding: 18px 24px; }
+  .co-logo { display: block; line-height: 0; color: var(--ink); }
+  .co-logo svg { height: 72px; width: auto; display: block; }
+  .co-logo:focus-visible, .co-back:focus-visible { outline: 2px dashed var(--ink); outline-offset: 4px; border-radius: 8px; }
+  .co-back { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; }
+  .co-back:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* Page */
+  .co { max-width: 1180px; margin: 0 auto; padding: 8px 24px 72px; }
+  .co h1 { margin: 0 0 28px; font-family: 'Lilita One', system-ui, sans-serif; font-weight: 400; font-size: clamp(34px, 4vw, 48px); line-height: 1; letter-spacing: .005em; color: var(--ink-dark); }
+  .co-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 28px; align-items: start; }
+  .co-main { display: grid; gap: 22px; min-width: 0; }
+  .co-box { border: 1.5px solid var(--line); background: transparent; padding: 28px 28px 30px; }
+  .co-box h2 { margin: 0 0 14px; font-size: 18px; font-weight: 600; letter-spacing: 0; }
+  .co-box h2 + .co-row { margin-top: 0; }
+  .co-box h2:not(:first-child) { margin-top: 26px; }
+  .co-row { display: grid; gap: 14px 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .co-row + .co-row { margin-top: 14px; }
+  .co-row--city { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+  .co-row--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .co-row--one { grid-template-columns: 1fr; }
+  .co-row--three .co-field { justify-content: flex-end; }
+  .co-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .co-field label, .co-label { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .co-field input, .co-field select, .co-field textarea { width: 100%; height: 44px; padding: 0 12px; border: 1.5px solid var(--line); border-radius: 0; background: var(--field); color: var(--ink-dark); font: inherit; font-size: 16px; }
+  .co-field textarea { height: 84px; padding: 10px 12px; resize: vertical; max-width: 360px; }
+  .co-field select { appearance: none; -webkit-appearance: none; padding-right: 40px; background: var(--field) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23606212' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center / 18px; cursor: pointer; }
+  .co-field input::placeholder, .co-field textarea::placeholder { color: var(--muted); }
+  .co-field input:focus-visible, .co-field select:focus-visible, .co-field textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--ink-dark); }
+  .co-field input:user-invalid, .co-field select:user-invalid { border-color: #A3261B; }
+  .co-phone { position: relative; }
+  .co-phone span { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--ink-dark); pointer-events: none; }
+  .co-phone input { padding-left: 48px; }
+  .co-check { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; cursor: pointer; }
+  .co-check input { width: 16px; height: 16px; margin: 0; accent-color: var(--ink); }
+
+  /* Delivery date chips */
+  .co-delivery { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px 24px; align-items: start; }
+  .co-dates { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .co-chip { position: relative; }
+  .co-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .co-chip label { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 64px; height: 50px; border: 1.5px solid var(--gold); background: var(--field); cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+  .co-chip small { font-size: 10px; line-height: 1.1; color: var(--muted); }
+  .co-chip strong { font-size: 15px; font-weight: 600; line-height: 1.2; }
+  .co-chip input:checked + label { background: var(--gold); border-color: var(--gold); }
+  .co-chip input:checked + label small { color: var(--ink-dark); }
+  .co-chip input:focus-visible + label { outline: 2px dashed var(--ink); outline-offset: 2px; }
+  .co-chip label:hover { border-color: var(--ink); }
+  .co-other { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .co-other button { align-self: flex-start; padding: 0; border: 0; background: none; color: var(--muted); font: inherit; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; text-decoration: underline; cursor: pointer; }
+  .co-other input { width: 200px; height: 40px; padding: 0 10px; border: 1.5px solid var(--line); background: var(--field); color: var(--ink-dark); font: inherit; font-size: 16px; }
+  .co-other input[hidden] { display: none; }
+  .co-pay { margin-top: 26px; }
+  .co-submit { margin-top: 28px; width: 100%; min-height: 50px; padding: 10px 16px; border: 0; background: var(--gold); color: var(--ink-dark); font: inherit; font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .co-submit:hover { background: var(--ink); color: var(--paper); }
+  .co-submit:focus-visible { outline: 2px dashed var(--ink); outline-offset: 3px; }
+  .co-submit:disabled { opacity: .45; cursor: not-allowed; background: var(--gold); color: var(--ink-dark); }
+  .co-help { margin: 10px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
+  .co-status { margin: 12px 0 0; font-size: 14px; font-weight: 600; text-align: center; }
+  .co-status:empty { display: none; }
+
+  /* Order summary box */
+  .co-summary { position: sticky; top: 20px; border: 1.5px solid var(--line); background: var(--gold-soft); }
+  .co-items { list-style: none; margin: 0; padding: 0 16px; }
+  .co-item { position: relative; display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 14px; padding: 16px 28px 16px 0; border-bottom: 1.5px solid rgba(96, 98, 18, .35); }
+  .co-item:last-child { border-bottom: 0; }
+  .co-item__img { width: 92px; height: 92px; display: grid; place-items: center; background: var(--paper); }
+  .co-item__img img { max-width: 80%; max-height: 86%; object-fit: contain; }
+  .co-item h3 { margin: 2px 0 4px; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .co-item p { margin: 0; font-size: 14px; color: var(--ink-dark); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .co-item__row { margin-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .co-qty { display: inline-flex; align-items: center; border: 1.5px solid var(--ink); }
+  .co-qty button { width: 30px; height: 30px; padding: 0; border: 0; background: none; color: var(--ink); font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; }
+  .co-qty button:hover { background: rgba(96, 98, 18, .12); }
+  .co-qty output { min-width: 28px; height: 30px; display: grid; place-items: center; border-inline: 1.5px solid var(--ink); font-size: 13px; font-weight: 600; }
+  .co-price { font-size: 14px; font-weight: 700; }
+  .co-remove { position: absolute; top: 12px; right: 0; width: 28px; height: 28px; display: grid; place-items: center; padding: 0; border: 0; background: none; color: var(--ink-dark); cursor: pointer; }
+  .co-remove:hover { background: rgba(96, 98, 18, .12); }
+  .co-qty button:focus-visible, .co-remove:focus-visible { outline: 2px dashed var(--ink); outline-offset: 1px; }
+  .co-totals { margin: 0; padding: 14px 16px 16px; border-top: 1.5px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 10px 12px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .co-totals dt, .co-totals dd { margin: 0; }
+  .co-totals dd { text-align: right; font-size: 12px; font-weight: 700; }
+  .co-totals .co-total { font-size: 13px; }
+  .co-empty { margin: 0; padding: 28px 18px; text-align: center; font-size: 15px; }
+  .co-empty a { font-weight: 700; }
+  .co-empty[hidden], .co-items[hidden] { display: none; }
+
+  /* Tablet and phone: summary on top, single column */
+  @media (max-width: 899px) {
+    .co-grid { grid-template-columns: 1fr; }
+    .co-summary { position: static; order: -1; }
+  }
+  @media (max-width: 599px) {
+    .co-top { padding: 12px 16px; }
+    .co-logo svg { height: 56px; }
+    .co { padding: 4px 16px 48px; }
+    .co h1 { margin-bottom: 18px; }
+    .co-box { padding: 20px 16px 22px; }
+    .co-row, .co-row--city, .co-delivery { grid-template-columns: 1fr; }
+    .co-row--three { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .co-field textarea { max-width: none; }
+    .co-other input { width: 100%; }
+    .co-item { grid-template-columns: 76px minmax(0, 1fr); }
+    .co-item__img { width: 76px; height: 76px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="co-top">
+  <a class="co-logo" href="./" aria-label="Maika, back to the home page"><svg viewBox="25 14 75 85" aria-hidden="true">
+        <g transform="translate(40 15) scale(.4)" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 41 L50.5 4 L96 41.5"/><circle cx="50.5" cy="23" r="5"/>
+          <path d="M15 40.5 L13.5 84"/><path d="M86.5 40.5 L88 84"/><path d="M8 85.5 Q50 84 94 85.8"/>
+          <path d="M15.5 45 Q50.5 49 86 45"/>
+          <g stroke-width="3.6"><path d="M22 45.8 l3.6 7 l3.6 -6.4"/><path d="M34 47 l3.6 7 l3.6 -6.6"/><path d="M46 47.5 l3.6 7 l3.6 -6.7"/><path d="M58 47.4 l3.6 7 l3.6 -6.6"/><path d="M70 46.6 l3.6 7 l3.6 -6.4"/></g>
+          <path d="M43 56 h15 v4.6 h-15 z" fill="currentColor"/>
+          <path d="M41.5 61 C31 63.5 28.5 70.5 29.5 76.5 C31 83.5 40 85.5 50.5 85.5 C61 85.5 70 83.5 71.5 76.5 C72.5 70.5 70 63.5 59.5 61 Z" fill="currentColor"/>
+        </g>
+        <text x="61" y="80" text-anchor="middle" font-family="'Mali', 'Quicksand', sans-serif" font-weight="400" font-size="17" letter-spacing="3" fill="currentColor" dx="1.5">MAIKA</text>
+        <text x="60" y="94" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', cursive" font-size="9.5" fill="currentColor">homemade &amp; pure</text>
+      </svg></a>
+  <a class="co-back" href="./#products"><span aria-hidden="true">&larr;</span> Continue shopping</a>
+</header>
+
+<main class="co">
+  <h1>Contact details</h1>
+  <div class="co-grid">
+
+    <form class="co-main" id="co-form" novalidate>
+      <section class="co-box" aria-labelledby="co-personal">
+        <h2 id="co-personal">Personal info</h2>
+        <div class="co-row">
+          <div class="co-field"><label for="co-name">Name</label><input id="co-name" name="name" autocomplete="given-name" required></div>
+          <div class="co-field"><label for="co-surname">Surname</label><input id="co-surname" name="surname" autocomplete="family-name" required></div>
+        </div>
+        <div class="co-row">
+          <div class="co-field"><label for="co-phone">Phone number</label>
+            <div class="co-phone"><span aria-hidden="true">+91</span><input id="co-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="98765 43210" required aria-describedby="co-phone-hint"></div>
+            <span class="sr" id="co-phone-hint">10-digit Indian mobile number</span>
+          </div>
+          <div class="co-field"><label for="co-email">Email (optional)</label><input id="co-email" name="email" type="email" autocomplete="email"></div>
+        </div>
+
+        <h2>Address info</h2>
+        <div class="co-row co-row--city">
+          <div class="co-field"><label for="co-city">Your city</label>
+            <select id="co-city" name="city" required>
+              <option value="" selected disabled>Select your city</option>
+              <option>Delhi</option><option>Gurugram</option><option>Noida</option><option>Faridabad</option><option>Ghaziabad</option>
+              <option>Chandigarh</option><option>Mohali</option><option>Panchkula</option><option>Ludhiana</option><option>Amritsar</option><option>Jalandhar</option>
+              <option>Mumbai</option><option>Pune</option><option>Bengaluru</option><option>Hyderabad</option><option>Chennai</option><option>Kolkata</option>
+              <option>Jaipur</option><option>Ahmedabad</option><option>Lucknow</option>
+              <option value="other">Other city (write in the note)</option>
+            </select>
+          </div>
+          <div class="co-field"><label for="co-pin">PIN code</label><input id="co-pin" name="pin" inputmode="numeric" autocomplete="postal-code" pattern="[1-9][0-9]{5}" maxlength="6" placeholder="110001" required></div>
+        </div>
+        <div class="co-row co-row--one">
+          <div class="co-field"><label for="co-street">Street / area / locality</label><input id="co-street" name="street" autocomplete="address-line1" required></div>
+        </div>
+        <div class="co-row co-row--three">
+          <div class="co-field"><label for="co-house">House no.</label><input id="co-house" name="house" autocomplete="address-line2" required></div>
+          <div class="co-field"><label for="co-floor">Floor (optional)</label><input id="co-floor" name="floor"></div>
+          <div class="co-field"><label for="co-flat">Flat no. (optional)</label><input id="co-flat" name="flat"></div>
+        </div>
+        <div class="co-row co-row--one">
+          <div class="co-field"><label for="co-note">Add note (optional)</label><textarea id="co-note" name="note" placeholder="Example: the gate bell doesn't work, please call"></textarea>
+            <label class="co-check" for="co-save-note"><input type="checkbox" id="co-save-note"> Save this note for my next orders</label>
+          </div>
+        </div>
+      </section>
+
+      <section class="co-box" aria-labelledby="co-when">
+        <h2 class="sr" id="co-when">Delivery and payment</h2>
+        <div class="co-delivery">
+          <fieldset style="border:0;margin:0;padding:0;min-width:0">
+            <legend class="co-label">Delivery date</legend>
+            <div class="co-dates" id="co-dates"></div>
+            <div class="co-other">
+              <button type="button" id="co-other-btn" aria-expanded="false" aria-controls="co-other-date">Choose another date</button>
+              <input type="date" id="co-other-date" aria-label="Another delivery date" hidden>
+            </div>
+          </fieldset>
+          <div class="co-field"><label for="co-time">Delivery time</label>
+            <select id="co-time" name="time">
+              <option>As soon as possible</option>
+              <option>Morning (9am to 12pm)</option>
+              <option>Afternoon (12pm to 4pm)</option>
+              <option>Evening (4pm to 8pm)</option>
+            </select>
+          </div>
+        </div>
+        <div class="co-field co-pay"><label for="co-payment">Payment method</label>
+          <select id="co-payment" name="payment">
+            <option>Cash on delivery</option>
+            <option>UPI on delivery</option>
+            <option>UPI link sent on WhatsApp</option>
+          </select>
+        </div>
+        <button type="submit" class="co-submit" id="co-submit">Place order on WhatsApp</button>
+        <p class="co-help">Orders open Jan&nbsp;1. We&rsquo;ll confirm your price, delivery and payment on WhatsApp.</p>
+        <p class="co-status" id="co-status" role="status" aria-live="polite"></p>
+      </section>
+    </form>
+
+    <aside class="co-summary" aria-labelledby="co-summary-title">
+      <h2 class="sr" id="co-summary-title">Your order</h2>
+      <p class="co-empty" id="co-empty" hidden>Your cart is empty. <a href="./#products">Pick something homemade</a>.</p>
+      <ul class="co-items" id="co-items"></ul>
+      <dl class="co-totals">
+        <dt>Subtotal:</dt><dd id="co-subtotal">On confirmation</dd>
+        <dt>Delivery:</dt><dd id="co-delivery-fee">On confirmation</dd>
+        <dt class="co-total">Total:</dt><dd class="co-total" id="co-total">On confirmation</dd>
+      </dl>
+    </aside>
+
+  </div>
+</main>
+
+<script>
+(function () {
+  /* Product details used in the summary. Add a price (in rupees) to show totals, e.g. price: 349 */
+  var PRODUCTS = {
+    'pistachio-spread': { name: 'Pistachio Spread', desc: 'Creamy, nutty and natural.', price: null },
+    'haldi-laddoo':     { name: 'Haldi Laddoo', desc: 'Haldi laddoo for winter vitality.', price: null },
+    'til-laddoo':       { name: 'Til Laddoo', desc: 'Sesame laddoo goodness.', price: null },
+    'goond-laddoo':     { name: 'Goond Laddoo', desc: 'Traditional strength, the way Maa makes it.', price: null }
+  };
+  var WHATSAPP = '919220660377', CART_KEY = 'maika-cart', NOTE_KEY = 'maika-note';
+  var ORDERS_OPEN = new Date(2027, 0, 1);
+
+  function read(key, fallback) { try { var v = JSON.parse(localStorage.getItem(key)); return v == null ? fallback : v; } catch (e) { return fallback; } }
+  function write(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+  var cart = read(CART_KEY, []);
+  if (!Array.isArray(cart)) cart = [];
+  cart = cart.filter(function (i) { return i && PRODUCTS[i.id] && i.qty > 0; });
+
+  var list = document.getElementById('co-items'), empty = document.getElementById('co-empty');
+  var submit = document.getElementById('co-submit');
+  function rupees(n) { return '₹' + n.toLocaleString('en-IN'); }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  function render() {
+    list.textContent = '';
+    cart.forEach(function (it) {
+      var p = PRODUCTS[it.id], li = el('li', 'co-item');
+      var pic = el('div', 'co-item__img'), img = el('img');
+      img.src = 'images/jar-' + it.id + '.webp'; img.alt = ''; img.loading = 'lazy'; pic.appendChild(img);
+      var info = el('div'); info.appendChild(el('h3', null, p.name)); info.appendChild(el('p', null, p.desc));
+      var row = el('div', 'co-item__row'), qty = el('div', 'co-qty');
+      var dec = el('button', null, '−'), out = el('output', null, it.qty), inc = el('button', null, '+');
+      dec.type = inc.type = 'button'; dec.dataset.act = 'dec'; inc.dataset.act = 'inc'; dec.dataset.id = inc.dataset.id = it.id;
+      dec.setAttribute('aria-label', 'One less ' + p.name); inc.setAttribute('aria-label', 'One more ' + p.name);
+      out.setAttribute('aria-label', it.qty + ' ' + p.name);
+      qty.appendChild(dec); qty.appendChild(out); qty.appendChild(inc);
+      row.appendChild(qty); row.appendChild(el('span', 'co-price', p.price ? rupees(p.price * it.qty) : ''));
+      info.appendChild(row);
+      var rm = el('button', 'co-remove'); rm.type = 'button'; rm.dataset.act = 'remove'; rm.dataset.id = it.id;
+      rm.setAttribute('aria-label', 'Remove ' + p.name);
+      rm.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+      li.appendChild(pic); li.appendChild(info); li.appendChild(rm); list.appendChild(li);
+    });
+    empty.hidden = cart.length > 0; list.hidden = cart.length === 0;
+    var priced = cart.length && cart.every(function (i) { return PRODUCTS[i.id].price; });
+    var sub = priced ? cart.reduce(function (t, i) { return t + PRODUCTS[i.id].price * i.qty; }, 0) : 0;
+    document.getElementById('co-subtotal').textContent = priced ? rupees(sub) : 'On confirmation';
+    document.getElementById('co-total').textContent = priced ? rupees(sub) + ' + delivery' : 'On confirmation';
+    submit.disabled = cart.length === 0;
+  }
+  list.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-act]'); if (!b) return;
+    var it = cart.filter(function (x) { return x.id === b.dataset.id; })[0]; if (!it) return;
+    if (b.dataset.act === 'inc') it.qty++; else if (b.dataset.act === 'dec') it.qty--;
+    if (b.dataset.act === 'remove' || it.qty < 1) cart = cart.filter(function (x) { return x !== it; });
+    write(CART_KEY, cart); render();
+    var again = list.querySelector('button[data-act="' + b.dataset.act + '"][data-id="' + b.dataset.id + '"]');
+    if (again) again.focus(); else if (list.querySelector('button')) list.querySelector('button').focus();
+  });
+
+  /* Delivery date chips: the next five days from when orders open */
+  var dates = document.getElementById('co-dates'), DAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);
+  var first = tomorrow > ORDERS_OPEN ? tomorrow : new Date(ORDERS_OPEN);
+  function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function nice(d) { return DAY[d.getDay()] + ', ' + d.getDate() + ' ' + MON[d.getMonth()] + ' ' + d.getFullYear(); }
+  for (var k = 0; k < 5; k++) {
+    var d = new Date(first); d.setDate(first.getDate() + k);
+    var diff = Math.round((d - today) / 864e5);
+    var top = diff === 1 ? 'Tomorrow' : DAY[d.getDay()];
+    var wrap = el('div', 'co-chip'), input = el('input'), lab = el('label');
+    input.type = 'radio'; input.name = 'date'; input.id = 'co-date-' + k; input.value = nice(d); if (k === 0) input.checked = true;
+    lab.htmlFor = input.id; lab.appendChild(el('small', null, top));
+    lab.appendChild(el('strong', null, String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0')));
+    lab.setAttribute('aria-label', nice(d));
+    wrap.appendChild(input); wrap.appendChild(lab); dates.appendChild(wrap);
+  }
+  var otherBtn = document.getElementById('co-other-btn'), other = document.getElementById('co-other-date');
+  other.min = iso(first);
+  otherBtn.addEventListener('click', function () {
+    var open = other.hidden; other.hidden = !open; otherBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) other.focus();
+  });
+  other.addEventListener('change', function () {
+    if (other.value) dates.querySelectorAll('input').forEach(function (r) { r.checked = false; });
+  });
+  dates.addEventListener('change', function () { other.value = ''; });
+
+  /* Saved note */
+  var note = document.getElementById('co-note'), save = document.getElementById('co-save-note');
+  var saved = read(NOTE_KEY, '');
+  if (saved) { note.value = saved; save.checked = true; }
+
+  /* Place order: check the form, then open WhatsApp with the whole order */
+  var form = document.getElementById('co-form'), status = document.getElementById('co-status');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!cart.length) { status.textContent = 'Your cart is empty.'; return; }
+    if (!form.reportValidity()) { status.textContent = 'Please fill in the highlighted fields.'; return; }
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var picked = dates.querySelector('input:checked');
+    var when = picked ? picked.value : (other.value ? nice(new Date(other.value + 'T00:00')) : 'Any day');
+    var addr = [v('co-house'), v('co-floor') && 'Floor ' + v('co-floor'), v('co-flat') && 'Flat ' + v('co-flat'), v('co-street'),
+                (v('co-city') === 'other' ? 'Other city' : v('co-city')) + ' ' + v('co-pin')].filter(Boolean).join(', ');
+    var lines = ["Hi Maika, I'd like to place an order:", ''];
+    cart.forEach(function (i) { lines.push('• ' + i.qty + ' × ' + PRODUCTS[i.id].name); });
+    lines.push('', 'Name: ' + v('co-name') + ' ' + v('co-surname'), 'Phone: +91 ' + v('co-phone'));
+    if (v('co-email')) lines.push('Email: ' + v('co-email'));
+    lines.push('Address: ' + addr, 'Delivery: ' + when + ', ' + v('co-time'), 'Payment: ' + v('co-payment'));
+    if (v('co-note')) lines.push('Note: ' + v('co-note'));
+    if (save.checked) write(NOTE_KEY, v('co-note')); else { try { localStorage.removeItem(NOTE_KEY); } catch (err) {} }
+    status.textContent = 'Opening WhatsApp. Press send there to place your order.';
+    window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

@@ -235,8 +235,8 @@
   .mk *, .mk *::before, .mk *::after { box-sizing: border-box; }
 
   /* Photo cards */
-  .mk-cards { background: #EDD03A; padding: 28px 5%; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 24px; }
-  .mk-card { width: 340px; max-width: calc(50% - 12px); border: 2px solid var(--mk-ink); background: var(--mk-paper); display: flex; flex-direction: column; }
+  .mk-cards { background: #EDD03A; padding: 20px 5%; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 17px; }
+  .mk-card { width: 340px; max-width: calc(50% - 9px); border: 2px solid var(--mk-ink); background: var(--mk-paper); display: flex; flex-direction: column; }
   .mk-card--plain { border-color: transparent; }
   .mk-card__media { aspect-ratio: 736 / 981; background: #CCE9FF; border-bottom: 2px solid var(--mk-ink); overflow: hidden; }
   .mk-card--plain .mk-card__media { background: var(--mk-paper); border-bottom: 0; }
@@ -245,83 +245,86 @@
   .mk-card--plain .mk-card__media img { object-fit: contain; }
   .mk-card__title { margin: 0; padding: 16px 18px 18px; text-align: center; font-size: 22px; font-weight: 400; line-height: 1.2; }
 
-  /* Build your winter box */
-  .mk-build { position: relative; width: 100%; min-height: 640px; background-color: var(--mk-paper); background-image: linear-gradient(rgba(237, 208, 58, .7) 1px, transparent 1px), linear-gradient(90deg, rgba(237, 208, 58, .7) 1px, transparent 1px); background-size: 56px 56px; border-top: 2px solid var(--mk-ink); padding: 130px 24px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
+  /* Build your winter box (all sizes 30% smaller than the original design) */
+  .mk-build { position: relative; width: 100%; min-height: 448px; background-color: var(--mk-paper); background-image: linear-gradient(rgba(237, 208, 58, .7) 1px, transparent 1px), linear-gradient(90deg, rgba(237, 208, 58, .7) 1px, transparent 1px); background-size: 39px 39px; border-top: 2px solid var(--mk-ink); padding: 91px 24px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
   .mk-deco { position: absolute; height: auto; }
-  .mk-deco--a { left: 9%; top: 110px; width: 150px; animation: maikaFloatA 5s ease-in-out infinite; }
-  .mk-deco--b { right: 12%; top: 56px; width: 120px; animation: maikaFloatB 6s ease-in-out infinite .8s; }
-  .mk-deco--c { left: 9%; bottom: 64px; width: 140px; animation: maikaFloatC 5.5s ease-in-out infinite .4s; }
-  .mk-deco--d { right: 8%; bottom: 100px; width: 150px; animation: maikaFloatD 6.5s ease-in-out infinite 1.2s; }
-  @keyframes maikaFloatA { 0%, 100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-16px) rotate(-2deg); } }
-  @keyframes maikaFloatB { 0%, 100% { transform: translateY(0) rotate(9deg); } 50% { transform: translateY(-12px) rotate(15deg); } }
-  @keyframes maikaFloatC { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-14px) rotate(-11deg); } }
-  @keyframes maikaFloatD { 0%, 100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-10px) rotate(-3deg); } }
-  .mk-build h2 { position: relative; margin: 0; white-space: nowrap; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: clamp(24px, 5.4vw, 78px); line-height: .98; letter-spacing: -.015em; }
-  .mk-build p { position: relative; margin: 44px 0 0; max-width: 700px; text-wrap: balance; font-size: 26px; line-height: 1.3; }
-  .mk-btn { position: relative; margin-top: 48px; display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 44px; border: 2px solid var(--mk-ink); border-radius: 6px; background: var(--mk-ink); color: var(--mk-paper); font-size: 22px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: background .2s ease, color .2s ease; }
+  .mk-deco--a { left: 9%; top: 77px; width: 105px; animation: maikaFloatA 5s ease-in-out infinite; }
+  .mk-deco--b { right: 12%; top: 39px; width: 84px; animation: maikaFloatB 6s ease-in-out infinite .8s; }
+  .mk-deco--c { left: 9%; bottom: 45px; width: 98px; animation: maikaFloatC 5.5s ease-in-out infinite .4s; }
+  .mk-deco--d { right: 8%; bottom: 70px; width: 105px; animation: maikaFloatD 6.5s ease-in-out infinite 1.2s; }
+  @keyframes maikaFloatA { 0%, 100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-11px) rotate(-2deg); } }
+  @keyframes maikaFloatB { 0%, 100% { transform: translateY(0) rotate(9deg); } 50% { transform: translateY(-8px) rotate(15deg); } }
+  @keyframes maikaFloatC { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-10px) rotate(-11deg); } }
+  @keyframes maikaFloatD { 0%, 100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-7px) rotate(-3deg); } }
+  .mk-build h2 { position: relative; margin: 0; white-space: nowrap; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: clamp(20px, 3.8vw, 55px); line-height: .98; letter-spacing: -.015em; }
+  .mk-build p { position: relative; margin: 31px 0 0; max-width: 490px; text-wrap: balance; font-size: 18px; line-height: 1.3; }
+  .mk-btn { position: relative; margin-top: 34px; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 31px; border: 2px solid var(--mk-ink); border-radius: 5px; background: var(--mk-ink); color: var(--mk-paper); font-size: 15px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: background .2s ease, color .2s ease; }
   .mk-btn:hover { background: #EDD03A; color: var(--mk-ink); }
   .mk-btn:focus-visible { outline: 2px dashed var(--mk-ink); outline-offset: 3px; }
-  .mk-stripe { position: absolute; left: 0; right: 0; bottom: 0; height: 12px; background: repeating-linear-gradient(90deg, var(--mk-ink) 0, var(--mk-ink) 66px, #CCE9FF 66px, #CCE9FF 134px); }
+  .mk-stripe { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: repeating-linear-gradient(90deg, var(--mk-ink) 0, var(--mk-ink) 46px, #CCE9FF 46px, #CCE9FF 94px); }
 
-  /* When to catch Maika + sign-up */
-  .mk-next-wrap { width: 100%; background: #EDD03A; padding: 28px 5%; display: flex; flex-direction: column; gap: 26px; }
-  .mk-next { background: var(--mk-paper); padding: 88px 24px 84px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .mk-eyebrow { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
-  .mk-next h2 { margin: 18px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(52px, 7vw, 84px); line-height: 1; letter-spacing: -.01em; text-transform: uppercase; }
-  .mk-dates { margin-top: 62px; display: flex; flex-wrap: wrap; justify-content: center; border: 2px solid var(--mk-ink); max-width: 100%; }
-  .mk-date { width: 320px; max-width: 100%; padding: 24px 26px 28px; display: flex; flex-direction: column; align-items: center; background: var(--mk-paper); color: var(--mk-ink); }
+  /* When to catch Maika + sign-up (30% smaller) */
+  .mk-next-wrap { width: 100%; background: #EDD03A; padding: 20px 5%; display: flex; flex-direction: column; gap: 18px; }
+  .mk-next { background: var(--mk-paper); padding: 62px 17px 59px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .mk-eyebrow { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+  .mk-next h2 { margin: 13px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.9vw, 59px); line-height: 1; letter-spacing: -.01em; text-transform: uppercase; }
+  .mk-dates { margin-top: 43px; display: flex; flex-wrap: wrap; justify-content: center; border: 2px solid var(--mk-ink); max-width: 100%; }
+  .mk-date { width: 224px; max-width: 100%; padding: 17px 18px 20px; display: flex; flex-direction: column; align-items: center; background: var(--mk-paper); color: var(--mk-ink); }
   .mk-date--dark { background: var(--mk-ink); color: var(--mk-paper); }
-  .mk-date__top { width: 100%; display: flex; justify-content: space-between; font-size: 20px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
-  .mk-date svg { margin-top: 30px; }
-  .mk-date a { margin-top: 34px; font-size: 28px; line-height: 1.2; color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+  .mk-date__top { width: 100%; display: flex; justify-content: space-between; font-size: 14px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+  .mk-date svg { margin-top: 21px; width: 59px; height: 59px; }
+  .mk-date a { margin-top: 24px; font-size: 20px; line-height: 1.2; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
   .mk-date a:focus-visible { outline: 2px dashed currentColor; outline-offset: 3px; }
-  .mk-signup { background: #CCE9FF; border-radius: 48px; padding: 32px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px; }
-  .mk-signup > p { margin: 0; font-size: 28px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; text-align: center; }
-  .mk-signup form { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: center; margin: 0; }
+  .mk-signup { background: #CCE9FF; border-radius: 34px; padding: 22px 17px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 17px; }
+  .mk-signup > p { margin: 0; font-size: 20px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; text-align: center; }
+  .mk-signup form { display: flex; flex-wrap: wrap; gap: 11px; align-items: center; justify-content: center; margin: 0; }
   .mk-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .mk-signup input { width: 360px; max-width: 100%; height: 56px; padding: 0 20px; border: 2px solid var(--mk-ink); border-radius: 6px; background: var(--mk-paper); font-family: inherit; font-size: 18px; letter-spacing: .08em; text-align: center; color: var(--mk-ink); }
+  .mk-signup input { width: 252px; max-width: 100%; height: 44px; padding: 0 14px; border: 2px solid var(--mk-ink); border-radius: 5px; background: var(--mk-paper); font-family: inherit; font-size: 14px; letter-spacing: .08em; text-align: center; color: var(--mk-ink); }
   .mk-signup input::placeholder { color: rgba(96, 98, 18, .7); }
   .mk-signup input:focus-visible { outline: 2px dashed var(--mk-ink); outline-offset: 2px; }
-  .mk-signup button { height: 56px; min-width: 132px; padding: 0 28px; border: 2px solid var(--mk-ink); border-radius: 6px; background: var(--mk-ink); color: var(--mk-paper); font-family: inherit; font-size: 18px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .mk-signup button { height: 44px; min-width: 92px; padding: 0 20px; border: 2px solid var(--mk-ink); border-radius: 5px; background: var(--mk-ink); color: var(--mk-paper); font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: background .2s ease, color .2s ease; }
   .mk-signup button:hover { background: var(--mk-paper); color: var(--mk-ink); }
   .mk-signup button:focus-visible { outline: 2px dashed var(--mk-ink); outline-offset: 3px; }
-  .mk-signup__note { flex-basis: 100%; margin: 0; text-align: center; font-size: 16px; }
+  .mk-signup__note { flex-basis: 100%; margin: 0; text-align: center; font-size: 14px; }
   .mk-signup__note:empty { display: none; }
 
   @media (max-width: 1599px) {
-    .mk-build { min-height: 0; padding: 180px 24px 170px; }
-    .mk-deco--a { left: 4%; top: 28px; width: 120px; }
-    .mk-deco--b { right: 5%; top: 22px; width: 100px; }
-    .mk-deco--c { left: 4%; bottom: 36px; width: 112px; }
-    .mk-deco--d { right: 4%; bottom: 46px; width: 120px; }
+    .mk-build { min-height: 0; padding: 126px 24px 119px; }
+    .mk-deco--a { left: 4%; top: 20px; width: 84px; }
+    .mk-deco--b { right: 5%; top: 15px; width: 70px; }
+    .mk-deco--c { left: 4%; bottom: 25px; width: 78px; }
+    .mk-deco--d { right: 4%; bottom: 32px; width: 84px; }
   }
   @media (max-width: 899px) {
-    .mk-build { min-height: 0; padding: 150px 24px; }
-    .mk-deco--a { left: 4%; top: 24px; width: 104px; }
-    .mk-deco--b { right: 5%; top: 18px; width: 84px; }
-    .mk-deco--c { left: 4%; bottom: 34px; width: 96px; }
-    .mk-deco--d { right: 4%; bottom: 44px; width: 104px; }
+    .mk-build { padding: 105px 24px; }
+    .mk-deco--a { top: 17px; width: 73px; }
+    .mk-deco--b { top: 13px; width: 59px; }
+    .mk-deco--c { bottom: 24px; width: 67px; }
+    .mk-deco--d { bottom: 31px; width: 73px; }
   }
   @media (max-width: 599px) {
-    .mk-cards { padding: 16px; gap: 12px; flex-wrap: nowrap; }
-    .mk-card { max-width: calc(50% - 6px); }
-    .mk-card__title { padding: 10px 8px 12px; font-size: 15px; }
-    .mk-build { padding: 128px 16px 136px; }
-    .mk-deco--a { width: 84px; } .mk-deco--b { width: 68px; } .mk-deco--c { width: 76px; } .mk-deco--d { width: 84px; }
-    .mk-build h2 { white-space: normal; font-size: clamp(36px, 11vw, 46px); text-wrap: balance; }
-    .mk-build p { margin-top: 24px; font-size: 19px; }
-    .mk-btn { margin-top: 32px; padding: 0 28px; font-size: 17px; }
-    .mk-next-wrap { padding: 16px; gap: 16px; }
-    .mk-next { padding: 56px 16px; }
-    .mk-eyebrow { font-size: 15px; }
-    .mk-next h2 { font-size: clamp(44px, 14vw, 56px); }
-    .mk-dates { margin-top: 36px; }
-    .mk-date a { font-size: 22px; }
-    .mk-signup { border-radius: 28px; padding: 26px 16px; gap: 16px; }
-    .mk-signup > p { font-size: 19px; }
-    .mk-signup form { width: 100%; }
-    .mk-signup input { width: 100%; }
-    .mk-signup button { width: 100%; }
+    .mk-cards { padding: 12px; gap: 10px; flex-wrap: nowrap; }
+    .mk-card { max-width: calc(50% - 5px); }
+    .mk-card__title { padding: 8px 6px 10px; font-size: 13px; }
+    .mk-build { padding: 92px 16px 98px; }
+    .mk-deco--a { width: 59px; } .mk-deco--b { width: 48px; } .mk-deco--c { width: 53px; } .mk-deco--d { width: 59px; }
+    .mk-build h2 { white-space: normal; font-size: clamp(28px, 8vw, 34px); text-wrap: balance; }
+    .mk-build p { margin-top: 17px; font-size: 15px; }
+    .mk-btn { margin-top: 22px; padding: 0 20px; font-size: 13px; }
+    .mk-next-wrap { padding: 12px; gap: 12px; }
+    .mk-next { padding: 40px 12px; }
+    .mk-eyebrow { font-size: 12px; }
+    .mk-next h2 { font-size: clamp(32px, 10vw, 40px); }
+    .mk-dates { margin-top: 26px; }
+    .mk-date { width: 50%; padding: 14px 12px 16px; }
+    .mk-date__top { font-size: 12px; }
+    .mk-date svg { margin-top: 14px; width: 48px; height: 48px; }
+    .mk-date a { margin-top: 16px; font-size: 15px; }
+    .mk-signup { border-radius: 20px; padding: 18px 12px; gap: 12px; }
+    .mk-signup > p { font-size: 15px; }
+    .mk-signup form { width: 100%; flex-wrap: nowrap; gap: 8px; }
+    .mk-signup input { width: auto; flex: 1 1 auto; min-width: 0; font-size: 16px; }
+    .mk-signup button { min-width: 0; padding: 0 16px; }
   }
   @media (prefers-reduced-motion: reduce) { .mk-deco { animation: none !important; } }
 
@@ -616,7 +619,7 @@
               <rect x="26" y="40" width="28" height="18" rx="4" fill="#FBF7EE" stroke="#606212" stroke-width="2.5"/>
               <path d="M22 36 C22 31 24 28 28 25" fill="none" stroke="#FFF3E0" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
-            <a href="#notify">First order from 1 Jan</a>
+            <a href="#notify">First order from 1&nbsp;Jan</a>
           </div>
         </div>
       </section>

@@ -269,22 +269,22 @@
   .mk-eyebrow { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
   .mk-next h2 { margin: 13px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.9vw, 59px); line-height: 1; letter-spacing: -.01em; text-transform: uppercase; }
   .mk-dates { margin-top: 43px; display: flex; flex-wrap: wrap; justify-content: center; border: 2px solid var(--mk-ink); max-width: 100%; }
-  .mk-date { width: 224px; max-width: 100%; padding: 17px 18px 20px; display: flex; flex-direction: column; align-items: center; background: var(--mk-paper); color: var(--mk-ink); }
+  .mk-date { width: 240px; max-width: 100%; padding: 17px 16px 20px; display: flex; flex-direction: column; align-items: center; background: var(--mk-paper); color: var(--mk-ink); }
   .mk-date--dark { background: var(--mk-ink); color: var(--mk-paper); }
   .mk-date__top { width: 100%; display: flex; justify-content: space-between; font-size: 14px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
   .mk-date svg { margin-top: 21px; width: 59px; height: 59px; }
-  .mk-date a { margin-top: 24px; font-size: 20px; line-height: 1.2; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  .mk-date a { margin-top: 24px; font-size: 18px; line-height: 1.2; white-space: nowrap; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
   .mk-date a:focus-visible { outline: 2px dashed currentColor; outline-offset: 3px; }
-  .mk-signup { background: #CCE9FF; border-radius: 34px; padding: 22px 17px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 17px; }
+  .mk-signup { background: var(--mk-ink); color: var(--mk-paper); border-radius: 34px; padding: 22px 17px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 17px; }
   .mk-signup > p { margin: 0; font-size: 20px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; text-align: center; }
   .mk-signup form { display: flex; flex-wrap: wrap; gap: 11px; align-items: center; justify-content: center; margin: 0; }
   .mk-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .mk-signup input { width: 252px; max-width: 100%; height: 44px; padding: 0 14px; border: 2px solid var(--mk-ink); border-radius: 5px; background: var(--mk-paper); font-family: inherit; font-size: 14px; letter-spacing: .08em; text-align: center; color: var(--mk-ink); }
+  .mk-signup input { width: 252px; max-width: 100%; height: 44px; padding: 0 14px; border: 2px solid var(--mk-paper); border-radius: 5px; background: var(--mk-paper); font-family: inherit; font-size: 14px; letter-spacing: .08em; text-align: center; color: var(--mk-ink); }
   .mk-signup input::placeholder { color: rgba(96, 98, 18, .7); }
-  .mk-signup input:focus-visible { outline: 2px dashed var(--mk-ink); outline-offset: 2px; }
-  .mk-signup button { height: 44px; min-width: 92px; padding: 0 20px; border: 2px solid var(--mk-ink); border-radius: 5px; background: var(--mk-ink); color: var(--mk-paper); font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: background .2s ease, color .2s ease; }
-  .mk-signup button:hover { background: var(--mk-paper); color: var(--mk-ink); }
-  .mk-signup button:focus-visible { outline: 2px dashed var(--mk-ink); outline-offset: 3px; }
+  .mk-signup input:focus-visible { outline: 2px dashed #EDD03A; outline-offset: 2px; }
+  .mk-signup button { height: 44px; min-width: 92px; padding: 0 20px; border: 2px solid #EDD03A; border-radius: 5px; background: #EDD03A; color: var(--mk-ink); font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .mk-signup button:hover { background: var(--mk-paper); border-color: var(--mk-paper); color: var(--mk-ink); }
+  .mk-signup button:focus-visible { outline: 2px dashed #EDD03A; outline-offset: 3px; }
   .mk-signup__note { flex-basis: 100%; margin: 0; text-align: center; font-size: 14px; }
   .mk-signup__note:empty { display: none; }
 
@@ -319,7 +319,7 @@
     .mk-date { width: 50%; padding: 14px 12px 16px; }
     .mk-date__top { font-size: 12px; }
     .mk-date svg { margin-top: 14px; width: 48px; height: 48px; }
-    .mk-date a { margin-top: 16px; font-size: 15px; }
+    .mk-date a { margin-top: 16px; font-size: 13px; }
     .mk-signup { border-radius: 20px; padding: 18px 12px; gap: 12px; }
     .mk-signup > p { font-size: 15px; }
     .mk-signup form { width: 100%; flex-wrap: nowrap; gap: 8px; }
@@ -619,7 +619,7 @@
               <rect x="26" y="40" width="28" height="18" rx="4" fill="#FBF7EE" stroke="#606212" stroke-width="2.5"/>
               <path d="M22 36 C22 31 24 28 28 25" fill="none" stroke="#FFF3E0" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
-            <a href="#notify">First order from 1&nbsp;Jan</a>
+            <a href="#notify">First order from Jan&nbsp;1</a>
           </div>
         </div>
       </section>

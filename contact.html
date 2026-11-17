@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact · Maika</title>
+<meta name="description" content="Talk to Maika on WhatsApp, phone, email or Instagram, or send us a message.">
+<meta name="theme-color" content="#606212">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Lilita+One&family=Kalam:wght@700&family=Mali:wght@400&family=Patrick+Hand&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  :root { --ink: #606212; --ink-dark: #4A4B0E; --gold: #EDD03A; --gold-soft: #F6E7A6; --paper: #FFFBEA; --field: #FFFDF5; --muted: rgba(96, 98, 18, .65); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink-dark); font-family: 'Figtree', system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
+  a { color: inherit; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Top bar (same as checkout and privacy pages) */
+  .ct-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 1180px; margin: 0 auto; padding: 18px 24px; }
+  .ct-logo { display: block; line-height: 0; color: var(--ink); }
+  .ct-logo svg { height: 72px; width: auto; display: block; }
+  .ct-back { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; }
+  .ct-back:hover { text-decoration: underline; text-underline-offset: 4px; }
+  a:focus-visible, button:focus-visible { outline: 2px dashed var(--ink); outline-offset: 3px; border-radius: 4px; }
+
+  main { max-width: 1180px; margin: 0 auto; padding: 8px 24px 80px; }
+  .ct-head { margin-bottom: 30px; }
+  .ct-head h1 { margin: 0; font-family: 'Lilita One', system-ui, sans-serif; font-weight: 400; font-size: clamp(40px, 5.4vw, 64px); line-height: 1; color: var(--ink-dark); }
+  .ct-head p { margin: 10px 0 0; max-width: 560px; font-size: 18px; color: var(--ink); }
+  .ct-hand { display: inline-block; margin-top: 6px; font-family: 'Kalam', cursive; font-weight: 700; font-size: 22px; color: var(--ink); transform: rotate(-2deg); }
+
+  .ct-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 28px; align-items: start; }
+
+  /* Contact cards */
+  .ct-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .ct-card { height: 100%; display: flex; flex-direction: column; gap: 10px; padding: 20px; border: 1.5px solid var(--ink); background: var(--field); color: var(--ink-dark); text-decoration: none; transition: background .2s ease, transform .2s ease; }
+  .ct-card:hover { background: var(--gold-soft); transform: translateY(-3px); }
+  .ct-card--wa { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .ct-card--wa:hover { background: var(--ink-dark); }
+  .ct-card__icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: var(--gold); color: var(--ink-dark); }
+  .ct-card__icon svg { width: 24px; height: 24px; }
+  .ct-card__label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .8; }
+  .ct-card__value { font-size: 18px; font-weight: 700; line-height: 1.25; overflow-wrap: anywhere; }
+  .ct-card__go { margin-top: auto; font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .ct-strip { margin: 14px 0 0; display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--gold); color: var(--ink-dark); font-size: 14px; font-weight: 500; }
+  .ct-strip svg { flex: none; width: 20px; height: 20px; }
+
+  /* Message form */
+  .ct-box { border: 1.5px solid var(--ink); padding: 26px 26px 28px; background: transparent; }
+  .ct-box h2 { margin: 0 0 4px; font-size: 22px; font-weight: 700; color: var(--ink); }
+  .ct-box > p { margin: 0 0 18px; color: var(--muted); font-size: 15px; }
+  .ct-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+  .ct-row + .ct-row { margin-top: 14px; }
+  .ct-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .ct-field label { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
+  .ct-field input, .ct-field select, .ct-field textarea { width: 100%; height: 46px; padding: 0 12px; border: 1.5px solid var(--ink); border-radius: 0; background: var(--field); color: var(--ink-dark); font: inherit; font-size: 16px; }
+  .ct-field textarea { height: 130px; padding: 10px 12px; resize: vertical; }
+  .ct-field select { appearance: none; -webkit-appearance: none; padding-right: 40px; cursor: pointer; background: var(--field) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23606212' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center / 18px; }
+  .ct-field input::placeholder, .ct-field textarea::placeholder { color: var(--muted); }
+  .ct-field input:focus-visible, .ct-field select:focus-visible, .ct-field textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--ink-dark); border-radius: 0; }
+  .ct-field input:user-invalid, .ct-field textarea:user-invalid, .ct-field select:user-invalid { border-color: #A3261B; }
+  .ct-phone { position: relative; }
+  .ct-phone span { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+  .ct-phone input { padding-left: 48px; }
+  .ct-actions { margin-top: 22px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 10px; }
+  .ct-btn { min-height: 52px; padding: 10px 14px; border: 1.5px solid var(--ink); background: var(--gold); color: var(--ink-dark); font: inherit; font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .ct-btn:hover { background: var(--ink); color: var(--paper); }
+  .ct-btn--ghost { background: transparent; }
+  .ct-note { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+  .ct-status { margin: 12px 0 0; font-size: 14px; font-weight: 600; }
+  .ct-status:empty { display: none; }
+
+  /* Good to know */
+  .ct-faq { margin-top: 44px; }
+  .ct-faq h2 { margin: 0 0 14px; font-family: 'Lilita One', system-ui, sans-serif; font-weight: 400; font-size: 32px; color: var(--ink-dark); }
+  .ct-faq details { border: 1.5px solid var(--ink); background: var(--field); }
+  .ct-faq details + details { margin-top: 10px; }
+  .ct-faq summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; font-size: 17px; font-weight: 700; color: var(--ink); cursor: pointer; }
+  .ct-faq summary::-webkit-details-marker { display: none; }
+  .ct-faq summary::after { content: "+"; flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--gold); color: var(--ink-dark); font-size: 20px; line-height: 1; transition: transform .2s ease; }
+  .ct-faq details[open] summary::after { transform: rotate(45deg); }
+  .ct-faq details p { margin: 0; padding: 0 18px 18px; max-width: 70ch; }
+
+  @media (max-width: 899px) { .ct-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 599px) {
+    .ct-top { padding: 12px 16px; }
+    .ct-logo svg { height: 56px; }
+    main { padding: 4px 16px 56px; }
+    .ct-head p { font-size: 16px; }
+    .ct-cards { gap: 10px; }
+    .ct-card { padding: 14px; }
+    .ct-card__value { font-size: 15px; }
+    .ct-box { padding: 20px 16px 22px; }
+    .ct-row, .ct-actions { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="ct-top">
+  <a class="ct-logo" href="./" aria-label="Maika, back to the home page"><svg viewBox="25 14 75 85" aria-hidden="true">
+        <g transform="translate(40 15) scale(.4)" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 41 L50.5 4 L96 41.5"/><circle cx="50.5" cy="23" r="5"/>
+          <path d="M15 40.5 L13.5 84"/><path d="M86.5 40.5 L88 84"/><path d="M8 85.5 Q50 84 94 85.8"/>
+          <path d="M15.5 45 Q50.5 49 86 45"/>
+          <g stroke-width="3.6"><path d="M22 45.8 l3.6 7 l3.6 -6.4"/><path d="M34 47 l3.6 7 l3.6 -6.6"/><path d="M46 47.5 l3.6 7 l3.6 -6.7"/><path d="M58 47.4 l3.6 7 l3.6 -6.6"/><path d="M70 46.6 l3.6 7 l3.6 -6.4"/></g>
+          <path d="M43 56 h15 v4.6 h-15 z" fill="currentColor"/>
+          <path d="M41.5 61 C31 63.5 28.5 70.5 29.5 76.5 C31 83.5 40 85.5 50.5 85.5 C61 85.5 70 83.5 71.5 76.5 C72.5 70.5 70 63.5 59.5 61 Z" fill="currentColor"/>
+        </g>
+        <text x="61" y="80" text-anchor="middle" font-family="'Mali', 'Quicksand', sans-serif" font-weight="400" font-size="17" letter-spacing="3" fill="currentColor" dx="1.5">MAIKA</text>
+        <text x="60" y="94" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', cursive" font-size="9.5" fill="currentColor">homemade &amp; pure</text>
+      </svg></a>
+  <a class="ct-back" href="./"><span aria-hidden="true">&larr;</span> Back to home</a>
+</header>
+
+<main>
+  <div class="ct-head">
+    <h1>Contact us</h1>
+    <p>Questions about an order, a big family order or a gift box? Talk to us. Maa and the Maika family read every message.</p>
+    <span class="ct-hand">Born in Bharat, made in small batches.</span>
+  </div>
+
+  <div class="ct-grid">
+    <section aria-labelledby="ct-ways">
+      <h2 class="sr" id="ct-ways">Ways to reach us</h2>
+      <ul class="ct-cards">
+        <li><a class="ct-card ct-card--wa" href="https://wa.me/919220660377?text=Hi%20Maika%2C%20" target="_blank" rel="noopener">
+          <span class="ct-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.6 20.4l1.2-4.3A8.6 8.6 0 1 1 8 19.3z"/><path d="M9 8.4c.3-.6.8-.6 1.1 0l.6 1.4c.1.3 0 .6-.2.8l-.5.5c.6 1.2 1.6 2.2 2.8 2.8l.5-.5c.2-.2.5-.3.8-.2l1.4.6c.6.3.6.8 0 1.1-1.6 1.1-3.6.3-5.2-1.3S7.9 10 9 8.4z" fill="currentColor" stroke="none"/></svg></span>
+          <span class="ct-card__label">WhatsApp</span>
+          <span class="ct-card__value">+91 92206 60377</span>
+          <span class="ct-card__go">Chat with us</span>
+        </a></li>
+        <li><a class="ct-card" href="tel:+919220660377">
+          <span class="ct-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.2l1.6 4.2-2 1.4a11 11 0 0 0 7.1 7.1l1.4-2 4.2 1.6V19a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 3 5.7 2 2 0 0 1 5 3.5z"/></svg></span>
+          <span class="ct-card__label">Call</span>
+          <span class="ct-card__value">+91 92206 60377</span>
+          <span class="ct-card__go">Call now</span>
+        </a></li>
+        <li><a class="ct-card" href="mailto:eat@maika.food">
+          <span class="ct-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></span>
+          <span class="ct-card__label">Email</span>
+          <span class="ct-card__value">eat@maika.food</span>
+          <span class="ct-card__go">Write to us</span>
+        </a></li>
+        <li><a class="ct-card" href="https://www.instagram.com/eatmaika/" target="_blank" rel="noopener">
+          <span class="ct-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r=".6" fill="currentColor"/></svg></span>
+          <span class="ct-card__label">Instagram</span>
+          <span class="ct-card__value">@eatmaika</span>
+          <span class="ct-card__go">Follow us</span>
+        </a></li>
+      </ul>
+      <p class="ct-strip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Orders open <strong>Jan&nbsp;1</strong>. WhatsApp is the quickest way to reach us.</span></p>
+    </section>
+
+    <section class="ct-box" aria-labelledby="ct-form-title">
+      <h2 id="ct-form-title">Send us a message</h2>
+      <p>Fill this in and send it on WhatsApp or by email, whichever you like.</p>
+      <form id="ct-form" novalidate>
+        <div class="ct-row">
+          <div class="ct-field"><label for="ct-name">Your name</label><input id="ct-name" name="name" autocomplete="name" required></div>
+          <div class="ct-field"><label for="ct-phone">Phone number</label>
+            <div class="ct-phone"><span aria-hidden="true">+91</span><input id="ct-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="98765 43210" required></div>
+          </div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-field"><label for="ct-email">Email (optional)</label><input id="ct-email" name="email" type="email" autocomplete="email"></div>
+          <div class="ct-field"><label for="ct-topic">What is it about?</label>
+            <select id="ct-topic" name="topic">
+              <option>A question about an order</option>
+              <option>Bulk or family order</option>
+              <option>Gift boxes</option>
+              <option>Feedback</option>
+              <option>Something else</option>
+            </select>
+          </div>
+        </div>
+        <div class="ct-field" style="margin-top:14px"><label for="ct-message">Message</label><textarea id="ct-message" name="message" required placeholder="Tell us what you need"></textarea></div>
+        <div class="ct-actions">
+          <button type="submit" class="ct-btn" data-via="whatsapp">Send on WhatsApp</button>
+          <button type="submit" class="ct-btn ct-btn--ghost" data-via="email">Send by email</button>
+        </div>
+        <p class="ct-note">We only use your details to reply to you. See our <a href="privacy.html">Privacy Policy</a>.</p>
+        <p class="ct-status" id="ct-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+
+  <section class="ct-faq" aria-labelledby="ct-faq-title">
+    <h2 id="ct-faq-title">Good to know</h2>
+    <details>
+      <summary>When can I order?</summary>
+      <p>Orders open on 1 January 2027. You can already add products to your cart, and we&rsquo;ll start delivering from January.</p>
+    </details>
+    <details>
+      <summary>How do I place an order?</summary>
+      <p>Add products to your cart, open the cart and go to checkout. Fill in your details and press &ldquo;Place order on WhatsApp&rdquo;. Your order arrives in our WhatsApp and we confirm the price and delivery with you.</p>
+    </details>
+    <details>
+      <summary>How can I pay?</summary>
+      <p>You can pay cash on delivery or by UPI on delivery, or we can send you a UPI link on WhatsApp.</p>
+    </details>
+  </section>
+</main>
+
+<script>
+(function () {
+  var form = document.getElementById('ct-form'), status = document.getElementById('ct-status'), via = 'whatsapp';
+  form.querySelectorAll('button[data-via]').forEach(function (b) { b.addEventListener('click', function () { via = b.dataset.via; }); });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) { status.textContent = 'Please fill in the highlighted fields.'; return; }
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var lines = ['Hi Maika,', '', v('ct-message'), '', 'Topic: ' + v('ct-topic'), 'Name: ' + v('ct-name'), 'Phone: +91 ' + v('ct-phone')];
+    if (v('ct-email')) lines.push('Email: ' + v('ct-email'));
+    var text = lines.join('\n');
+    if (via === 'email') {
+      window.location.href = 'mailto:eat@maika.food?subject=' + encodeURIComponent(v('ct-topic') + ' (from ' + v('ct-name') + ')') + '&body=' + encodeURIComponent(text);
+      status.textContent = 'Your email app is opening. Press send there and we will reply soon.';
+    } else {
+      window.open('https://wa.me/919220660377?text=' + encodeURIComponent(text), '_blank', 'noopener');
+      status.textContent = 'Opening WhatsApp. Press send there and we will reply soon.';
+    }
+  });
+})();
+</script>
+</body>
+</html>

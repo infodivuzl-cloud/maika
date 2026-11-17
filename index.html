@@ -385,30 +385,73 @@
   @keyframes cart-bump { 0% { transform: scale(1); } 40% { transform: scale(1.45); } 100% { transform: scale(1); } }
   .cart-overlay { position: fixed; inset: 0; z-index: 10000; background: rgba(30, 31, 4, .5); opacity: 0; transition: opacity .25s ease; }
   body.cart-open .cart-overlay { opacity: 1; }
-  .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 10001; width: min(420px, 100%); display: flex; flex-direction: column; background: #FBF7EE; color: #606212; font-family: 'Figtree', system-ui, sans-serif; box-shadow: -12px 0 40px rgba(30, 31, 4, .25); transform: translateX(100%); visibility: hidden; transition: transform .3s ease, visibility .3s ease; }
+  .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 10001; width: min(440px, 100%); display: flex; flex-direction: column; background: #FBF7EE; color: #606212; font-family: 'Figtree', system-ui, sans-serif; box-shadow: -12px 0 40px rgba(30, 31, 4, .25); transform: translateX(100%); visibility: hidden; transition: transform .3s ease, visibility .3s ease; }
   body.cart-open .cart-drawer { transform: none; visibility: visible; }
   body.cart-open { overflow: hidden; }
-  .cart-drawer__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 24px; border-bottom: 2px solid #606212; }
-  .cart-drawer__head h2 { margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.1; }
-  .cart-close { flex: none; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 2px solid #606212; border-radius: 50%; background: transparent; color: inherit; cursor: pointer; transition: background .2s ease, color .2s ease; }
-  .cart-close:hover { background: #606212; color: #FBF7EE; }
-  .cart-close:focus-visible, .cart-qty button:focus-visible, .cart-item__remove:focus-visible, .cart-checkout:focus-visible { outline: 2px dashed #606212; outline-offset: 2px; }
-  .cart-empty { margin: 0; padding: 40px 24px; text-align: center; font-size: 16px; }
-  .cart-empty[hidden], .cart-items[hidden], .cart-overlay[hidden] { display: none; }
-  .cart-items { flex: 1; list-style: none; margin: 0; padding: 4px 24px; overflow-y: auto; }
-  .cart-item { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(96, 98, 18, .2); }
-  .cart-item img { width: 64px; height: 64px; padding: 6px; border-radius: 10px; background: #EDD03A; object-fit: contain; }
-  .cart-item__name { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.3; }
-  .cart-item__remove { margin-top: 4px; padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
-  .cart-qty { display: inline-flex; align-items: center; border: 2px solid #606212; border-radius: 8px; }
-  .cart-qty button { width: 36px; height: 36px; padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: 18px; font-weight: 700; cursor: pointer; }
-  .cart-qty output { min-width: 24px; text-align: center; font-weight: 700; }
-  .cart-drawer__foot { margin-top: auto; display: flex; flex-direction: column; gap: 12px; padding: 18px 24px 24px; border-top: 2px solid #606212; }
-  .cart-drawer__note { margin: 0; font-size: 14px; line-height: 1.4; }
-  .cart-checkout { display: flex; align-items: center; justify-content: center; min-height: 52px; border: 2px solid #606212; border-radius: 9px; background: #606212; color: #FBF7EE; font-size: 15px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: background .2s ease, color .2s ease; }
-  .cart-checkout:hover { background: #EDD03A; color: #606212; }
-  .cart-checkout[aria-disabled="true"] { opacity: .45; pointer-events: none; }
-  @media (prefers-reduced-motion: reduce) { .cart-drawer, .cart-overlay { transition: none; } .cart-count.bump { animation: none; } }
+  .cart-drawer [hidden], .cart-overlay[hidden] { display: none !important; }
+
+  .cart-drawer__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 22px 24px; background: #606212; color: #EDD03A; }
+  .cart-drawer__head h2 { margin: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.1; }
+  .cart-badge { padding: 4px 10px; border-radius: 999px; background: #EDD03A; color: #606212; font-family: 'Figtree', system-ui, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .cart-close { flex: none; display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 2px solid #EDD03A; border-radius: 50%; background: transparent; color: #EDD03A; cursor: pointer; transition: background .2s ease, color .2s ease, transform .2s ease; }
+  .cart-close:hover { background: #EDD03A; color: #606212; transform: rotate(90deg); }
+  .cart-close:focus-visible { outline: 3px solid #FBF7EE; outline-offset: 2px; }
+  .cart-notice { margin: 0; display: flex; align-items: center; gap: 10px; padding: 10px 24px; background: #EDD03A; color: #4A4B0E; font-size: 13px; font-weight: 500; line-height: 1.35; }
+  .cart-notice svg { flex: none; width: 18px; height: 18px; }
+
+  .cart-drawer__body { flex: 1; overflow-y: auto; padding: 18px 20px 24px; overscroll-behavior: contain; }
+  .cart-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .cart-item { position: relative; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 14px; padding: 12px; border: 1.5px solid rgba(96, 98, 18, .18); border-radius: 16px; background: #FFFDF5; }
+  .cart-item__img, .cart-more__img { display: grid; place-items: center; border-radius: 12px; background-color: #EDD03A; background-image: linear-gradient(rgba(255, 255, 255, .45) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .45) 1px, transparent 1px); background-size: 10px 10px; }
+  .cart-item__img { width: 76px; height: 76px; }
+  .cart-item__img img, .cart-more__img img { max-width: 78%; max-height: 86%; object-fit: contain; filter: drop-shadow(0 4px 5px rgba(74, 75, 14, .25)); }
+  .cart-item__name { margin: 2px 34px 0 0; font-size: 16px; font-weight: 700; line-height: 1.25; }
+  .cart-item__hi { margin: 2px 0 0; font-family: var(--hindi); font-size: 13px; line-height: 1.3; color: rgba(96, 98, 18, .7); }
+  .cart-item__row { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
+  .cart-qty { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: 999px; background: #F3EBC7; }
+  .cart-qty button { width: 30px; height: 30px; padding: 0; border: 0; border-radius: 50%; background: #FFFDF5; color: inherit; font: inherit; font-size: 16px; font-weight: 700; line-height: 1; cursor: pointer; box-shadow: 0 1px 2px rgba(74, 75, 14, .18); transition: background .2s ease, color .2s ease; }
+  .cart-qty button:hover { background: #606212; color: #FBF7EE; }
+  .cart-qty output { min-width: 30px; text-align: center; font-size: 15px; font-weight: 700; }
+  .cart-item__remove { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: none; color: rgba(96, 98, 18, .65); cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .cart-item__remove:hover { background: rgba(163, 38, 27, .1); color: #A3261B; }
+
+  .cart-empty { padding: 32px 8px 8px; text-align: center; }
+  .cart-empty svg { width: 86px; height: auto; }
+  .cart-empty__title { margin: 14px 0 4px; font-family: 'Young Serif', Georgia, serif; font-size: 22px; line-height: 1.2; }
+  .cart-empty p { margin: 0; }
+  .cart-empty__btn { margin-top: 18px; display: inline-flex; align-items: center; min-height: 44px; padding: 0 24px; border-radius: 9px; background: #606212; color: #FBF7EE; font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; transition: background .2s ease, color .2s ease; }
+  .cart-empty__btn:hover { background: #EDD03A; color: #606212; }
+
+  .cart-more { margin-top: 26px; }
+  .cart-more h3 { margin: 0 0 12px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(96, 98, 18, .75); }
+  .cart-more__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .cart-more__item { display: flex; flex-direction: column; gap: 8px; padding: 10px; border: 1.5px dashed rgba(96, 98, 18, .3); border-radius: 14px; text-align: center; }
+  .cart-more__img { aspect-ratio: 1 / 1; overflow: hidden; }
+  .cart-more__img img { width: 56%; height: auto; max-width: none; max-height: none; }
+  .cart-more__name { margin: 0; font-size: 13px; font-weight: 700; line-height: 1.2; }
+  .cart-more__add { margin-top: auto; min-height: 34px; padding: 0 8px; border: 1.5px solid #606212; border-radius: 9px; background: transparent; color: #606212; font: inherit; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .cart-more__add:hover { background: #606212; color: #FBF7EE; }
+
+  .cart-drawer__foot { display: flex; flex-direction: column; gap: 12px; padding: 16px 24px 20px; border-top: 1.5px solid rgba(96, 98, 18, .2); background: #FFFDF5; box-shadow: 0 -8px 20px rgba(74, 75, 14, .06); }
+  .cart-sum { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; font-size: 14px; }
+  .cart-sum dt, .cart-sum dd { margin: 0; }
+  .cart-sum dd { text-align: right; font-weight: 700; }
+  .cart-checkout { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; border-radius: 12px; background: #606212; color: #EDD03A; font-size: 15px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: background .2s ease; }
+  .cart-checkout svg { width: 18px; height: 18px; transition: transform .2s ease; }
+  .cart-checkout:hover { background: #4A4B0E; }
+  .cart-checkout:hover svg { transform: translateX(4px); }
+  .cart-checkout[aria-disabled="true"] { opacity: .4; pointer-events: none; }
+  .cart-continue { align-self: center; padding: 4px 6px; border: 0; background: none; color: inherit; font: inherit; font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .cart-drawer__body button:focus-visible, .cart-drawer__foot :focus-visible, .cart-empty__btn:focus-visible { outline: 2px solid #606212; outline-offset: 2px; }
+
+  @media (max-width: 599px) {
+    .cart-drawer__head { padding: 16px 18px; }
+    .cart-drawer__head h2 { font-size: 24px; }
+    .cart-notice { padding: 9px 18px; font-size: 12px; }
+    .cart-drawer__body { padding: 14px 14px 20px; }
+    .cart-drawer__foot { padding: 14px 18px 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .cart-drawer, .cart-overlay, .cart-close, .cart-checkout svg { transition: none; } .cart-count.bump { animation: none; } }
 
   /* ---------- Footer: scalloped top, four columns, giant wordmark ---------- */
   /* Maika Serif = Jeju Myeongjo (SIL OFL), Latin-only subset, self-hosted */
@@ -836,14 +879,27 @@
 <div class="cart-overlay" id="cart-overlay" hidden></div>
 <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
   <div class="cart-drawer__head">
-    <h2 id="cart-title">Your cart</h2>
-    <button type="button" class="cart-close" aria-label="Close cart"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <h2 id="cart-title">Your cart <span class="cart-badge" id="cart-badge">0 items</span></h2>
+    <button type="button" class="cart-close" aria-label="Close cart"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
-  <p class="cart-empty">Your cart is empty. Add something homemade!</p>
-  <ul class="cart-items" hidden></ul>
+  <p class="cart-notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Orders open <strong>Jan&nbsp;1</strong>. We confirm price and delivery on WhatsApp.</span></p>
+  <div class="cart-drawer__body">
+    <div class="cart-empty" hidden>
+      <svg viewBox="0 0 100 116" aria-hidden="true"><path d="M24 22 H68 V30 C80 36 84 46 84 56 V96 C84 106 78 112 68 112 H30 C20 112 14 106 14 96 V56 C14 46 18 36 24 30 Z" fill="#EDD03A" stroke="#606212" stroke-width="3" stroke-linejoin="round"/><rect x="22" y="6" width="50" height="16" rx="5" fill="#606212"/><rect x="28" y="56" width="42" height="34" rx="6" fill="#FBF7EE" stroke="#606212" stroke-width="3"/><path d="M40 70h18M40 78h12" stroke="#606212" stroke-width="3" stroke-linecap="round"/></svg>
+      <p class="cart-empty__title">Your cart is empty</p>
+      <p>Maa&rsquo;s laddoos are waiting for you.</p>
+      <a class="cart-empty__btn" href="#products">Shop products</a>
+    </div>
+    <ul class="cart-items"></ul>
+    <section class="cart-more" aria-labelledby="cart-more-title" hidden>
+      <h3 id="cart-more-title">Add more goodness</h3>
+      <ul class="cart-more__list"></ul>
+    </section>
+  </div>
   <div class="cart-drawer__foot">
-    <p class="cart-drawer__note">Orders open Jan&nbsp;1. Add your details on the next page and send the order to us on WhatsApp.</p>
-    <a class="cart-checkout" href="cart.html" aria-disabled="true">Go to checkout</a>
+    <dl class="cart-sum"><dt>Items</dt><dd id="cart-sum-items">0</dd><dt>Subtotal</dt><dd>Confirmed on WhatsApp</dd></dl>
+    <a class="cart-checkout" href="cart.html" aria-disabled="true">Go to checkout <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <button type="button" class="cart-continue">Continue shopping</button>
   </div>
 </aside>
 
@@ -970,53 +1026,85 @@
   });
 
 
-  /* Cart: kept on this device; checkout sends the order on WhatsApp */
+  /* Cart: kept on this device; checkout page sends the order on WhatsApp */
   var CART_KEY = 'maika-cart', cart = [];
   try { cart = JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch (e) { cart = []; }
   if (!Array.isArray(cart)) cart = [];
-  cart = cart.filter(function (i) { return i && typeof i.id === 'string' && typeof i.name === 'string' && i.qty > 0; });
+  var CATALOG = [].map.call(document.querySelectorAll('.mk-pcard'), function (c) {
+    var hi = c.querySelector('.mk-pcard__weight');
+    return { id: c.dataset.id, name: c.dataset.name, hi: hi ? hi.textContent : '' };
+  });
+  function product(id) { for (var i = 0; i < CATALOG.length; i++) if (CATALOG[i].id === id) return CATALOG[i]; return null; }
+  cart = cart.filter(function (i) { return i && product(i.id) && i.qty > 0; });
   function saveCart() { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {} }
   var cartCount = document.querySelector('.cart-count'), cartLink = document.querySelector('.nav-pill a[href="#cart"]');
   var cartDrawer = document.getElementById('cart-drawer'), cartOverlay = document.getElementById('cart-overlay');
   var cartList = cartDrawer.querySelector('.cart-items'), cartEmpty = cartDrawer.querySelector('.cart-empty');
+  var cartMore = cartDrawer.querySelector('.cart-more'), cartMoreList = cartDrawer.querySelector('.cart-more__list');
+  var cartBadge = document.getElementById('cart-badge'), cartSumItems = document.getElementById('cart-sum-items');
   var cartCheckout = cartDrawer.querySelector('.cart-checkout'), cartClose = cartDrawer.querySelector('.cart-close'), cartReturn = null;
+  var TRASH = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg>';
   function findItem(id) { for (var i = 0; i < cart.length; i++) if (cart[i].id === id) return cart[i]; return null; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function jar(id) { var img = el('img'); img.src = 'images/jar-' + id + '.webp'; img.alt = ''; img.loading = 'lazy'; return img; }
   function renderCart() {
-    var n = cart.reduce(function (t, i) { return t + i.qty; }, 0);
+    var n = cart.reduce(function (t, i) { return t + i.qty; }, 0), word = n === 1 ? ' item' : ' items';
     cartCount.textContent = n;
-    cartLink.setAttribute('aria-label', 'Cart, ' + n + (n === 1 ? ' item' : ' items'));
+    cartLink.setAttribute('aria-label', 'Cart, ' + n + word);
+    cartBadge.textContent = n + word; cartSumItems.textContent = n;
     cartList.textContent = '';
     cart.forEach(function (it) {
-      var li = el('li', 'cart-item'), img = el('img');
-      img.src = 'images/jar-' + it.id + '.webp'; img.alt = ''; img.width = 64; img.height = 64;
-      var info = el('div'), name = el('p', 'cart-item__name', it.name), rm = el('button', 'cart-item__remove', 'Remove');
-      rm.type = 'button'; rm.dataset.act = 'remove'; rm.dataset.id = it.id; rm.setAttribute('aria-label', 'Remove ' + it.name);
-      info.appendChild(name); info.appendChild(rm);
-      var qty = el('div', 'cart-qty'), dec = el('button', null, '−'), out = el('output', null, it.qty), inc = el('button', null, '+');
+      var p = product(it.id), li = el('li', 'cart-item'), pic = el('div', 'cart-item__img');
+      pic.appendChild(jar(it.id));
+      var info = el('div'); info.appendChild(el('p', 'cart-item__name', p.name));
+      var hi = el('p', 'cart-item__hi', p.hi); hi.lang = 'hi'; info.appendChild(hi);
+      var row = el('div', 'cart-item__row'), qty = el('div', 'cart-qty');
+      var dec = el('button', null, '−'), out = el('output', null, it.qty), inc = el('button', null, '+');
       dec.type = inc.type = 'button'; dec.dataset.act = 'dec'; inc.dataset.act = 'inc'; dec.dataset.id = inc.dataset.id = it.id;
-      dec.setAttribute('aria-label', 'One less ' + it.name); inc.setAttribute('aria-label', 'One more ' + it.name);
-      out.setAttribute('aria-label', it.qty + ' ' + it.name);
-      qty.appendChild(dec); qty.appendChild(out); qty.appendChild(inc);
-      li.appendChild(img); li.appendChild(info); li.appendChild(qty); cartList.appendChild(li);
+      dec.setAttribute('aria-label', 'One less ' + p.name); inc.setAttribute('aria-label', 'One more ' + p.name);
+      out.setAttribute('aria-label', it.qty + ' ' + p.name);
+      qty.appendChild(dec); qty.appendChild(out); qty.appendChild(inc); row.appendChild(qty); info.appendChild(row);
+      var rm = el('button', 'cart-item__remove'); rm.type = 'button'; rm.dataset.act = 'remove'; rm.dataset.id = it.id;
+      rm.setAttribute('aria-label', 'Remove ' + p.name); rm.innerHTML = TRASH;
+      li.appendChild(pic); li.appendChild(info); li.appendChild(rm); cartList.appendChild(li);
+    });
+    cartMoreList.textContent = '';
+    var others = CATALOG.filter(function (p) { return !findItem(p.id); });
+    others.forEach(function (p) {
+      var li = el('li', 'cart-more__item'), pic = el('div', 'cart-more__img'); pic.appendChild(jar(p.id));
+      var add = el('button', 'cart-more__add', '+ Add'); add.type = 'button'; add.dataset.act = 'add'; add.dataset.id = p.id;
+      add.setAttribute('aria-label', 'Add ' + p.name + ' to cart');
+      li.appendChild(pic); li.appendChild(el('p', 'cart-more__name', p.name)); li.appendChild(add); cartMoreList.appendChild(li);
     });
     cartEmpty.hidden = cart.length > 0; cartList.hidden = cart.length === 0;
+    cartMore.hidden = cart.length === 0 || others.length === 0;
     cartCheckout.setAttribute('aria-disabled', cart.length ? 'false' : 'true');
     if (cart.length) cartCheckout.removeAttribute('tabindex'); else cartCheckout.setAttribute('tabindex', '-1');
+  }
+  function addToCart(id) {
+    var it = findItem(id), p = product(id); if (!p) return;
+    if (it) it.qty++; else cart.push({ id: id, name: p.name, qty: 1 });
+    saveCart(); renderCart();
+    cartCount.classList.remove('bump'); void cartCount.offsetWidth; cartCount.classList.add('bump');
   }
   function openCart() {
     cartReturn = document.activeElement; cartOverlay.hidden = false;
     requestAnimationFrame(function () { body.classList.add('cart-open'); });
-    cartDrawer.setAttribute('aria-hidden', 'false'); setTimeout(function () { cartClose.focus(); }, 60);
+    cartDrawer.setAttribute('aria-hidden', 'false'); setTimeout(function () { cartClose.focus({ preventScroll: true }); }, 60);
   }
-  function closeCart() {
+  function closeCart(restoreFocus) {
     body.classList.remove('cart-open'); cartDrawer.setAttribute('aria-hidden', 'true');
     setTimeout(function () { if (!body.classList.contains('cart-open')) cartOverlay.hidden = true; }, 300);
-    if (cartReturn && cartReturn.focus) cartReturn.focus();
+    if (restoreFocus !== false && cartReturn && cartReturn.focus) cartReturn.focus({ preventScroll: true });
   }
   cartLink.addEventListener('click', function (e) { e.preventDefault(); openCart(); });
-  cartClose.addEventListener('click', closeCart);
-  cartOverlay.addEventListener('click', closeCart);
+  cartClose.addEventListener('click', function () { closeCart(); });
+  cartOverlay.addEventListener('click', function () { closeCart(); });
+  cartDrawer.querySelector('.cart-continue').addEventListener('click', function () { closeCart(); });
+  cartDrawer.querySelector('.cart-empty__btn').addEventListener('click', function (e) {
+    e.preventDefault(); closeCart(false);
+    var shop = document.getElementById('products'); if (shop) shop.scrollIntoView({ behavior: 'smooth' });
+  });
   document.addEventListener('keydown', function (e) {
     if (!body.classList.contains('cart-open')) return;
     if (e.key === 'Escape') { closeCart(); return; }
@@ -1027,23 +1115,21 @@
       else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
     }
   });
-  cartList.addEventListener('click', function (e) {
+  cartDrawer.querySelector('.cart-drawer__body').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-act]'); if (!b) return;
-    var it = findItem(b.dataset.id); if (!it) return;
-    if (b.dataset.act === 'inc') it.qty++;
-    else if (b.dataset.act === 'dec') it.qty--;
-    if (b.dataset.act === 'remove' || it.qty < 1) cart = cart.filter(function (x) { return x !== it; });
+    var id = b.dataset.id, act = b.dataset.act;
+    if (act === 'add') { addToCart(id); var nb = cartList.querySelector('button[data-act="inc"][data-id="' + id + '"]'); (nb || cartClose).focus(); return; }
+    var it = findItem(id); if (!it) return;
+    if (act === 'inc') it.qty++; else if (act === 'dec') it.qty--;
+    if (act === 'remove' || it.qty < 1) cart = cart.filter(function (x) { return x !== it; });
     saveCart(); renderCart();
-    var again = cartList.querySelector('button[data-act="' + b.dataset.act + '"][data-id="' + b.dataset.id + '"]');
-    (again || cartClose).focus();
+    var again = cartList.querySelector('button[data-act="' + act + '"][data-id="' + id + '"]');
+    (again || cartList.querySelector('button') || cartDrawer.querySelector('.cart-more__add') || cartClose).focus();
   });
   document.querySelectorAll('.mk-pcard__add').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var card = btn.closest('.mk-pcard'), it = findItem(card.dataset.id);
-      if (it) it.qty++; else cart.push({ id: card.dataset.id, name: card.dataset.name, qty: 1 });
-      saveCart(); renderCart();
+      addToCart(btn.closest('.mk-pcard').dataset.id);
       setHidden(false);   /* bring the header back so the count is visible */
-      cartCount.classList.remove('bump'); void cartCount.offsetWidth; cartCount.classList.add('bump');
       btn.classList.add('is-added'); btn.textContent = 'Added ✓';
       clearTimeout(btn._t); btn._t = setTimeout(function () { btn.classList.remove('is-added'); btn.textContent = 'Add to cart'; }, 1600);
     });

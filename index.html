@@ -256,16 +256,43 @@
   .mk { --mk-ink: #606212; --mk-paper: #FBF7EE; font-family: 'Figtree', system-ui, sans-serif; color: var(--mk-ink); }
   .mk *, .mk *::before, .mk *::after { box-sizing: border-box; }
 
-  /* Photo cards */
-  .mk-cards { background: var(--mk-ink); padding: 20px 5%; display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 17px; }
-  .mk-card { width: 340px; max-width: calc(50% - 9px); border: 2px solid var(--mk-ink); background: var(--mk-paper); display: flex; flex-direction: column; }
-  .mk-card--plain { border-color: transparent; }
-  .mk-card__media { aspect-ratio: 736 / 981; background: #CCE9FF; border-bottom: 2px solid var(--mk-ink); overflow: hidden; }
-  .mk-card--plain .mk-card__media { background: var(--mk-paper); border-bottom: 0; }
-  .mk-card__media picture { display: block; height: 100%; }
-  /* Both photos: same tall shape, centred in the same cream frame */
-  .mk-card__media img { display: block; height: 100%; width: auto; max-width: 100%; aspect-ratio: 736 / 1318; margin: 0 auto; object-fit: cover; }
-  .mk-card__title { flex: 1; display: flex; align-items: center; justify-content: center; margin: 0; padding: 16px 18px 18px; text-align: center; font-size: 22px; font-weight: 400; line-height: 1.2; }
+  /* Product cards, laid out like dimdini.lv/en/produkti (their pink/plum card becomes Maika gold/green) */
+  .mk-shop { background: var(--mk-ink); color: #EDD03A; padding: 64px 5% 94px; }
+  .mk-shop__filters ul { list-style: none; margin: 0 0 56px; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .mk-pill { display: inline-flex; align-items: center; justify-content: center; padding: 14px 46px; border: 2px solid #EDD03A; border-radius: 9px; background: transparent; color: #EDD03A; font-family: inherit; font-size: 16px; font-weight: 500; line-height: 1.4; white-space: nowrap; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .mk-pill:hover, .mk-pill[aria-pressed="true"] { background: #EDD03A; color: var(--mk-ink); }
+  .mk-pill:focus-visible { outline: 2px dashed #EDD03A; outline-offset: 3px; }
+  .mk-shop__title { max-width: 1300px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .mk-shop__title h2 { margin: 0; font-family: var(--display); font-size: 36px; font-weight: 700; line-height: 1.1; }
+  .mk-shop__count { flex-shrink: 0; opacity: .6; }
+  .mk-products { list-style: none; max-width: 1300px; margin: 36px auto 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+  .mk-products > li[hidden] { display: none; }
+  .mk-pcard { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; height: 100%; padding: 24px; border-radius: 20px; background: #EDD03A; color: var(--mk-ink); text-decoration: none; overflow: hidden; }
+  .mk-pcard::before { content: ""; position: absolute; inset: 0; z-index: 0; background: radial-gradient(450px circle at var(--card-mouse-x, 50%) var(--card-mouse-y, 50%), rgba(74, 75, 14, .35), transparent 60%); opacity: 0; pointer-events: none; transition: opacity .4s ease; }
+  .mk-pcard:hover::before { opacity: 1; }
+  .mk-pcard::after { content: ""; position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(255, 255, 255, .45) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .45) 1px, transparent 1px); background-size: 16px 16px; background-position: center top; pointer-events: none; }
+  .mk-pcard:focus-visible { outline: 3px dashed #EDD03A; outline-offset: 4px; }
+  .mk-pcard__media { position: relative; z-index: 1; margin: 0; aspect-ratio: 354 / 388; overflow: hidden; }
+  .mk-pcard__media img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 14px rgba(74, 75, 14, .25)); transition: transform .35s ease; }
+  .mk-pcard:hover .mk-pcard__media img { transform: translateY(-6px); }
+  .mk-pcard__body { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 4px; }
+  .mk-pcard__title { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.4; letter-spacing: 0; }
+  .mk-pcard__weight { margin: 0; font-family: var(--hindi); font-size: 16px; font-weight: 500; line-height: 1.4; }
+  @media (max-width: 1023px) { .mk-shop__title h2 { font-size: 24px; } }
+  @media (max-width: 767px) {
+    .mk-shop { padding: 40px 16px 32px; }
+    .mk-shop__filters ul { margin-bottom: 32px; }
+    .mk-pill { padding: 10px 16px; border-radius: 10px; font-size: 12px; font-weight: 700; }
+    .mk-shop__title { flex-direction: column; justify-content: center; text-align: center; gap: 10px; }
+    .mk-shop__title h2 { font-size: 20px; }
+    .mk-products { margin-top: 32px; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .mk-pcard { gap: 12px; padding: 14px; border-radius: 12px; }
+    .mk-pcard::after { background-size: 12px 12px; }
+    .mk-pcard__body { gap: 2px; }
+    .mk-pcard__title { font-size: 14px; }
+    .mk-pcard__weight { font-size: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .mk-pcard__media img, .mk-pcard::before { transition: none; } .mk-pcard:hover .mk-pcard__media img { transform: none; } }
 
   /* Build your winter box (all sizes 30% smaller than the original design) */
   .mk-build { position: relative; width: 100%; min-height: 448px; background-color: var(--mk-paper); background-image: linear-gradient(rgba(237, 208, 58, .7) 1px, transparent 1px), linear-gradient(90deg, rgba(237, 208, 58, .7) 1px, transparent 1px); background-size: 39px 39px; border-top: 2px solid var(--mk-ink); padding: 91px 24px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
@@ -325,9 +352,6 @@
     .mk-deco--d { bottom: 31px; width: 73px; }
   }
   @media (max-width: 599px) {
-    .mk-cards { padding: 12px; gap: 10px; flex-wrap: nowrap; }
-    .mk-card { max-width: calc(50% - 5px); }
-    .mk-card__title { padding: 8px 6px 10px; font-size: 13px; }
     .mk-build { padding: 92px 16px 98px; }
     .mk-deco--a { width: 59px; } .mk-deco--b { width: 48px; } .mk-deco--c { width: 53px; } .mk-deco--d { width: 59px; }
     .mk-build h2 { white-space: normal; font-size: clamp(28px, 8vw, 34px); text-wrap: balance; }
@@ -568,16 +592,57 @@
   </section>
 
   <div class="mk">
-    <!-- Photo cards -->
-    <section class="mk-cards" aria-label="Maika highlights">
-      <figure class="mk-card mk-card--plain" style="margin:0">
-        <div class="mk-card__media"><picture><source type="image/webp" srcset="images/winter-box.webp"><img src="images/winter-box.jpg" width="736" height="981" loading="lazy" decoding="async" alt="A box of handmade sweets topped with dried berries and pistachios"></picture></div>
-        <figcaption class="mk-card__title">Winter Box</figcaption>
-      </figure>
-      <figure class="mk-card mk-card--plain" style="margin:0">
-        <div class="mk-card__media"><picture><source type="image/webp" srcset="images/small-batches.webp"><img src="images/small-batches.jpg" width="736" height="1318" loading="lazy" decoding="async" alt="Sixteen halved filled cookies laid out in a grid"></picture></div>
-        <figcaption class="mk-card__title">Made in small batches</figcaption>
-      </figure>
+    <!-- Products (laid out like dimdini.lv/en/produkti) -->
+    <section class="mk-shop" id="products" aria-labelledby="mk-shop-title">
+      <nav class="mk-shop__filters" aria-label="Product categories">
+        <ul>
+          <li><button type="button" class="mk-pill" data-filter="all" aria-pressed="true">All products</button></li>
+          <li><button type="button" class="mk-pill" data-filter="laddoo" aria-pressed="false">Laddoos</button></li>
+          <li><button type="button" class="mk-pill" data-filter="spread" aria-pressed="false">Spreads</button></li>
+        </ul>
+      </nav>
+      <div class="mk-shop__title">
+        <h2 id="mk-shop-title">All products</h2>
+        <span class="mk-shop__count" aria-live="polite">4 products</span>
+      </div>
+      <ul class="mk-products">
+          <li id="pistachio-spread" data-cat="spread" data-fade-up>
+            <a class="mk-pcard" href="https://wa.me/919220660377?text=Hi%20Maika%2C%20I%27d%20like%20to%20order%20Pistachio%20Spread" target="_blank" rel="noopener" aria-label="Pistachio Spread: order on WhatsApp">
+              <figure class="mk-pcard__media"><img src="images/jar-pistachio-spread.webp" width="411" height="546" loading="lazy" decoding="async" alt="Maika Pistachio Spread jar"></figure>
+              <div class="mk-pcard__body">
+                <h3 class="mk-pcard__title">Pistachio Spread</h3>
+                <p class="mk-pcard__weight" lang="hi">पिस्ता स्प्रेड</p>
+              </div>
+            </a>
+          </li>
+          <li id="haldi-laddoo" data-cat="laddoo" data-fade-up>
+            <a class="mk-pcard" href="https://wa.me/919220660377?text=Hi%20Maika%2C%20I%27d%20like%20to%20order%20Haldi%20Laddoo" target="_blank" rel="noopener" aria-label="Haldi Laddoo: order on WhatsApp">
+              <figure class="mk-pcard__media"><img src="images/jar-haldi-laddoo.webp" width="385" height="537" loading="lazy" decoding="async" alt="Maika Haldi Laddoo jar"></figure>
+              <div class="mk-pcard__body">
+                <h3 class="mk-pcard__title">Haldi Laddoo</h3>
+                <p class="mk-pcard__weight" lang="hi">हल्दी लड्डू</p>
+              </div>
+            </a>
+          </li>
+          <li id="til-laddoo" data-cat="laddoo" data-fade-up>
+            <a class="mk-pcard" href="https://wa.me/919220660377?text=Hi%20Maika%2C%20I%27d%20like%20to%20order%20Til%20Laddoo" target="_blank" rel="noopener" aria-label="Til Laddoo: order on WhatsApp">
+              <figure class="mk-pcard__media"><img src="images/jar-til-laddoo.webp" width="388" height="541" loading="lazy" decoding="async" alt="Maika Til Laddoo jar"></figure>
+              <div class="mk-pcard__body">
+                <h3 class="mk-pcard__title">Til Laddoo</h3>
+                <p class="mk-pcard__weight" lang="hi">तिल लड्डू</p>
+              </div>
+            </a>
+          </li>
+          <li id="goond-laddoo" data-cat="laddoo" data-fade-up>
+            <a class="mk-pcard" href="https://wa.me/919220660377?text=Hi%20Maika%2C%20I%27d%20like%20to%20order%20Goond%20Laddoo" target="_blank" rel="noopener" aria-label="Goond Laddoo: order on WhatsApp">
+              <figure class="mk-pcard__media"><img src="images/jar-goond-laddoo.webp" width="404" height="537" loading="lazy" decoding="async" alt="Maika Goond Laddoo jar"></figure>
+              <div class="mk-pcard__body">
+                <h3 class="mk-pcard__title">Goond Laddoo</h3>
+                <p class="mk-pcard__weight" lang="hi">गोंद लड्डू</p>
+              </div>
+            </a>
+          </li>
+      </ul>
     </section>
 
     <!-- Build your winter box -->
@@ -812,6 +877,28 @@
     var body = 'Hi Maika,\n\nPlease let me know when orders open.\n\nMy email: ' + em;
     window.location.href = 'mailto:eat@maika.food?subject=' + encodeURIComponent('Notify me when Maika orders open') + '&body=' + encodeURIComponent(body);
     document.getElementById('mk-notify-note').textContent = 'Your email app is opening. Just press send and we will let you know when orders open.';
+  });
+
+
+  /* Product filter (All / Laddoos / Spreads) */
+  var pills = document.querySelectorAll('.mk-pill'), pitems = document.querySelectorAll('.mk-products > li');
+  var ptitle = document.getElementById('mk-shop-title'), pcount = document.querySelector('.mk-shop__count');
+  pills.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var f = btn.dataset.filter, n = 0;
+      pills.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      pitems.forEach(function (li) { var show = f === 'all' || li.dataset.cat === f; li.hidden = !show; if (show) n++; });
+      ptitle.textContent = f === 'all' ? 'All products' : btn.textContent;
+      pcount.textContent = n + (n === 1 ? ' product' : ' products');
+    });
+  });
+  /* Card hover: soft spotlight follows the pointer */
+  document.querySelectorAll('.mk-pcard').forEach(function (card) {
+    card.addEventListener('pointermove', function (e) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--card-mouse-x', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--card-mouse-y', (e.clientY - r.top) + 'px');
+    });
   });
 
   /* Fade-up: plays when the block comes into view, and again when you scroll back to it */

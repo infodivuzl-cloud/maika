@@ -7,6 +7,20 @@
 <meta name="description" content="Check your Maika order and send it to us on WhatsApp.">
 <meta name="theme-color" content="#606212">
 <meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Maika">
+<meta property="og:locale" content="en_IN">
+<meta property="og:url" content="https://www.maika.food/cart">
+<meta property="og:title" content="Your cart · Maika">
+<meta property="og:description" content="Check your Maika order and send it to us on WhatsApp.">
+<meta property="og:image" content="https://www.maika.food/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Maika jars: Pistachio Spread, Haldi, Til and Goond Laddoo under the words Homemade &amp; Pure Goodness">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your cart · Maika">
+<meta name="twitter:description" content="Check your Maika order and send it to us on WhatsApp.">
+<meta name="twitter:image" content="https://www.maika.food/images/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Lilita+One&family=Mali:wght@400&family=Patrick+Hand&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
@@ -17,7 +31,7 @@
   /* Checkout laid out like the reference: boxed form on the left, order summary box on the right */
   :root {
     --ink: #606212; --ink-dark: #4A4B0E; --gold: #EDD03A; --gold-soft: #F6E7A6; --paper: #FFFBEA; --field: #FFFDF5;
-    --line: #606212; --muted: rgba(96, 98, 18, .65);
+    --line: #606212; --muted: rgba(96, 98, 18, .9);
     --body: 'Figtree', system-ui, sans-serif;
   }
   * { box-sizing: border-box; }
@@ -49,7 +63,7 @@
   .co-row--one { grid-template-columns: 1fr; }
   .co-row--three .co-field { justify-content: flex-end; }
   .co-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-  .co-field label, .co-label { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .co-field label, .co-label { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
   .co-field input, .co-field select, .co-field textarea { width: 100%; height: 44px; padding: 0 12px; border: 1.5px solid var(--line); border-radius: 0; background: var(--field); color: var(--ink-dark); font: inherit; font-size: 16px; }
   .co-field textarea { height: 84px; padding: 10px 12px; resize: vertical; max-width: 360px; }
   .co-field select { appearance: none; -webkit-appearance: none; padding-right: 40px; background: var(--field) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23606212' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center / 18px; cursor: pointer; }
@@ -67,15 +81,15 @@
   .co-dates { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
   .co-chip { position: relative; }
   .co-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-  .co-chip label { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 64px; height: 50px; border: 1.5px solid var(--gold); background: var(--field); cursor: pointer; transition: background .2s ease, border-color .2s ease; }
-  .co-chip small { font-size: 10px; line-height: 1.1; color: var(--muted); }
+  .co-chip label { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 74px; height: 52px; border: 1.5px solid var(--gold); background: var(--field); cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+  .co-chip small { font-size: 12px; line-height: 1.1; color: var(--muted); }
   .co-chip strong { font-size: 15px; font-weight: 600; line-height: 1.2; }
-  .co-chip input:checked + label { background: var(--gold); border-color: var(--gold); }
+  .co-chip input:checked + label { background: var(--gold); border-color: var(--gold); color: var(--ink-dark); }
   .co-chip input:checked + label small { color: var(--ink-dark); }
   .co-chip input:focus-visible + label { outline: 2px dashed var(--ink); outline-offset: 2px; }
   .co-chip label:hover { border-color: var(--ink); }
   .co-other { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
-  .co-other button { align-self: flex-start; padding: 0; border: 0; background: none; color: var(--muted); font: inherit; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; text-decoration: underline; cursor: pointer; }
+  .co-other button { align-self: flex-start; padding: 0; border: 0; background: none; color: var(--muted); font: inherit; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; text-decoration: underline; cursor: pointer; }
   .co-other input { width: 200px; height: 40px; padding: 0 10px; border: 1.5px solid var(--line); background: var(--field); color: var(--ink-dark); font: inherit; font-size: 16px; }
   .co-other input[hidden] { display: none; }
   .co-pay { margin-top: 26px; }
@@ -105,7 +119,7 @@
   .co-remove { position: absolute; top: 12px; right: 0; width: 28px; height: 28px; display: grid; place-items: center; padding: 0; border: 0; background: none; color: var(--ink-dark); cursor: pointer; }
   .co-remove:hover { background: rgba(96, 98, 18, .12); }
   .co-qty button:focus-visible, .co-remove:focus-visible { outline: 2px dashed var(--ink); outline-offset: 1px; }
-  .co-totals { margin: 0; padding: 14px 16px 16px; border-top: 1.5px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 10px 12px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .co-totals { margin: 0; padding: 14px 16px 16px; border-top: 1.5px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 10px 12px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
   .co-totals dt, .co-totals dd { margin: 0; }
   .co-totals dd { text-align: right; font-size: 12px; font-weight: 700; }
   .co-totals .co-total { font-size: 13px; }

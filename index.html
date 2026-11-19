@@ -299,6 +299,9 @@
   .mk-pcard__body { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 4px; }
   .mk-pcard__title { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.4; letter-spacing: 0; }
   .mk-pcard__weight { margin: 0; font-family: var(--hindi); font-size: 16px; font-weight: 500; line-height: 1.4; }
+  .mk-pcard__price { margin: 6px 0 0; font-size: 15px; line-height: 1.3; }
+  .mk-pcard__price strong { font-size: 20px; font-weight: 800; }
+  .mk-pcard__price span { font-weight: 500; opacity: .85; }
   @media (max-width: 1023px) { .mk-shop__title h2 { font-size: 24px; } }
   @media (max-width: 767px) {
     .mk-shop { padding: 40px 16px 32px; }
@@ -312,6 +315,8 @@
     .mk-pcard__body { gap: 2px; }
     .mk-pcard__title { font-size: 14px; }
     .mk-pcard__weight { font-size: 12px; }
+    .mk-pcard__price { margin-top: 4px; font-size: 12px; }
+    .mk-pcard__price strong { font-size: 16px; }
   }
   @media (prefers-reduced-motion: reduce) { .mk-pcard__media img, .mk-pcard::before { transition: none; } .mk-pcard:hover .mk-pcard__media img { transform: none; } }
 
@@ -428,6 +433,7 @@
   .cart-item__img img, .cart-more__img img { max-width: 78%; max-height: 86%; object-fit: contain; filter: drop-shadow(0 4px 5px rgba(74, 75, 14, .25)); }
   .cart-item__name { margin: 2px 34px 0 0; font-size: 16px; font-weight: 700; line-height: 1.25; }
   .cart-item__hi { margin: 2px 0 0; font-family: var(--hindi); font-size: 13px; line-height: 1.3; color: rgba(96, 98, 18, .7); }
+  .cart-item__price { margin: 4px 0 0; font-size: 15px; font-weight: 800; }
   .cart-item__row { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
   .cart-qty { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: 999px; background: #F3EBC7; }
   .cart-qty button { width: 30px; height: 30px; padding: 0; border: 0; border-radius: 50%; background: #FFFDF5; color: inherit; font: inherit; font-size: 16px; font-weight: 700; line-height: 1; cursor: pointer; box-shadow: 0 1px 2px rgba(74, 75, 14, .18); transition: background .2s ease, color .2s ease; }
@@ -727,6 +733,7 @@
               <div class="mk-pcard__body">
                 <h3 class="mk-pcard__title">Pistachio Spread</h3>
                 <p class="mk-pcard__weight" lang="hi">पिस्ता स्प्रेड</p>
+                <p class="mk-pcard__price"><strong data-price="pistachio-spread">₹499</strong> <span data-pack="pistachio-spread">· 180 g</span></p>
                 <button type="button" class="mk-pcard__add" aria-label="Add Pistachio Spread to cart">Add to cart</button>
               </div>
             </article>
@@ -737,6 +744,7 @@
               <div class="mk-pcard__body">
                 <h3 class="mk-pcard__title">Haldi Laddoo</h3>
                 <p class="mk-pcard__weight" lang="hi">हल्दी लड्डू</p>
+                <p class="mk-pcard__price"><strong data-price="haldi-laddoo">₹299</strong> <span data-pack="haldi-laddoo">· 200 g</span></p>
                 <button type="button" class="mk-pcard__add" aria-label="Add Haldi Laddoo to cart">Add to cart</button>
               </div>
             </article>
@@ -747,6 +755,7 @@
               <div class="mk-pcard__body">
                 <h3 class="mk-pcard__title">Til Laddoo</h3>
                 <p class="mk-pcard__weight" lang="hi">तिल लड्डू</p>
+                <p class="mk-pcard__price"><strong data-price="til-laddoo">₹299</strong> <span data-pack="til-laddoo">· 250 g</span></p>
                 <button type="button" class="mk-pcard__add" aria-label="Add Til Laddoo to cart">Add to cart</button>
               </div>
             </article>
@@ -757,6 +766,7 @@
               <div class="mk-pcard__body">
                 <h3 class="mk-pcard__title">Goond Laddoo</h3>
                 <p class="mk-pcard__weight" lang="hi">गोंद लड्डू</p>
+                <p class="mk-pcard__price"><strong data-price="goond-laddoo">₹399</strong> <span data-pack="goond-laddoo">· 250 g</span></p>
                 <button type="button" class="mk-pcard__add" aria-label="Add Goond Laddoo to cart">Add to cart</button>
               </div>
             </article>
@@ -886,6 +896,9 @@
       <h2>Explore</h2>
       <ul>
         <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/terms">Terms &amp; Conditions</a></li>
+        <li><a href="/refunds">Refunds &amp; Cancellation</a></li>
+        <li><a href="/shipping">Shipping &amp; Delivery</a></li>
         <li><a href="#gift-box">Winter Box</a></li>
         <li><a href="#about">About Maika</a></li>
         <li><a href="#ingredients">Ingredients</a></li>
@@ -904,7 +917,7 @@
     <h2 id="cart-title">Your cart <span class="cart-badge" id="cart-badge">0 items</span></h2>
     <button type="button" class="cart-close" aria-label="Close cart"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
-  <p class="cart-notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Orders open <strong>Jan&nbsp;1</strong>. We confirm price and delivery on WhatsApp.</span></p>
+  <p class="cart-notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Orders open <strong>Jan&nbsp;1</strong>. Pay securely online or on delivery.</span></p>
   <div class="cart-drawer__body">
     <div class="cart-empty" hidden>
       <svg viewBox="0 0 100 116" aria-hidden="true"><path d="M24 22 H68 V30 C80 36 84 46 84 56 V96 C84 106 78 112 68 112 H30 C20 112 14 106 14 96 V56 C14 46 18 36 24 30 Z" fill="#EDD03A" stroke="#606212" stroke-width="3" stroke-linejoin="round"/><rect x="22" y="6" width="50" height="16" rx="5" fill="#606212"/><rect x="28" y="56" width="42" height="34" rx="6" fill="#FBF7EE" stroke="#606212" stroke-width="3"/><path d="M40 70h18M40 78h12" stroke="#606212" stroke-width="3" stroke-linecap="round"/></svg>
@@ -919,7 +932,7 @@
     </section>
   </div>
   <div class="cart-drawer__foot">
-    <dl class="cart-sum"><dt>Items</dt><dd id="cart-sum-items">0</dd><dt>Subtotal</dt><dd>Confirmed on WhatsApp</dd></dl>
+    <dl class="cart-sum"><dt>Items</dt><dd id="cart-sum-items">0</dd><dt>Subtotal</dt><dd id="cart-sum-sub">₹0</dd><dt>Delivery</dt><dd id="cart-sum-del">₹79, free from ₹999</dd></dl>
     <a class="cart-checkout" href="/cart" aria-disabled="true">Go to checkout <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <button type="button" class="cart-continue">Continue shopping</button>
   </div>
@@ -1053,9 +1066,23 @@
   try { cart = JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch (e) { cart = []; }
   if (!Array.isArray(cart)) cart = [];
   var CATALOG = [].map.call(document.querySelectorAll('.mk-pcard'), function (c) {
-    var hi = c.querySelector('.mk-pcard__weight');
-    return { id: c.dataset.id, name: c.dataset.name, hi: hi ? hi.textContent : '' };
+    var hi = c.querySelector('.mk-pcard__weight'), pr = c.querySelector('[data-price]');
+    return { id: c.dataset.id, name: c.dataset.name, hi: hi ? hi.textContent : '', price: pr ? Number(pr.textContent.replace(/[^\d]/g, '')) : 0 };
   });
+  var SHIP = { fee: 79, freeFrom: 999 };
+  function inr(n) { return '\u20b9' + Number(n).toLocaleString('en-IN'); }
+  /* Prices live in api/_catalog.js; this keeps the cards and cart in step with it */
+  fetch('/api/catalog', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (c) {
+    if (!c) return;
+    CATALOG.forEach(function (p) {
+      var live = c.products && c.products[p.id]; if (!live) return;
+      p.price = live.price;
+      document.querySelectorAll('[data-price="' + p.id + '"]').forEach(function (e) { e.textContent = inr(live.price); });
+      document.querySelectorAll('[data-pack="' + p.id + '"]').forEach(function (e) { e.textContent = '\u00b7 ' + live.pack; });
+    });
+    if (c.delivery) SHIP = c.delivery;
+    renderCart();
+  }).catch(function () {});
   function product(id) { for (var i = 0; i < CATALOG.length; i++) if (CATALOG[i].id === id) return CATALOG[i]; return null; }
   cart = cart.filter(function (i) { return i && product(i.id) && i.qty > 0; });
   function saveCart() { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {} }
@@ -1074,12 +1101,16 @@
     cartCount.textContent = n;
     cartLink.setAttribute('aria-label', 'Cart, ' + n + word);
     cartBadge.textContent = n + word; cartSumItems.textContent = n;
+    var sub = cart.reduce(function (t, i) { var p = product(i.id); return t + (p ? p.price * i.qty : 0); }, 0);
+    document.getElementById('cart-sum-sub').textContent = inr(sub);
+    document.getElementById('cart-sum-del').textContent = !cart.length ? inr(SHIP.fee) + ', free from ' + inr(SHIP.freeFrom) : (sub >= SHIP.freeFrom ? 'Free' : inr(SHIP.fee));
     cartList.textContent = '';
     cart.forEach(function (it) {
       var p = product(it.id), li = el('li', 'cart-item'), pic = el('div', 'cart-item__img');
       pic.appendChild(jar(it.id));
       var info = el('div'); info.appendChild(el('p', 'cart-item__name', p.name));
       var hi = el('p', 'cart-item__hi', p.hi); hi.lang = 'hi'; info.appendChild(hi);
+      info.appendChild(el('p', 'cart-item__price', inr(p.price * it.qty)));
       var row = el('div', 'cart-item__row'), qty = el('div', 'cart-qty');
       var dec = el('button', null, '−'), out = el('output', null, it.qty), inc = el('button', null, '+');
       dec.type = inc.type = 'button'; dec.dataset.act = 'dec'; inc.dataset.act = 'inc'; dec.dataset.id = inc.dataset.id = it.id;

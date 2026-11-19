@@ -101,6 +101,21 @@
   .co-status { margin: 12px 0 0; font-size: 14px; font-weight: 600; text-align: center; }
   .co-status:empty { display: none; }
 
+  /* After a successful online payment */
+  .co-main[hidden], .co-done[hidden], .co-summary[hidden] { display: none !important; }
+  .co-done { max-width: 640px; }
+  .co-done { text-align: left; }
+  .co-done h2 { margin: 0 0 6px; font-family: 'Lilita One', system-ui, sans-serif; font-weight: 400; font-size: 30px; color: var(--ink-dark); }
+  .co-done > p { margin: 0 0 16px; font-size: 15px; }
+  .co-done__ids { margin: 0 0 20px; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 14px; }
+  .co-done__ids dt { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .co-done__ids dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+  .co-done__wa { display: flex; align-items: center; justify-content: center; text-decoration: none; }
+  .co-done__home { display: inline-block; margin-top: 14px; font-weight: 700; }
+  .co-secure { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 10px 0 0; font-size: 13px; font-weight: 600; }
+  .co-secure[hidden] { display: none; }
+  .co-secure svg { width: 16px; height: 16px; }
+
   /* Order summary box */
   .co-summary { position: sticky; top: 20px; border: 1.5px solid var(--line); background: var(--gold-soft); }
   .co-items { list-style: none; margin: 0; padding: 0 16px; }
@@ -242,10 +257,24 @@
           </select>
         </div>
         <button type="submit" class="co-submit" id="co-submit">Place order on WhatsApp</button>
-        <p class="co-help">Orders open Jan&nbsp;1. We&rsquo;ll confirm your price, delivery and payment on WhatsApp. See our <a href="/privacy">Privacy Policy</a>.</p>
+        <p class="co-secure" id="co-secure" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Secure payment by Razorpay: UPI, cards, net banking and wallets</p>
+        <p class="co-help" id="co-help">Orders open Jan&nbsp;1. We&rsquo;ll confirm your order and delivery on WhatsApp. See our <a href="/terms">Terms</a>, <a href="/refunds">Refund policy</a>, <a href="/shipping">Shipping policy</a> and <a href="/privacy">Privacy Policy</a>.</p>
         <p class="co-status" id="co-status" role="status" aria-live="polite"></p>
       </section>
     </form>
+
+    <section class="co-box co-done" id="co-done" hidden tabindex="-1" aria-labelledby="co-done-title">
+      <h2 id="co-done-title">Payment received. Thank you!</h2>
+      <p id="co-done-text">Your order is confirmed. Maa will start on it in the next batch.</p>
+      <dl class="co-done__ids">
+        <dt>Amount paid</dt><dd id="co-done-amt"></dd>
+        <dt>Order ID</dt><dd id="co-done-order"></dd>
+        <dt>Payment ID</dt><dd id="co-done-pay"></dd>
+      </dl>
+      <a class="co-submit co-done__wa" id="co-done-wa" href="#" target="_blank" rel="noopener">Send my order details on WhatsApp</a>
+      <p class="co-help">Keep your Payment ID for any question about this order. A receipt also comes to your email from Razorpay if you added one.</p>
+      <a class="co-done__home" href="/">&larr; Back to Maika</a>
+    </section>
 
     <aside class="co-summary" aria-labelledby="co-summary-title">
       <h2 class="sr" id="co-summary-title">Your order</h2>
@@ -263,13 +292,14 @@
 
 <script>
 (function () {
-  /* Product details used in the summary. Add a price (in rupees) to show totals, e.g. price: 349 */
+  /* Product details for the summary. Prices are replaced by /api/catalog (api/_catalog.js is the one place to change them). */
   var PRODUCTS = {
-    'pistachio-spread': { name: 'Pistachio Spread', desc: 'Creamy, nutty and natural.', price: null },
-    'haldi-laddoo':     { name: 'Haldi Laddoo', desc: 'Haldi laddoo for winter vitality.', price: null },
-    'til-laddoo':       { name: 'Til Laddoo', desc: 'Sesame laddoo goodness.', price: null },
-    'goond-laddoo':     { name: 'Goond Laddoo', desc: 'Traditional strength, the way Maa makes it.', price: null }
+    'pistachio-spread': { name: 'Pistachio Spread', desc: 'Creamy, nutty and natural.', pack: '180 g', price: 499 },
+    'haldi-laddoo':     { name: 'Haldi Laddoo', desc: 'Haldi laddoo for winter vitality.', pack: '200 g', price: 299 },
+    'til-laddoo':       { name: 'Til Laddoo', desc: 'Sesame laddoo goodness.', pack: '250 g', price: 299 },
+    'goond-laddoo':     { name: 'Goond Laddoo', desc: 'Traditional strength, the way Maa makes it.', pack: '250 g', price: 399 }
   };
+  var DELIVERY = { fee: 79, freeFrom: 999 }, PAY = { enabled: false, keyId: '' };
   var WHATSAPP = '919220660377', CART_KEY = 'maika-cart', NOTE_KEY = 'maika-note';
   var ORDERS_OPEN = new Date(2027, 0, 1);
 
@@ -290,7 +320,7 @@
       var p = PRODUCTS[it.id], li = el('li', 'co-item');
       var pic = el('div', 'co-item__img'), img = el('img');
       img.src = 'images/jar-' + it.id + '.webp'; img.alt = ''; img.loading = 'lazy'; pic.appendChild(img);
-      var info = el('div'); info.appendChild(el('h3', null, p.name)); info.appendChild(el('p', null, p.desc));
+      var info = el('div'); info.appendChild(el('h3', null, p.name)); info.appendChild(el('p', null, p.pack + ' · ' + rupees(p.price) + ' each'));
       var row = el('div', 'co-item__row'), qty = el('div', 'co-qty');
       var dec = el('button', null, '−'), out = el('output', null, it.qty), inc = el('button', null, '+');
       dec.type = inc.type = 'button'; dec.dataset.act = 'dec'; inc.dataset.act = 'inc'; dec.dataset.id = inc.dataset.id = it.id;
@@ -305,12 +335,40 @@
       li.appendChild(pic); li.appendChild(info); li.appendChild(rm); list.appendChild(li);
     });
     empty.hidden = cart.length > 0; list.hidden = cart.length === 0;
-    var priced = cart.length && cart.every(function (i) { return PRODUCTS[i.id].price; });
-    var sub = priced ? cart.reduce(function (t, i) { return t + PRODUCTS[i.id].price * i.qty; }, 0) : 0;
-    document.getElementById('co-subtotal').textContent = priced ? rupees(sub) : 'On confirmation';
-    document.getElementById('co-total').textContent = priced ? rupees(sub) + ' + delivery' : 'On confirmation';
-    submit.disabled = cart.length === 0;
+    var t = totals();
+    document.getElementById('co-subtotal').textContent = cart.length ? rupees(t.sub) : rupees(0);
+    document.getElementById('co-delivery-fee').textContent = !cart.length ? '' : (t.del ? rupees(t.del) : 'Free');
+    document.getElementById('co-total').textContent = cart.length ? rupees(t.total) : rupees(0);
+    submit.disabled = cart.length === 0 || busy;
+    updatePayUi();
   }
+  function totals() {
+    var sub = cart.reduce(function (s, i) { return s + PRODUCTS[i.id].price * i.qty; }, 0);
+    var del = sub >= DELIVERY.freeFrom ? 0 : DELIVERY.fee;
+    return { sub: sub, del: del, total: sub + del };
+  }
+  var busy = false, paySelect = document.getElementById('co-payment');
+  function isOnline() { return PAY.enabled && paySelect.value === 'online'; }
+  function updatePayUi() {
+    var online = isOnline(), t = totals();
+    submit.textContent = online ? 'Pay ' + rupees(t.total) + ' securely' : 'Place order on WhatsApp';
+    document.getElementById('co-secure').hidden = !online;
+  }
+  paySelect.addEventListener('change', updatePayUi);
+  /* Live prices and whether online payment is on (set by the RAZORPAY_* keys in Vercel) */
+  fetch('/api/catalog', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (c) {
+    if (!c) return;
+    Object.keys(c.products || {}).forEach(function (id) {
+      if (PRODUCTS[id]) { PRODUCTS[id].price = c.products[id].price; PRODUCTS[id].pack = c.products[id].pack; }
+    });
+    if (c.delivery) DELIVERY = c.delivery;
+    PAY = c.payments || PAY;
+    if (PAY.enabled && !paySelect.querySelector('option[value="online"]')) {
+      var o = document.createElement('option'); o.value = 'online'; o.textContent = 'Pay online now (UPI, cards)';
+      paySelect.insertBefore(o, paySelect.firstChild); paySelect.value = 'online';
+    }
+    render();
+  }).catch(function () {});
   list.addEventListener('click', function (e) {
     var b = e.target.closest('button[data-act]'); if (!b) return;
     var it = cart.filter(function (x) { return x.id === b.dataset.id; })[0]; if (!it) return;
@@ -371,12 +429,78 @@
     cart.forEach(function (i) { lines.push('• ' + i.qty + ' × ' + PRODUCTS[i.id].name); });
     lines.push('', 'Name: ' + v('co-name') + ' ' + v('co-surname'), 'Phone: +91 ' + v('co-phone'));
     if (v('co-email')) lines.push('Email: ' + v('co-email'));
-    lines.push('Address: ' + addr, 'Delivery: ' + when + ', ' + v('co-time'), 'Payment: ' + v('co-payment'));
+    var t = totals();
+    lines.push('Address: ' + addr, 'Delivery: ' + when + ', ' + v('co-time'));
+    lines.push('Total: ' + rupees(t.total) + (t.del ? ' (incl. ' + rupees(t.del) + ' delivery)' : ' (free delivery)'));
     if (v('co-note')) lines.push('Note: ' + v('co-note'));
     if (save.checked) write(NOTE_KEY, v('co-note')); else { try { localStorage.removeItem(NOTE_KEY); } catch (err) {} }
-    status.textContent = 'Opening WhatsApp. Press send there to place your order.';
-    window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+
+    if (!isOnline()) {
+      lines.push('Payment: ' + paySelect.options[paySelect.selectedIndex].text);
+      status.textContent = 'Opening WhatsApp. Press send there to place your order.';
+      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+      return;
+    }
+    payOnline({
+      name: v('co-name') + ' ' + v('co-surname'), phone: v('co-phone'), email: v('co-email'),
+      address: addr, delivery: when + ', ' + v('co-time'), note: v('co-note')
+    }, lines);
   });
+
+  /* Online payment with Razorpay: the server prices the cart, opens the order, then checks the payment signature */
+  function loadCheckout() {
+    return new Promise(function (ok, fail) {
+      if (window.Razorpay) return ok();
+      var sc = document.createElement('script'); sc.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      sc.onload = function () { ok(); }; sc.onerror = function () { fail(new Error('Could not load the payment window. Check your internet and try again.')); };
+      document.head.appendChild(sc);
+    });
+  }
+  function post(url, data) {
+    return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { if (!r.ok) throw new Error(d.error || 'Something went wrong. Please try again.'); return d; }); });
+  }
+  function setBusy(b) { busy = b; submit.disabled = b || cart.length === 0; }
+  function payOnline(customer, lines) {
+    setBusy(true); status.textContent = 'Starting secure payment…';
+    var items = cart.map(function (i) { return { id: i.id, qty: i.qty }; });
+    post('/api/create-order', { items: items, customer: customer }).then(function (o) {
+      return loadCheckout().then(function () { return o; });
+    }).then(function (o) {
+      status.textContent = '';
+      var rzp = new window.Razorpay({
+        key: o.keyId, order_id: o.orderId, amount: o.amount, currency: o.currency,
+        name: 'Maika', description: 'Homemade winter laddoos & spreads',
+        image: location.origin + '/apple-touch-icon.png',
+        prefill: { name: customer.name, email: customer.email, contact: '+91' + customer.phone },
+        theme: { color: '#606212' },
+        handler: function (resp) {
+          status.textContent = 'Confirming your payment…';
+          post('/api/verify-payment', resp).then(function () { done(o, resp, lines); })
+            .catch(function (err) { setBusy(false); status.textContent = err.message + ' Payment ID: ' + resp.razorpay_payment_id; });
+        },
+        modal: { ondismiss: function () { setBusy(false); if (!status.textContent) status.textContent = 'Payment window closed. Nothing was charged.'; } }
+      });
+      rzp.on('payment.failed', function (r) {
+        status.textContent = 'Payment failed: ' + ((r && r.error && r.error.description) || 'please try again') + '. Nothing was charged.';
+      });
+      rzp.open();
+    }).catch(function (err) { setBusy(false); status.textContent = err.message; });
+  }
+  function done(o, resp, lines) {
+    var paid = o.amount / 100;
+    lines.push('Payment: PAID ONLINE ' + rupees(paid) + ', Razorpay payment ' + resp.razorpay_payment_id + ' (order ' + resp.razorpay_order_id + ')');
+    document.getElementById('co-done-amt').textContent = rupees(paid);
+    document.getElementById('co-done-order').textContent = resp.razorpay_order_id;
+    document.getElementById('co-done-pay').textContent = resp.razorpay_payment_id;
+    document.getElementById('co-done-wa').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lines.join('\n'));
+    cart = []; write(CART_KEY, cart);
+    form.hidden = true; document.querySelector('.co-summary').hidden = true;
+    var box = document.getElementById('co-done'); box.hidden = false; box.focus();
+    document.querySelector('.co h1').textContent = 'Order confirmed';
+    status.textContent = ''; busy = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   render();
 })();

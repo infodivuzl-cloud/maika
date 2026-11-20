@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maika Admin</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#606212">
+<meta name="theme-color" content="#1D3B63">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Lilita+One&display=swap" rel="stylesheet">
 <style>
-  :root { --ink: #606212; --ink-dark: #4A4B0E; --gold: #EDD03A; --gold-soft: #F6E7A6; --paper: #FFFBEA; --card: #FFFDF5; --line: rgba(96, 98, 18, .22); --muted: #6B6C3A; --red: #A3261B; --ok: #2F6B4F; }
+  :root { --ink: #1D3B63; --ink-dark: #13294A; --gold: #BFD8EE; --gold-soft: #CFE2F3; --paper: #E6F1FA; --card: #F4F9FD; --line: rgba(29, 59, 99, .22); --muted: #4F6480; --red: #A3261B; --ok: #2F6B4F; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--paper); color: var(--ink-dark); font-family: 'Figtree', system-ui, sans-serif; font-size: 15px; line-height: 1.45; }
   button, input, select { font: inherit; color: inherit; }
@@ -39,12 +39,12 @@
   .msg:empty { display: none; }
 
   /* app shell */
-  .top { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 24px; background: var(--ink); color: var(--gold); }
+  .top { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 24px; background: var(--ink); color: var(--paper); }
   .top h1 { margin: 0; font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: 26px; line-height: 1; display: flex; align-items: center; gap: 10px; }
   .badge { padding: 3px 9px; border-radius: 999px; background: var(--gold); color: var(--ink-dark); font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
   .badge--test { background: #F3A9DD; }
   .top .btn { min-height: 36px; border-color: var(--gold); background: transparent; color: var(--gold); }
-  .top .btn:hover { background: rgba(237, 208, 58, .14); }
+  .top .btn:hover { background: rgba(230, 241, 250, .14); }
   .top-actions { display: flex; gap: 8px; }
   main { max-width: 1240px; margin: 0 auto; padding: 22px 24px 60px; }
   .updated { margin: 0 0 14px; font-size: 13px; color: var(--muted); }
@@ -69,11 +69,11 @@
   th { padding: 10px 12px; background: var(--gold-soft); text-align: left; font-size: 12px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
   td { padding: 12px; border-top: 1px solid var(--line); vertical-align: top; font-size: 14px; }
   tbody tr { cursor: pointer; }
-  @media (hover: hover) { tbody tr:hover td { background: rgba(237, 208, 58, .12); } }
+  @media (hover: hover) { tbody tr:hover td { background: rgba(230, 241, 250, .12); } }
   td .sub { display: block; font-size: 12px; color: var(--muted); }
   .amt { font-weight: 800; white-space: nowrap; }
   .pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 800; white-space: nowrap; }
-  .st-new { background: var(--gold); } .st-packed { background: #F8D78F; } .st-dispatched { background: #CCE9FF; }
+  .st-new { background: var(--gold); } .st-packed { background: #CFE2F3; } .st-dispatched { background: #9DBEDF; }
   .st-delivered { background: #CDE8D6; color: var(--ok); } .st-cancelled, .st-refunded { background: #F6D5D1; color: var(--red); }
   .st-unpaid { background: #EEE; color: #555; }
   .empty { padding: 40px 16px; text-align: center; color: var(--muted); background: var(--card); border: 1.5px dashed var(--line); border-radius: 14px; }
@@ -83,8 +83,8 @@
   .prices b { display: block; font-size: 18px; }
 
   /* order detail drawer */
-  .shade { position: fixed; inset: 0; z-index: 20; background: rgba(30, 31, 4, .45); }
-  .drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 21; width: min(520px, 100%); overflow-y: auto; background: var(--paper); box-shadow: -10px 0 40px rgba(30, 31, 4, .25); }
+  .shade { position: fixed; inset: 0; z-index: 20; background: rgba(10, 22, 40, .45); }
+  .drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 21; width: min(520px, 100%); overflow-y: auto; background: var(--paper); box-shadow: -10px 0 40px rgba(10, 22, 40, .25); }
   .drawer header { position: sticky; top: 0; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 20px; background: var(--ink); color: var(--gold); }
   .drawer header h2 { margin: 0; font-size: 18px; }
   .drawer header .btn { min-height: 34px; border-color: var(--gold); background: transparent; color: var(--gold); }

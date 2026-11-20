@@ -493,6 +493,22 @@
     .footer-col h2 { margin-bottom: 10px; }
     .footer-col a, .footer-col li { font-size: 15px; }
     }
+
+  /* Compact footer (20% shorter): tighter spacing and a smaller wordmark */
+  .site-footer { padding-top: calc(var(--scallop) + 28px); padding-bottom: clamp(16px, 1.8vw, 26px); }
+  .footer-col h2 { margin-bottom: 8px; }
+  .footer-col ul { gap: 0; }
+  .footer-col a { padding: 2px 0; }
+  .footer-tagline { margin-top: clamp(18px, 2.2vw, 30px); }
+  .footer-tagline + .footer-word { margin-top: clamp(8px, 1.2vw, 16px); }
+  .footer-word { max-width: 690px; }
+  @media (max-width: 1099px) { .footer-word { max-width: 590px; } }
+  @media (max-width: 599px) {
+    .site-footer { padding-top: calc(var(--scallop) + 20px); }
+    .footer-top { gap: 16px 16px; }
+    .footer-brand p { margin-top: 2px; }
+    .footer-word { max-width: 262px; }
+  }
 </style>
 </head>
 <body>

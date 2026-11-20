@@ -54,7 +54,7 @@
   .button:hover { background: #E6F1FA; border-color: #1D3B63; color: #13294A; }
   .button:focus-visible { outline: 2px solid #1D3B63; outline-offset: 2px; }
 
-  /* ---------- Header: announcement pill on top, then logo · links · account/cart pill ---------- */
+  /* ---------- Header: announcement pill on top, then logo · links · cart ---------- */
   :root { --gold: #E6F1FA; --sky: #E6F1FA; --olive: #1D3B63; --olive-ink: #13294A; --nav-ink: #1D3B63; --mono: 'Space Mono', ui-monospace, 'Courier New', monospace;
           --announce-h: 44px; --row-h: 112px; --logo-w: 118px; --head-top: 16px; }
   :root { --header-h: calc(var(--head-top) + var(--announce-h) + var(--row-h)); }
@@ -88,14 +88,13 @@
   .header-nav__list > li > a:hover::before, .header-nav__list > li > a:focus-visible::before { transform: scaleX(1); }
   .header-nav__list > li > a:focus-visible { outline: 2px dashed var(--olive); outline-offset: 4px; }
 
-  /* Account | cart pill */
+  /* Cart icon */
   .nav-tools { justify-self: end; display: flex; align-items: center; gap: 6px; }
-  .nav-pill { display: flex; align-items: center; gap: 14px; height: 66px; padding: 0 24px; border: 2px solid var(--olive); border-radius: 33px; background: transparent; }
-  .nav-pill a { position: relative; display: grid; place-items: center; width: 40px; height: 40px; color: var(--nav-ink); border-radius: 50%; text-decoration: none; transition: color .2s ease, background .2s ease; }
-  .nav-pill a:hover { color: var(--olive); background: rgba(29, 59, 99, .1); }
+  .nav-pill { display: flex; align-items: center; background: transparent; }
+  .nav-pill a { position: relative; display: grid; place-items: center; width: 48px; height: 48px; color: var(--nav-ink); text-decoration: none; transition: color .2s ease, transform .2s ease; }
+  .nav-pill a:hover { color: var(--olive-ink); transform: translateY(-1px); }
   .nav-pill a:focus-visible { outline: 2px dashed var(--olive); outline-offset: 2px; }
-  .nav-pill svg { width: 28px; height: 28px; }
-  .nav-pill .sep { width: 2px; height: 30px; background: var(--nav-ink); border-radius: 2px; }
+  .nav-pill svg { width: 34px; height: 34px; }
   .cart-count { position: absolute; top: 0; right: -2px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--olive); color: var(--sky); font-family: var(--mono); font-weight: 700; font-size: 12px; line-height: 20px; text-align: center; }
 
   /* Mega menu under "Shop Maika" */
@@ -147,15 +146,14 @@
   .sub-menu-toggle::before { content: ""; width: 10px; height: 10px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
   .has-sub.sub-menu-open .sub-menu-toggle::before { transform: rotate(-135deg) translateY(-2px); }
 
-  .announce, .nav-pill, .nav-pill .sep, .cart-count, .mobile-menu-toggle, .nav-logo svg { transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .2s ease; }
+  .announce, .nav-pill, .cart-count, .mobile-menu-toggle, .nav-logo svg { transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .2s ease; }
 
   @media (max-width: 1279px) {
     :root { --announce-h: 40px; --row-h: 92px; --logo-w: 96px; --head-top: 12px; }
     .header-nav { display: none; }
     .nav-row { grid-template-columns: auto 1fr auto; }
     .nav-tools { grid-column: 3; gap: 10px; }
-    .nav-pill { height: 54px; padding: 0 16px; gap: 10px; }
-    .nav-pill svg { width: 24px; height: 24px; }
+    .nav-pill svg { width: 30px; height: 30px; }
     .mobile-menu-toggle { display: inline-flex; }
     .announce__msg p { font-size: 14px; }
     body.header-hidden .site-header { transform: translateY(-110%); opacity: 0; visibility: hidden; pointer-events: none; }
@@ -166,10 +164,8 @@
     .announce__msg p { font-size: 11.5px; }
     .announce__btn { width: 22px; height: 22px; }
     .announce__btn svg { width: 18px; height: 18px; }
-    .nav-pill { height: 46px; padding: 0 10px; gap: 6px; }
-    .nav-pill a { width: 34px; height: 34px; }
-    .nav-pill svg { width: 21px; height: 21px; }
-    .nav-pill .sep { height: 22px; }
+    .nav-pill a { width: 42px; height: 42px; }
+    .nav-pill svg { width: 27px; height: 27px; }
     .mobile-menu-toggle { width: 44px; height: 44px; }
   }
   @media (min-width: 1280px) { .mobile-menu { display: none; } }
@@ -223,10 +219,8 @@
   @media (orientation: landscape) and (max-height: 520px) {
     :root { --announce-h: 28px; --row-h: 58px; --logo-w: 58px; --head-top: 6px; }
     .announce__msg p { font-size: 11px; }
-    .nav-pill { height: 40px; padding: 0 10px; }
-    .nav-pill a { width: 30px; height: 30px; }
-    .nav-pill svg { width: 19px; height: 19px; }
-    .nav-pill .sep { height: 18px; }
+    .nav-pill a { width: 40px; height: 40px; }
+    .nav-pill svg { width: 25px; height: 25px; }
     .mobile-menu-toggle { width: 38px; height: 38px; }
     .hero-inner { padding-bottom: 10px; }
     .hero-inner { --fs: min(7.6vw, calc(var(--avail) * .17)); }
@@ -623,10 +617,6 @@
 
     <div class="nav-tools">
       <div class="nav-pill">
-        <a href="#account" aria-label="My account">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3.5" width="15" height="17" rx="3"/><rect x="2.5" y="6" width="2" height="12" rx="1" opacity=".6"/><circle cx="12" cy="10" r="3"/><path d="M7.5 17.5c1-2.4 2.6-3.5 4.5-3.5s3.5 1.1 4.5 3.5"/></svg>
-        </a>
-        <span class="sep" aria-hidden="true"></span>
         <a href="#cart" aria-label="Cart, 0 items">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4h2.6l2.3 10.2a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.5-1.2L20.5 8H6"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/><path d="M12.6 9.2v4M10.6 11.2h4"/></svg>
           <span class="cart-count" aria-hidden="true">0</span>

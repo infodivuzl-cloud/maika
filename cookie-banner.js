@@ -29,7 +29,7 @@
     box.setAttribute('role', 'region'); box.setAttribute('aria-label', 'Cookie notice');
     box.innerHTML =
       '<div class="mk-cookie__top">' +
-        '<svg class="mk-cookie__icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="#E6F1FA"/>' +
+        '<svg class="mk-cookie__icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="#BFD8EE"/>' +
         '<path d="M31 9a5 5 0 0 0 5 5" stroke="#E6F1FA" stroke-width="3" fill="none"/>' +
         '<g fill="#1D3B63"><circle cx="14" cy="15" r="2.4"/><circle cx="23" cy="13" r="1.8"/><circle cx="26" cy="23" r="2.6"/><circle cx="15" cy="26" r="2"/><circle cx="20" cy="20" r="1.4"/></g></svg>' +
         '<div><h2>Just the good stuff</h2>' +

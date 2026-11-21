@@ -487,8 +487,8 @@
   .site-footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: var(--scallop); background: radial-gradient(circle at 50% 0, var(--gold) calc(var(--scallop) - .5px), transparent var(--scallop)) 0 0 / calc(var(--scallop) * 2.3) var(--scallop) repeat-x; }
   .footer-top { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .9fr) minmax(0, 1.05fr) minmax(0, .8fr); gap: 32px; align-items: start; }
   .footer-brand { scroll-margin-top: 160px; display: flex; align-items: flex-start; gap: clamp(16px, 2vw, 30px); }
-  .footer-logo { flex: none; display: block; line-height: 0; transform: rotate(-4deg); transition: transform .25s ease; }
-  .footer-logo:hover { transform: rotate(-2deg) scale(1.04); }
+  .footer-logo { flex: none; display: block; line-height: 0; transition: transform .25s ease; }
+  .footer-logo:hover { transform: scale(1.04); }
   .footer-logo svg { width: clamp(110px, 9vw, 140px); height: auto; display: block; color: var(--gold); }
   .footer-logo:focus-visible { outline: 2px dashed var(--gold); outline-offset: 6px; border-radius: 20px; }
   .footer-brand p { margin: 8px 0 0; max-width: 250px; font-family: 'Albert Sans', var(--body); font-weight: 500; font-size: clamp(15px, 1.15vw, 17px); line-height: 1.2; letter-spacing: -.02em; }

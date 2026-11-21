@@ -98,7 +98,7 @@
   .nav-pill .sep { width: 2px; height: 30px; background: var(--nav-ink); border-radius: 2px; }
   .cart-count { position: absolute; top: 0; right: -2px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--olive); color: var(--sky); font-family: var(--mono); font-weight: 700; font-size: 12px; line-height: 20px; text-align: center; }
 
-  /* Mega menu under "Shop Maika" */
+  /* Mega menu under "Products" */
   .header-nav__list > li.has-mega { position: relative; }
   .header-nav__list > li.has-mega::before { content: ""; position: absolute; top: 100%; left: 50%; z-index: 3; width: 28px; height: 14px; margin-top: 22px; margin-left: -14px; background: #FFFFFF; clip-path: polygon(50% 0, 100% 100%, 0 100%); pointer-events: none; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
   .header-nav__list > li.has-mega > a::after { content: ""; position: absolute; top: 100%; left: -30px; right: -30px; height: 40px; }
@@ -620,14 +620,14 @@
 
     <nav class="header-nav" aria-label="Main navigation">
       <ul class="header-nav__list">
-        <li class="has-mega"><a href="#products" aria-haspopup="true" aria-expanded="false">Shop Maika</a>
+        <li class="has-mega"><a href="/products" aria-haspopup="true" aria-expanded="false">Products</a>
           <div class="mega" data-mega>
             <ul class="mega__list">
-              <li><a href="#pistachio-spread" data-mega-target="pistachio-spread">Pistachio Spread<small>पिस्ता स्प्रेड</small></a></li>
-              <li><a href="#haldi-laddoo" data-mega-target="haldi-laddoo">Haldi Laddoo<small>हल्दी लड्डू</small></a></li>
-              <li><a href="#til-laddoo" data-mega-target="til-laddoo">Til Laddoo<small>तिल लड्डू</small></a></li>
-              <li><a href="#goond-laddoo" data-mega-target="goond-laddoo">Goond Laddoo<small>गोंद लड्डू</small></a></li>
-              <li><a href="#gift-box" data-mega-target="gift">Winter Box<small>विंटर बॉक्स</small></a></li>
+              <li><a href="/products#pistachio-spread" data-mega-target="pistachio-spread">Pistachio Spread<small>पिस्ता स्प्रेड</small></a></li>
+              <li><a href="/products#haldi-laddoo" data-mega-target="haldi-laddoo">Haldi Laddoo<small>हल्दी लड्डू</small></a></li>
+              <li><a href="/products#til-laddoo" data-mega-target="til-laddoo">Til Laddoo<small>तिल लड्डू</small></a></li>
+              <li><a href="/products#goond-laddoo" data-mega-target="goond-laddoo">Goond Laddoo<small>गोंद लड्डू</small></a></li>
+              <li><a href="/products#gift-box" data-mega-target="gift">Winter Box<small>विंटर बॉक्स</small></a></li>
             </ul>
             <div class="mega__media" aria-hidden="true">
               <div class="mega__img mega__img--jar is-active" data-term="pistachio-spread"><img src="images/jar-pistachio-spread.webp" alt="" loading="lazy" decoding="async"></div>
@@ -665,13 +665,13 @@
   <div class="mobile-menu-content">
     <nav aria-label="Main navigation (phone)">
       <ul>
-        <li class="has-sub"><a href="#products">Shop Maika</a><button type="button" class="sub-menu-toggle" aria-label="Show products" aria-expanded="false"></button>
+        <li class="has-sub"><a href="/products">Products</a><button type="button" class="sub-menu-toggle" aria-label="Show products" aria-expanded="false"></button>
           <ul class="sub-menu">
-            <li><a href="#pistachio-spread">Pistachio Spread</a></li>
-            <li><a href="#haldi-laddoo">Haldi Laddoo</a></li>
-            <li><a href="#til-laddoo">Til Laddoo</a></li>
-            <li><a href="#goond-laddoo">Goond Laddoo</a></li>
-            <li><a href="#gift-box">Winter Box</a></li>
+            <li><a href="/products#pistachio-spread">Pistachio Spread</a></li>
+            <li><a href="/products#haldi-laddoo">Haldi Laddoo</a></li>
+            <li><a href="/products#til-laddoo">Til Laddoo</a></li>
+            <li><a href="/products#goond-laddoo">Goond Laddoo</a></li>
+            <li><a href="/products#gift-box">Winter Box</a></li>
           </ul>
         </li>
         <li><a href="#about">About Maika</a></li>

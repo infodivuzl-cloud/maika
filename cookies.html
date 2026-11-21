@@ -55,6 +55,8 @@
     main { padding: 4px 16px 56px; }
     .pp-box { padding: 18px 16px; }
   }
+  .pp-choice { min-height: 44px; padding: 0 20px; border: 2px solid var(--ink); border-radius: 999px; background: transparent; color: var(--ink); font: inherit; font-weight: 700; cursor: pointer; }
+  .pp-choice:hover { background: rgba(96, 98, 18, .08); }
 </style>
 </head>
 <body>
@@ -66,7 +68,7 @@
 
 <main>
   <h1>Cookie Policy</h1>
-  <p class="pp-date">Last updated: 20 November 2026</p>
+  <p class="pp-date">Last updated: 21 November 2026</p>
 
   <div class="pp-box">
     <p><strong>In short:</strong> maika.food uses no advertising, tracking or analytics cookies. We only save what the site needs to work, like your cart, and it stays on your own device.</p>
@@ -91,10 +93,15 @@
   </ul>
   <p>Links to WhatsApp and Instagram take you to those apps, where their own policies apply.</p>
 
+  <h2>Meta Pixel (only if you say yes)</h2>
+  <p>To see which of our Facebook and Instagram ads bring people to Maika, we may use the <strong>Meta Pixel</strong>. It runs <strong>only if you press &ldquo;Accept all&rdquo;</strong> on our cookie notice. If you choose &ldquo;Only essential&rdquo;, it never loads.</p>
+  <p>When it runs, Meta (Facebook and Instagram) receives which pages you visit on maika.food and shop actions such as adding to cart, starting checkout and completing a purchase, with the order value. It does not receive your name, address, phone number or payment details from us. Meta&rsquo;s own <a href="https://www.facebook.com/privacy/policy/" rel="noopener">privacy policy</a> applies to what it collects.</p>
+
   <h2>What we don&rsquo;t use</h2>
-  <p>No advertising cookies, no social media trackers, no analytics tools, and no selling of your information.</p>
+  <p>No analytics tools, no other advertising trackers, and no selling of your information.</p>
 
   <h2>How to control them</h2>
+  <p><button type="button" class="pp-choice" onclick="window.mkCookieSettings &amp;&amp; window.mkCookieSettings()">Change my cookie choice</button></p>
   <p>You can clear cookies and site data at any time in your browser settings, for example in Chrome under Settings &rarr; Privacy and security &rarr; Delete browsing data. If you do, your cart will be emptied and this notice will appear again. Blocking storage completely may stop the cart from working.</p>
 
   <h2>Changes and questions</h2>

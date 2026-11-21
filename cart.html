@@ -357,6 +357,8 @@
       paySelect.insertBefore(o, paySelect.firstChild); paySelect.value = 'online';
     }
     render();
+    if (cart.length && window.mkTrack) { var t0 = totals();
+      window.mkTrack('InitiateCheckout', { content_ids: cart.map(function (i) { return i.id; }), content_type: 'product', num_items: cart.reduce(function (n, i) { return n + i.qty; }, 0), value: t0.total, currency: 'INR' }); }
   }).catch(function () {});
   list.addEventListener('click', function (e) {
     var b = e.target.closest('button[data-act]'); if (!b) return;
@@ -427,6 +429,7 @@
     if (!isOnline()) {
       lines.push('Payment: ' + paySelect.options[paySelect.selectedIndex].text);
       status.textContent = 'Opening WhatsApp. Press send there to place your order.';
+      if (window.mkTrack) window.mkTrack('Lead', { content_ids: cart.map(function (i) { return i.id; }), value: t.total, currency: 'INR' });
       window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
       return;
     }
@@ -478,6 +481,7 @@
   }
   function done(o, resp, lines) {
     var paid = o.amount / 100;
+    if (window.mkTrack) window.mkTrack('Purchase', { content_ids: cart.map(function (i) { return i.id; }), content_type: 'product', num_items: cart.reduce(function (n, i) { return n + i.qty; }, 0), value: paid, currency: 'INR' }, { eventID: resp.razorpay_payment_id });
     lines.push('Payment: PAID ONLINE ' + rupees(paid) + ', Razorpay payment ' + resp.razorpay_payment_id + ' (order ' + resp.razorpay_order_id + ')');
     document.getElementById('co-done-amt').textContent = rupees(paid);
     document.getElementById('co-done-order').textContent = resp.razorpay_order_id;

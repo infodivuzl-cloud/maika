@@ -5,5 +5,11 @@
     "deploymentEnabled": {
       "website-v1": false
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/meta-catalog.csv",
+      "destination": "/api/meta-catalog"
+    }
+  ]
 }

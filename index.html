@@ -1116,6 +1116,7 @@
     var it = findItem(id), p = product(id); if (!p) return;
     if (it) it.qty++; else cart.push({ id: id, name: p.name, qty: 1 });
     saveCart(); renderCart();
+    if (window.mkTrack) window.mkTrack('AddToCart', { content_ids: [id], content_name: p.name, content_type: 'product', value: p.price, currency: 'INR' });
     cartCount.classList.remove('bump'); void cartCount.offsetWidth; cartCount.classList.add('bump');
   }
   function openCart() {

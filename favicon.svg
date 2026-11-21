@@ -1,15 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 7 52 50">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="138 229 124 124">
   <style>
-    .hut { color: #606212; }
-    @media (prefers-color-scheme: dark) { .hut { color: #EDD03A; } }
+    .handi { fill: #606212; }
+    @media (prefers-color-scheme: dark) { .handi { fill: #EDD03A; } }
   </style>
-  <g class="hut">
-    <g fill="none" stroke="currentColor" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M9 30 32 11l23 19"/>
-      <path d="M16 26v27h32V26"/>
-    </g>
-    <circle cx="32" cy="21" r="2.8" fill="currentColor"/>
-    <rect x="28" y="36" width="8" height="3.6" rx="1.2" fill="currentColor"/>
-    <ellipse cx="32" cy="45" rx="9" ry="6.4" fill="currentColor"/>
-  </g>
+  <path class="handi" d="M176 254 C156 259 144 274 144 292 C144 316 170 331 200 331 C230 331 256 316 256 292 C256 274 244 259 224 254 L224 247 L232 239 L168 239 L176 247 Z"/>
 </svg>

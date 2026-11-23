@@ -1,10 +1,11 @@
 // The ONE place for prices. The website shows these and the server charges these.
 // Change a price here, publish, and both the product cards and the checkout update.
 const PRODUCTS = {
-  'til-laddoo':       { name: 'Til Laddoo',       pack: '250 g', price: 299 },
-  'goond-laddoo':     { name: 'Goond Laddoo',     pack: '250 g', price: 399 },
-  'haldi-laddoo':     { name: 'Haldi Laddoo',     pack: '200 g', price: 299 },
-  'pistachio-spread': { name: 'Pistachio Spread', pack: '180 g', price: 499 },
+  'pinni': {name: 'Pinni', pack: '250 g', price: 349},
+  'panjiri': {name: 'Panjiri', pack: '250 g', price: 329},
+  'til-laddoo': {name: 'Til Laddoo', pack: '250 g', price: 299},
+  'dry-fruit-laddoo': {name: 'Dry Fruit Laddoo', pack: '250 g', price: 449},
+  'chikki': {name: 'Chikki', pack: '250 g', price: 249}
 };
 
 // Delivery: ₹79, free when the order subtotal reaches ₹999.

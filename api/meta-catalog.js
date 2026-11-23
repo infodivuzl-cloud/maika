@@ -4,10 +4,11 @@ const { PRODUCTS } = require('./_catalog');
 
 const SITE = 'https://www.maika.food';
 const ABOUT = {
-  'pistachio-spread': 'Creamy homemade pistachio spread, made in small batches.',
-  'haldi-laddoo': 'Homemade haldi laddoo, made in small batches for winter.',
-  'til-laddoo': 'Homemade til (sesame) laddoo, made in small batches for winter.',
-  'goond-laddoo': 'Homemade goond laddoo, made in small batches for winter.',
+  'pinni': 'Homemade Punjabi pinni, made in small batches.',
+  'panjiri': 'Homemade winter panjiri, made in small batches.',
+  'til-laddoo': 'Homemade til (sesame) laddoo, made in small batches.',
+  'dry-fruit-laddoo': 'Homemade dry fruit laddoo, made in small batches.',
+  'chikki': 'Homemade gur chikki, made in small batches.',
 };
 const ORDERS_OPEN = '2027-01-01T00:00+05:30';
 
